@@ -61,6 +61,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.feedCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     //[self.view addSubview:self.feedCollectionView];
      */
+    
 }
 
 #pragma mark - UICollectionDataSource
