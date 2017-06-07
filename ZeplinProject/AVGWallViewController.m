@@ -7,15 +7,12 @@
 //
 
 #import "AVGWallViewController.h"
-#import "AVGFeedCollectionView.h"
 
 static NSString * const reuseIdentifier = @"Cell";
 
 @interface AVGWallViewController () <UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
-
-@property (nonatomic, strong) AVGFeedCollectionView *feedCollectionView;
 
 @end
 
