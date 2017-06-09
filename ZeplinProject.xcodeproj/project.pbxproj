@@ -184,6 +184,7 @@
 				TargetAttributes = {
 					04EF37C71ED97271003B24C8 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = Z48WYVF59J;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -388,8 +389,9 @@
 			baseConfigurationReference = 927012A5674ABD7AB14C1BC7 /* Pods-ZeplinProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z48WYVF59J;
 				INFOPLIST_FILE = ZeplinProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.vutsins.ZeplinProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -401,8 +403,9 @@
 			baseConfigurationReference = 2B12E6CB648A2621EF130D63 /* Pods-ZeplinProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = Z48WYVF59J;
 				INFOPLIST_FILE = ZeplinProject/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.vutsins.ZeplinProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
