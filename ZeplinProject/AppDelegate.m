@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "AVGWallViewController.h"
+#import "AVGFeedViewController.h"
 #import "AVGFavoriteViewController.h"
 
 @interface AppDelegate ()
@@ -23,7 +23,7 @@
     
     UITabBarController *tabBarController = [UITabBarController new];
     
-    AVGWallViewController *wallVC = [AVGWallViewController new];
+    AVGFeedViewController *wallVC = [AVGFeedViewController new];
     AVGFavoriteViewController *favoriteVC = [AVGFavoriteViewController new];
     
     UINavigationController *navWallVC = [[UINavigationController alloc] initWithRootViewController:wallVC];

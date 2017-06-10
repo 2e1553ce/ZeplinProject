@@ -1,5 +1,5 @@
 //
-//  AVGWallViewController.h
+//  AVGFeedViewController.h
 //  ZeplinProject
 //
 //  Created by iOS-School-1 on 27.05.17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AVGWallViewController : UIViewController
+@interface AVGFeedViewController : UIViewController
 
 @end
