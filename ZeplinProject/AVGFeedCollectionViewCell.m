@@ -7,6 +7,7 @@
 //
 
 #import "AVGFeedCollectionViewCell.h"
+#import <Masonry.h>
 
 NSString *const flickrCellIdentifier = @"flickrCellIdentifier";
 
@@ -15,9 +16,18 @@ NSString *const flickrCellIdentifier = @"flickrCellIdentifier";
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.layer.borderWidth = 1.f;
+        self.layer.borderColor = UIColor.blackColor.CGColor;
         self.imageView = [UIImageView new];
-        _imageView.frame = self.frame;
-        [self.contentView addSubview:_imageView];
+        [self addSubview:_imageView];
+        
+#warning почему если ставлю фрейм - баг
+        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).with.offset(2);
+            make.bottom.equalTo(self).with.offset(2);
+            make.left.equalTo(self).with.offset(2);
+            make.right.equalTo(self).with.offset(2);
+        }];
     }
     return self;
 }

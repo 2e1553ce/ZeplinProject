@@ -13,7 +13,6 @@
 		04EF37DB1ED97271003B24C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EF37D91ED97271003B24C8 /* LaunchScreen.storyboard */; };
 		04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */; };
 		04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */; };
-		04EF37FA1ED98F46003B24C8 /* UICollectCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37F91ED98F46003B24C8 /* UICollectCollectionViewController.m */; };
 		193B3F451EEC800B00EC54F3 /* AVGOperationsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F2E1EEC800B00EC54F3 /* AVGOperationsContainer.m */; };
 		193B3F461EEC800B00EC54F3 /* AVGUrlService.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F311EEC800B00EC54F3 /* AVGUrlService.m */; };
 		193B3F471EEC800B00EC54F3 /* AVGLoadUrlOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F331EEC800B00EC54F3 /* AVGLoadUrlOperation.m */; };
@@ -38,8 +37,6 @@
 		04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFavoriteViewController.m; sourceTree = "<group>"; };
 		04EF37F11ED979ED003B24C8 /* AVGFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedViewController.h; sourceTree = "<group>"; };
 		04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedViewController.m; sourceTree = "<group>"; };
-		04EF37F81ED98F46003B24C8 /* UICollectCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectCollectionViewController.h; sourceTree = "<group>"; };
-		04EF37F91ED98F46003B24C8 /* UICollectCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectCollectionViewController.m; sourceTree = "<group>"; };
 		193B3F2D1EEC800B00EC54F3 /* AVGOperationsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGOperationsContainer.h; sourceTree = "<group>"; };
 		193B3F2E1EEC800B00EC54F3 /* AVGOperationsContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGOperationsContainer.m; sourceTree = "<group>"; };
 		193B3F301EEC800B00EC54F3 /* AVGUrlService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGUrlService.h; sourceTree = "<group>"; };
@@ -105,8 +102,6 @@
 				04EF37D91ED97271003B24C8 /* LaunchScreen.storyboard */,
 				04EF37DC1ED97271003B24C8 /* Info.plist */,
 				04EF37CB1ED97271003B24C8 /* Supporting Files */,
-				04EF37F81ED98F46003B24C8 /* UICollectCollectionViewController.h */,
-				04EF37F91ED98F46003B24C8 /* UICollectCollectionViewController.m */,
 			);
 			path = ZeplinProject;
 			sourceTree = "<group>";
@@ -418,7 +413,6 @@
 				04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */,
 				193B3F4A1EEC800B00EC54F3 /* AVGLoadImageOperation.m in Sources */,
 				193B3F451EEC800B00EC54F3 /* AVGOperationsContainer.m in Sources */,
-				04EF37FA1ED98F46003B24C8 /* UICollectCollectionViewController.m in Sources */,
 				193B3F4B1EEC800B00EC54F3 /* AVGBinaryImageOperation.m in Sources */,
 				193B3F7D1EEC807700EC54F3 /* AVGImageInformation.m in Sources */,
 			);

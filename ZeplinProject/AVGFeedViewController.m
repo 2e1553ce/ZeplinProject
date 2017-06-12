@@ -73,7 +73,7 @@
     
     // CollectionView
     UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
-    self.feedCollectionView = [[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:flowLayout];
+    self.feedCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
     self.feedCollectionView.backgroundColor = UIColor.whiteColor;
     //self.feedCollectionView.collectionViewLayout = flowLayout;
     self.feedCollectionView.delegate = self;
@@ -128,7 +128,8 @@
             [self.tableView insertRowsAtIndexPaths:arrayOfIndexPathes withRowAnimation:UITableViewRowAnimationFade];
             [self.tableView endUpdates];
              */
-            [self.feedCollectionView reloadData];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+            [self.feedCollectionView reloadSections:indexSet];
             [self.searchBar endEditing:YES];
             _isLoading = NO;
         });
@@ -150,7 +151,7 @@
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)([collectionView dequeueReusableCellWithReuseIdentifier:flickrCellIdentifier forIndexPath:indexPath]);
+    AVGFeedCollectionViewCell *cell = ([collectionView dequeueReusableCellWithReuseIdentifier:flickrCellIdentifier forIndexPath:indexPath]);
     
     AVGImageService *imageService = _imageServices[indexPath.row];
     AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
@@ -182,16 +183,33 @@
 
 #pragma mark - UICollectionViewDelegate
 
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    AVGImageService *service = _imageServices[indexPath.row];
+    AVGImageProgressState state = [service imageProgressState];
+    if (state == AVGImageProgressStateDownloading && !_isLoadingBySearch) {
+        //[service cancel];
+    }
+}
+
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = (CGRectGetWidth(self.view.bounds) / 3.f) - 14.f;
+    CGFloat width = (CGRectGetWidth(self.view.bounds) / 3.f) - 6.f;
     CGFloat height = width;
     return CGSizeMake(width, height);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(1.f, 1.f, 1.f, 1.f);
+    return UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f);
+}
+
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 3.f;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 3.f;
 }
 
 #pragma mark - UISearchBarDelegate
@@ -230,14 +248,15 @@
             [_imageServices addObject:imageService];
         }
         
-        NSIndexSet *set = [NSIndexSet indexSetWithIndex:0];
+        //NSIndexSet *set = [NSIndexSet indexSetWithIndex:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             /*
             [self.tableView beginUpdates];
             [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
             [self.tableView endUpdates];
              */
-            [self.feedCollectionView reloadData];
+            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
+            [self.feedCollectionView reloadSections:indexSet];
             [self.searchBar endEditing:YES];
             _isLoading = NO;
         });
@@ -272,6 +291,7 @@
         if (image) {
             AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
             cell.imageView.image = image;
+            NSLog(@".......................%ld", (long)indexPath.row);
             //[cell.searchedImageView.activityIndicatorView stopAnimating];
            // cell.searchedImageView.progressView.hidden = YES;
             [cell setNeedsLayout];
