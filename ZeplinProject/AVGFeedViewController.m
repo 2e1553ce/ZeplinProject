@@ -158,10 +158,10 @@
     UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
     
     if (cachedImage) {
-        //[cell.searchedImageView.activityIndicatorView stopAnimating];
-        //cell.searchedImageView.progressView.hidden = YES;
-        //cell.searchedImageView.image = cachedImage;
-        cell.imageView.image = cachedImage;
+        [cell.searchedImageView.activityIndicatorView stopAnimating];
+        cell.searchedImageView.progressView.hidden = YES;
+        cell.searchedImageView.image = cachedImage;
+        cell.searchedImageView.image = cachedImage;
     } else {
         //cell.delegate = self;
         imageService.delegate = self;
@@ -174,7 +174,6 @@
     } else {
         //cell.filterButton.enabled = YES;
     }
-
     
     // Configure the cell
     
@@ -194,22 +193,30 @@
 #pragma mark - UICollectionViewDelegateFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat width = (CGRectGetWidth(self.view.bounds) / 3.f) - 6.f;
-    CGFloat height = width;
-    return CGSizeMake(width, height);
+    if (indexPath.row % 6 == 0 || indexPath.row == 0) {
+        CGFloat width = (((CGRectGetWidth(self.view.bounds) - 5.f) / 3.f) * 2);
+        CGFloat height = width;
+        NSLog(@"%f, %f", CGRectGetWidth(self.view.bounds), width);
+        return CGSizeMake(width, height);
+    } else {
+        CGFloat width = (CGRectGetWidth(self.view.bounds) - 5.f) / 3.f;
+        CGFloat height = width;
+        return CGSizeMake(width, height);
+    }
+    
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0.f, 0.f, 0.f, 0.f);
+    return UIEdgeInsetsMake(1.f, 1.f, 1.f, 1.f);
 }
 
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 3.f;
+    return 1.f;
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 3.f;
+    return 1.f;
 }
 
 #pragma mark - UISearchBarDelegate
@@ -266,34 +273,33 @@
 #pragma mark - AVGImageServiceDelegate
 
 - (void)serviceStartedImageDownload:(AVGImageService *)service forRowAtIndexPath:(NSIndexPath*)indexPath {
-    /*
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        AVGFlickrCell *cell = (AVGFlickrCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
         cell.searchedImageView.progressView.hidden = NO;
         cell.searchedImageView.activityIndicatorView.hidden = NO;
         cell.searchedImageView.progressView.progress = 0.f;
         [cell.searchedImageView.activityIndicatorView startAnimating];
     });
-     */
+    
 }
 
 - (void)service:(AVGImageService *)service updateImageDownloadProgress:(float)progress forRowAtIndexPath:(NSIndexPath*)indexPath {
-    /*
+    
     dispatch_async(dispatch_get_main_queue(), ^{
-        AVGFlickrCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
         cell.searchedImageView.progressView.progress = progress;
     });
-     */
+    
 }
 
 - (void)service:(AVGImageService *)service downloadedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (image) {
             AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
-            cell.imageView.image = image;
-            NSLog(@".......................%ld", (long)indexPath.row);
-            //[cell.searchedImageView.activityIndicatorView stopAnimating];
-           // cell.searchedImageView.progressView.hidden = YES;
+            cell.searchedImageView.image = image;
+            [cell.searchedImageView.activityIndicatorView stopAnimating];
+            cell.searchedImageView.progressView.hidden = YES;
             [cell setNeedsLayout];
         }
     });

@@ -16,20 +16,24 @@ NSString *const flickrCellIdentifier = @"flickrCellIdentifier";
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.borderWidth = 1.f;
-        self.layer.borderColor = UIColor.blackColor.CGColor;
-        self.imageView = [UIImageView new];
-        [self addSubview:_imageView];
+        //self.layer.borderWidth = 1.f;
+        //self.layer.borderColor = UIColor.blackColor.CGColor;
+        self.searchedImageView = [AVGSearchImageView new];
+        [self addSubview:_searchedImageView];
         
 #warning почему если ставлю фрейм - баг
-        [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).with.offset(2);
-            make.bottom.equalTo(self).with.offset(2);
-            make.left.equalTo(self).with.offset(2);
-            make.right.equalTo(self).with.offset(2);
+        [_searchedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).with.offset(0);
+            make.bottom.equalTo(self).with.offset(0);
+            make.left.equalTo(self).with.offset(0);
+            make.right.equalTo(self).with.offset(0);
         }];
     }
     return self;
+}
+
+- (void)prepareForReuse {
+    _searchedImageView = nil;
 }
 
 @end

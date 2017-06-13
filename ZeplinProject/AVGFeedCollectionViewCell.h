@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AVGSearchImageView.h"
 
 extern NSString *const flickrCellIdentifier;
 
 @interface AVGFeedCollectionViewCell : UICollectionViewCell
 
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) AVGSearchImageView *searchedImageView;
 
 @end

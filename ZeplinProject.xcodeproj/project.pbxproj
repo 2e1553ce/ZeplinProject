@@ -13,15 +13,16 @@
 		04EF37DB1ED97271003B24C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EF37D91ED97271003B24C8 /* LaunchScreen.storyboard */; };
 		04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */; };
 		04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */; };
-		193B3F451EEC800B00EC54F3 /* AVGOperationsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F2E1EEC800B00EC54F3 /* AVGOperationsContainer.m */; };
-		193B3F461EEC800B00EC54F3 /* AVGUrlService.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F311EEC800B00EC54F3 /* AVGUrlService.m */; };
-		193B3F471EEC800B00EC54F3 /* AVGLoadUrlOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F331EEC800B00EC54F3 /* AVGLoadUrlOperation.m */; };
-		193B3F481EEC800B00EC54F3 /* AVGParseUrlOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F361EEC800B00EC54F3 /* AVGParseUrlOperation.m */; };
-		193B3F491EEC800B00EC54F3 /* AVGImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F3B1EEC800B00EC54F3 /* AVGImageService.m */; };
-		193B3F4A1EEC800B00EC54F3 /* AVGLoadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F3D1EEC800B00EC54F3 /* AVGLoadImageOperation.m */; };
-		193B3F4B1EEC800B00EC54F3 /* AVGBinaryImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F401EEC800B00EC54F3 /* AVGBinaryImageOperation.m */; };
-		193B3F7D1EEC807700EC54F3 /* AVGImageInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F7B1EEC807700EC54F3 /* AVGImageInformation.m */; };
 		193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */; };
+		193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */; };
+		193B3FFC1EF0130800EC54F3 /* AVGOperationsContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FFB1EF0130800EC54F3 /* AVGOperationsContainer.m */; };
+		193B3FFF1EF0131600EC54F3 /* AVGUrlService.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FFE1EF0131600EC54F3 /* AVGUrlService.m */; };
+		193B40021EF0132300EC54F3 /* AVGLoadUrlOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B40011EF0132300EC54F3 /* AVGLoadUrlOperation.m */; };
+		193B40051EF0132F00EC54F3 /* AVGParseUrlOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B40041EF0132F00EC54F3 /* AVGParseUrlOperation.m */; };
+		193B40081EF0134700EC54F3 /* AVGImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B40071EF0134700EC54F3 /* AVGImageService.m */; };
+		193B400B1EF0135A00EC54F3 /* AVGLoadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B400A1EF0135A00EC54F3 /* AVGLoadImageOperation.m */; };
+		193B400E1EF0136600EC54F3 /* AVGBinaryImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B400D1EF0136600EC54F3 /* AVGBinaryImageOperation.m */; };
+		19414AD81EF017F900826726 /* AVGImageInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19414AD61EF017F900826726 /* AVGImageInformation.m */; };
 		54823CAA19C65FA7F0AA75A3 /* libPods-ZeplinProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */; };
 /* End PBXBuildFile section */
 
@@ -37,24 +38,26 @@
 		04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFavoriteViewController.m; sourceTree = "<group>"; };
 		04EF37F11ED979ED003B24C8 /* AVGFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedViewController.h; sourceTree = "<group>"; };
 		04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedViewController.m; sourceTree = "<group>"; };
-		193B3F2D1EEC800B00EC54F3 /* AVGOperationsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGOperationsContainer.h; sourceTree = "<group>"; };
-		193B3F2E1EEC800B00EC54F3 /* AVGOperationsContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGOperationsContainer.m; sourceTree = "<group>"; };
-		193B3F301EEC800B00EC54F3 /* AVGUrlService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGUrlService.h; sourceTree = "<group>"; };
-		193B3F311EEC800B00EC54F3 /* AVGUrlService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGUrlService.m; sourceTree = "<group>"; };
-		193B3F321EEC800B00EC54F3 /* AVGLoadUrlOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadUrlOperation.h; sourceTree = "<group>"; };
-		193B3F331EEC800B00EC54F3 /* AVGLoadUrlOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadUrlOperation.m; sourceTree = "<group>"; };
-		193B3F351EEC800B00EC54F3 /* AVGParseUrlOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGParseUrlOperation.h; sourceTree = "<group>"; };
-		193B3F361EEC800B00EC54F3 /* AVGParseUrlOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGParseUrlOperation.m; sourceTree = "<group>"; };
-		193B3F3A1EEC800B00EC54F3 /* AVGImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGImageService.h; sourceTree = "<group>"; };
-		193B3F3B1EEC800B00EC54F3 /* AVGImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImageService.m; sourceTree = "<group>"; };
-		193B3F3C1EEC800B00EC54F3 /* AVGLoadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadImageOperation.h; sourceTree = "<group>"; };
-		193B3F3D1EEC800B00EC54F3 /* AVGLoadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadImageOperation.m; sourceTree = "<group>"; };
-		193B3F3F1EEC800B00EC54F3 /* AVGBinaryImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGBinaryImageOperation.h; sourceTree = "<group>"; };
-		193B3F401EEC800B00EC54F3 /* AVGBinaryImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGBinaryImageOperation.m; sourceTree = "<group>"; };
-		193B3F7A1EEC807700EC54F3 /* AVGImageInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGImageInformation.h; sourceTree = "<group>"; };
-		193B3F7B1EEC807700EC54F3 /* AVGImageInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImageInformation.m; sourceTree = "<group>"; };
 		193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedCollectionViewCell.h; sourceTree = "<group>"; };
 		193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedCollectionViewCell.m; sourceTree = "<group>"; };
+		193B3FE01EF0089500EC54F3 /* AVGSearchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGSearchImageView.h; sourceTree = "<group>"; };
+		193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGSearchImageView.m; sourceTree = "<group>"; };
+		193B3FFA1EF0130800EC54F3 /* AVGOperationsContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGOperationsContainer.h; sourceTree = "<group>"; };
+		193B3FFB1EF0130800EC54F3 /* AVGOperationsContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGOperationsContainer.m; sourceTree = "<group>"; };
+		193B3FFD1EF0131600EC54F3 /* AVGUrlService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGUrlService.h; sourceTree = "<group>"; };
+		193B3FFE1EF0131600EC54F3 /* AVGUrlService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGUrlService.m; sourceTree = "<group>"; };
+		193B40001EF0132300EC54F3 /* AVGLoadUrlOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadUrlOperation.h; sourceTree = "<group>"; };
+		193B40011EF0132300EC54F3 /* AVGLoadUrlOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadUrlOperation.m; sourceTree = "<group>"; };
+		193B40031EF0132F00EC54F3 /* AVGParseUrlOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGParseUrlOperation.h; sourceTree = "<group>"; };
+		193B40041EF0132F00EC54F3 /* AVGParseUrlOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGParseUrlOperation.m; sourceTree = "<group>"; };
+		193B40061EF0134700EC54F3 /* AVGImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGImageService.h; sourceTree = "<group>"; };
+		193B40071EF0134700EC54F3 /* AVGImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImageService.m; sourceTree = "<group>"; };
+		193B40091EF0135A00EC54F3 /* AVGLoadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadImageOperation.h; sourceTree = "<group>"; };
+		193B400A1EF0135A00EC54F3 /* AVGLoadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadImageOperation.m; sourceTree = "<group>"; };
+		193B400C1EF0136600EC54F3 /* AVGBinaryImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGBinaryImageOperation.h; sourceTree = "<group>"; };
+		193B400D1EF0136600EC54F3 /* AVGBinaryImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGBinaryImageOperation.m; sourceTree = "<group>"; };
+		19414AD61EF017F900826726 /* AVGImageInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImageInformation.m; sourceTree = "<group>"; };
+		19414AD91EF0181D00826726 /* AVGImageInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVGImageInformation.h; sourceTree = "<group>"; };
 		2B12E6CB648A2621EF130D63 /* Pods-ZeplinProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.release.xcconfig"; sourceTree = "<group>"; };
 		927012A5674ABD7AB14C1BC7 /* Pods-ZeplinProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.debug.xcconfig"; sourceTree = "<group>"; };
 		95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeplinProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +96,7 @@
 		04EF37CA1ED97271003B24C8 /* ZeplinProject */ = {
 			isa = PBXGroup;
 			children = (
-				04EF37E41ED976C0003B24C8 /* Model */,
+				193B3FEB1EF011EF00EC54F3 /* Model */,
 				04EF37E31ED976B9003B24C8 /* View */,
 				04EF37E21ED976A9003B24C8 /* Controller */,
 				04EF37CE1ED97271003B24C8 /* AppDelegate.h */,
@@ -128,17 +131,9 @@
 			children = (
 				193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */,
 				193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */,
+				193B3FDF1EF0087F00EC54F3 /* Thumbnail */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		04EF37E41ED976C0003B24C8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				193B3F7C1EEC807700EC54F3 /* Image info */,
-				193B3F441EEC800B00EC54F3 /* Service */,
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		04EF37E81ED97819003B24C8 /* Wall CollectionView */ = {
@@ -168,108 +163,124 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		193B3F2F1EEC800B00EC54F3 /* Shared operation container */ = {
+		193B3FDF1EF0087F00EC54F3 /* Thumbnail */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F2D1EEC800B00EC54F3 /* AVGOperationsContainer.h */,
-				193B3F2E1EEC800B00EC54F3 /* AVGOperationsContainer.m */,
+				193B3FE01EF0089500EC54F3 /* AVGSearchImageView.h */,
+				193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */,
 			);
-			name = "Shared operation container";
+			name = Thumbnail;
 			sourceTree = "<group>";
 		};
-		193B3F341EEC800B00EC54F3 /* Load urls */ = {
+		193B3FEB1EF011EF00EC54F3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F321EEC800B00EC54F3 /* AVGLoadUrlOperation.h */,
-				193B3F331EEC800B00EC54F3 /* AVGLoadUrlOperation.m */,
+				193B3FEC1EF011F500EC54F3 /* Service */,
+				193B3FF61EF012C400EC54F3 /* Image info */,
 			);
-			name = "Load urls";
+			name = Model;
 			sourceTree = "<group>";
 		};
-		193B3F371EEC800B00EC54F3 /* Parse urls */ = {
+		193B3FEC1EF011F500EC54F3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F351EEC800B00EC54F3 /* AVGParseUrlOperation.h */,
-				193B3F361EEC800B00EC54F3 /* AVGParseUrlOperation.m */,
+				193B3FEE1EF0122A00EC54F3 /* Shared Operation Container */,
+				193B3FED1EF0122400EC54F3 /* URLs load */,
+				193B3FF21EF0128900EC54F3 /* Images load */,
 			);
-			name = "Parse urls";
+			name = Service;
 			sourceTree = "<group>";
 		};
-		193B3F381EEC800B00EC54F3 /* Operations */ = {
+		193B3FED1EF0122400EC54F3 /* URLs load */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F341EEC800B00EC54F3 /* Load urls */,
-				193B3F371EEC800B00EC54F3 /* Parse urls */,
-			);
-			name = Operations;
-			sourceTree = "<group>";
-		};
-		193B3F391EEC800B00EC54F3 /* URLs load */ = {
-			isa = PBXGroup;
-			children = (
-				193B3F301EEC800B00EC54F3 /* AVGUrlService.h */,
-				193B3F311EEC800B00EC54F3 /* AVGUrlService.m */,
-				193B3F381EEC800B00EC54F3 /* Operations */,
+				193B3FFD1EF0131600EC54F3 /* AVGUrlService.h */,
+				193B3FFE1EF0131600EC54F3 /* AVGUrlService.m */,
+				193B3FEF1EF0124800EC54F3 /* Operations */,
 			);
 			name = "URLs load";
 			sourceTree = "<group>";
 		};
-		193B3F3E1EEC800B00EC54F3 /* Load image */ = {
+		193B3FEE1EF0122A00EC54F3 /* Shared Operation Container */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F3C1EEC800B00EC54F3 /* AVGLoadImageOperation.h */,
-				193B3F3D1EEC800B00EC54F3 /* AVGLoadImageOperation.m */,
+				193B3FFA1EF0130800EC54F3 /* AVGOperationsContainer.h */,
+				193B3FFB1EF0130800EC54F3 /* AVGOperationsContainer.m */,
 			);
-			name = "Load image";
+			name = "Shared Operation Container";
 			sourceTree = "<group>";
 		};
-		193B3F411EEC800B00EC54F3 /* Filter image */ = {
+		193B3FEF1EF0124800EC54F3 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F3F1EEC800B00EC54F3 /* AVGBinaryImageOperation.h */,
-				193B3F401EEC800B00EC54F3 /* AVGBinaryImageOperation.m */,
-			);
-			name = "Filter image";
-			sourceTree = "<group>";
-		};
-		193B3F421EEC800B00EC54F3 /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				193B3F3E1EEC800B00EC54F3 /* Load image */,
-				193B3F411EEC800B00EC54F3 /* Filter image */,
+				193B3FF11EF0125500EC54F3 /* Load urls */,
+				193B3FF01EF0125200EC54F3 /* Parse urls */,
 			);
 			name = Operations;
 			sourceTree = "<group>";
 		};
-		193B3F431EEC800B00EC54F3 /* Images load */ = {
+		193B3FF01EF0125200EC54F3 /* Parse urls */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F3A1EEC800B00EC54F3 /* AVGImageService.h */,
-				193B3F3B1EEC800B00EC54F3 /* AVGImageService.m */,
-				193B3F421EEC800B00EC54F3 /* Operations */,
+				193B40031EF0132F00EC54F3 /* AVGParseUrlOperation.h */,
+				193B40041EF0132F00EC54F3 /* AVGParseUrlOperation.m */,
+			);
+			name = "Parse urls";
+			sourceTree = "<group>";
+		};
+		193B3FF11EF0125500EC54F3 /* Load urls */ = {
+			isa = PBXGroup;
+			children = (
+				193B40001EF0132300EC54F3 /* AVGLoadUrlOperation.h */,
+				193B40011EF0132300EC54F3 /* AVGLoadUrlOperation.m */,
+			);
+			name = "Load urls";
+			sourceTree = "<group>";
+		};
+		193B3FF21EF0128900EC54F3 /* Images load */ = {
+			isa = PBXGroup;
+			children = (
+				193B40061EF0134700EC54F3 /* AVGImageService.h */,
+				193B40071EF0134700EC54F3 /* AVGImageService.m */,
+				193B3FF31EF0129B00EC54F3 /* Operations */,
 			);
 			name = "Images load";
 			sourceTree = "<group>";
 		};
-		193B3F441EEC800B00EC54F3 /* Service */ = {
+		193B3FF31EF0129B00EC54F3 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F2F1EEC800B00EC54F3 /* Shared operation container */,
-				193B3F391EEC800B00EC54F3 /* URLs load */,
-				193B3F431EEC800B00EC54F3 /* Images load */,
+				193B3FF51EF012A600EC54F3 /* Load image */,
+				193B3FF41EF012A400EC54F3 /* Filter image */,
 			);
-			name = Service;
-			path = ../../Flickr/FlickerImages;
+			name = Operations;
 			sourceTree = "<group>";
 		};
-		193B3F7C1EEC807700EC54F3 /* Image info */ = {
+		193B3FF41EF012A400EC54F3 /* Filter image */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F7A1EEC807700EC54F3 /* AVGImageInformation.h */,
-				193B3F7B1EEC807700EC54F3 /* AVGImageInformation.m */,
+				193B400C1EF0136600EC54F3 /* AVGBinaryImageOperation.h */,
+				193B400D1EF0136600EC54F3 /* AVGBinaryImageOperation.m */,
+			);
+			name = "Filter image";
+			sourceTree = "<group>";
+		};
+		193B3FF51EF012A600EC54F3 /* Load image */ = {
+			isa = PBXGroup;
+			children = (
+				193B40091EF0135A00EC54F3 /* AVGLoadImageOperation.h */,
+				193B400A1EF0135A00EC54F3 /* AVGLoadImageOperation.m */,
+			);
+			name = "Load image";
+			sourceTree = "<group>";
+		};
+		193B3FF61EF012C400EC54F3 /* Image info */ = {
+			isa = PBXGroup;
+			children = (
+				19414AD91EF0181D00826726 /* AVGImageInformation.h */,
+				19414AD61EF017F900826726 /* AVGImageInformation.m */,
 			);
 			name = "Image info";
-			path = ../../Flickr/FlickerImages;
 			sourceTree = "<group>";
 		};
 		6657EE7258E3BA5E67525F53 /* Frameworks */ = {
@@ -402,19 +413,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				193B3FFC1EF0130800EC54F3 /* AVGOperationsContainer.m in Sources */,
 				04EF37D01ED97271003B24C8 /* AppDelegate.m in Sources */,
+				193B40051EF0132F00EC54F3 /* AVGParseUrlOperation.m in Sources */,
 				04EF37CD1ED97271003B24C8 /* main.m in Sources */,
-				193B3F471EEC800B00EC54F3 /* AVGLoadUrlOperation.m in Sources */,
-				193B3F481EEC800B00EC54F3 /* AVGParseUrlOperation.m in Sources */,
-				193B3F461EEC800B00EC54F3 /* AVGUrlService.m in Sources */,
+				19414AD81EF017F900826726 /* AVGImageInformation.m in Sources */,
+				193B3FFF1EF0131600EC54F3 /* AVGUrlService.m in Sources */,
+				193B40021EF0132300EC54F3 /* AVGLoadUrlOperation.m in Sources */,
 				04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */,
-				193B3F491EEC800B00EC54F3 /* AVGImageService.m in Sources */,
 				193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */,
+				193B400E1EF0136600EC54F3 /* AVGBinaryImageOperation.m in Sources */,
 				04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */,
-				193B3F4A1EEC800B00EC54F3 /* AVGLoadImageOperation.m in Sources */,
-				193B3F451EEC800B00EC54F3 /* AVGOperationsContainer.m in Sources */,
-				193B3F4B1EEC800B00EC54F3 /* AVGBinaryImageOperation.m in Sources */,
-				193B3F7D1EEC807700EC54F3 /* AVGImageInformation.m in Sources */,
+				193B400B1EF0135A00EC54F3 /* AVGLoadImageOperation.m in Sources */,
+				193B40081EF0134700EC54F3 /* AVGImageService.m in Sources */,
+				193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
