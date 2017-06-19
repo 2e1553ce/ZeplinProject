@@ -13,7 +13,6 @@
 @protocol AVGCollectionViewLayoutDelegate <UICollectionViewDelegate>
 
 - (CGFloat)collectionLayout:(AVGCollectionViewLayout*)layout preferredWidthForItemAtIndexPath:(NSIndexPath *)indexPath;
-- (CGFloat)contentSize;
 
 @optional
 
