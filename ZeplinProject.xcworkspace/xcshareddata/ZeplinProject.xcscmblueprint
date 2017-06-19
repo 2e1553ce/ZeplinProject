@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4D19CEC8F71FA678C59E0CAB6BE10DEF71BFCDC6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4D19CEC8F71FA678C59E0CAB6BE10DEF71BFCDC6" : 9223372036854775807,
+    "961073099ACF8B324FE17721B279DAE65CC41553" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "78DBEACD-A853-49D5-8FC8-2605F9D1FBA8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4D19CEC8F71FA678C59E0CAB6BE10DEF71BFCDC6" : "ZeplinProject\/",
+    "961073099ACF8B324FE17721B279DAE65CC41553" : "Flickr\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ZeplinProject",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ZeplinProject.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/2e1553ce\/ZeplinProject.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4D19CEC8F71FA678C59E0CAB6BE10DEF71BFCDC6"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/2e1553ce\/Flickr.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "961073099ACF8B324FE17721B279DAE65CC41553"
+    }
+  ]
+}
