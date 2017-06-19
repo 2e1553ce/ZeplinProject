@@ -38,7 +38,7 @@
     }
     
     NSString *urlBaseString = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&license=1,2,4,7&has_geo=1&extras=original_format,description,date_taken,geo,date_upload,owner_name,place_url,tags&format=json&api_key=c55f5a419863413f77af53764f86bd66&nojsoncallback=1&";
-    NSString *urlParametersString = [NSString stringWithFormat:@"text=%@&page=%ld&per_page=%ld", _searchText, (long)_page, (long)_perPage];
+    NSString *urlParametersString = [NSString stringWithFormat:@"text=%@&page=%ld&per_page=%ld", self.searchText, (long)self.page, (long)self.perPage];
     NSString *query = [NSString stringWithFormat:@"%@%@", urlBaseString, urlParametersString];
     NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
                                        [NSCharacterSet URLFragmentAllowedCharacterSet]]];
@@ -54,7 +54,7 @@
     self.sessionDataTask = [self.session dataTaskWithRequest:request
                                            completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
 
-                                               _container.dataFromFlickr = data;
+                                               self.container.dataFromFlickr = data;
                                                dispatch_semaphore_signal(semaphore);
                                            }];
     [self.sessionDataTask resume];

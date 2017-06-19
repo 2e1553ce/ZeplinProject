@@ -11,8 +11,10 @@
 #import "AVGUrlService.h"
 #import "AVGImageInformation.h"
 #import "AVGFeedCollectionViewCell.h"
+#import "AVGCollectionViewLayout.h"
+#import <Masonry.h>
 
-@interface AVGFeedViewController () <UISearchBarDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, AVGImageServiceDelegate>
+@interface AVGFeedViewController () <UISearchBarDelegate, AVGCollectionViewLayoutDelegate, UICollectionViewDataSource, AVGImageServiceDelegate>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, copy)   NSString *searchText;
@@ -72,18 +74,26 @@
     self.navigationItem.titleView = self.searchBar;
     
     // CollectionView
-    UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
+    AVGCollectionViewLayout *flowLayout = [AVGCollectionViewLayout new];
+    flowLayout.delegate = self;
     self.feedCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
     self.feedCollectionView.backgroundColor = UIColor.whiteColor;
-    //self.feedCollectionView.collectionViewLayout = flowLayout;
     self.feedCollectionView.delegate = self;
     self.feedCollectionView.dataSource = self;
     [self.feedCollectionView registerClass:[AVGFeedCollectionViewCell class] forCellWithReuseIdentifier:flickrCellIdentifier];
     [self.view addSubview:self.feedCollectionView];
+    
+    UIView *superview = self.view;
+    [self.feedCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(superview).with.offset(0.5);
+        make.left.equalTo(superview).with.offset(0.5);
+        make.right.equalTo(superview).with.offset(-0.5);
+        make.bottom.equalTo(superview).with.offset(-0.5);
+    }];
 }
 
 #pragma mark - Download when scrolling
-
+/*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
         if (!_isLoading) {
@@ -93,7 +103,7 @@
             [self loadImages];
         }
     }
-}
+}*/
 
 #pragma mark - Page loading (AVGImageService.m contains variable how many images load per page)
 
@@ -169,14 +179,6 @@
         [imageService loadImageFromUrlString:imageInfo.url andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
     }
     
-    if (imageService.imageState == AVGImageStateBinarized) {
-        //cell.filterButton.enabled = NO;
-    } else {
-        //cell.filterButton.enabled = YES;
-    }
-    
-    // Configure the cell
-    
     return cell;
 }
 
@@ -190,33 +192,23 @@
     }
 }
 
-#pragma mark - UICollectionViewDelegateFlowLayout
+#pragma mark - AVGCollectionViewLayoutDelegate
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)collectionLayout:(AVGCollectionViewLayout *)layout preferredWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // Big frame
     if (indexPath.row % 6 == 0 || indexPath.row == 0) {
-        CGFloat width = (((CGRectGetWidth(self.view.bounds) - 5.f) / 3.f) * 2);
-        CGFloat height = width;
-        NSLog(@"%f, %f", CGRectGetWidth(self.view.bounds), width);
-        return CGSizeMake(width, height);
-    } else {
-        CGFloat width = (CGRectGetWidth(self.view.bounds) - 5.f) / 3.f;
-        CGFloat height = width;
-        return CGSizeMake(width, height);
+        CGFloat width = (((CGRectGetWidth(self.feedCollectionView.bounds)) / 3.f) * 2);
+        return width;
     }
-    
+    // Small frame
+    else {
+        CGFloat width = (CGRectGetWidth(self.feedCollectionView.bounds)) / 3.f;
+        return width;
+    }
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(1.f, 1.f, 1.f, 1.f);
-}
-
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 1.f;
-}
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 1.f;
+- (UIEdgeInsets)collectionLayout:(AVGCollectionViewLayout *)layout edgeInsetsForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return UIEdgeInsetsMake(0.5f, 0.5f, 0.5f, 0.5f);
 }
 
 #pragma mark - UISearchBarDelegate

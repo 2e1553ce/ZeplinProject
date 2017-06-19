@@ -14,29 +14,23 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        /*
-        self.layer.cornerRadius = 10.f;
-        self.layer.masksToBounds = YES;
-        self.layer.shouldRasterize = YES;
-         */
-        
         // Constraints for indicator & progress
         self.activityIndicatorView = [UIActivityIndicatorView new];
-        _activityIndicatorView.color = UIColor.grayColor;
+        self.activityIndicatorView.color = UIColor.grayColor;
         [self addSubview:_activityIndicatorView];
         
         self.progressView = [UIProgressView new];
-        [self addSubview:_progressView];
-        _progressView.progress = 0.f;
+        [self addSubview:self.progressView];
+        self.progressView.progress = 0.f;
         
-        [_activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(@20);
             make.height.equalTo(@20);
             make.centerY.equalTo(@(self.center.y));
             make.centerX.equalTo(@(self.center.x));
         }];
         
-        [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).with.offset(5);
             make.right.equalTo(self).with.offset(-5);
             make.height.equalTo(@3);
