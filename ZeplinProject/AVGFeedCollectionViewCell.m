@@ -18,8 +18,7 @@ NSString *const flickrCellIdentifier = @"flickrCellIdentifier";
     if (self) {
         self.searchedImageView = [AVGSearchImageView new];
         [self addSubview:self.searchedImageView];
-        
-        #warning почему если ставлю фрейм - баг
+
         [self.searchedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self).with.offset(0);
             make.bottom.equalTo(self).with.offset(0);

@@ -119,7 +119,7 @@
 }
 
 #pragma mark Supplementary methods
-
+#warning Optimize
 // Main method, calculating frames for every 12 frames
 
 - (CGRect)frameForIndexPath:(NSIndexPath*)path {

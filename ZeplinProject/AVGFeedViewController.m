@@ -12,6 +12,7 @@
 #import "AVGImageInformation.h"
 #import "AVGFeedCollectionViewCell.h"
 #import "AVGCollectionViewLayout.h"
+#import "AVGDetailedViewController.h"
 #import <Masonry.h>
 
 @interface AVGFeedViewController () <UISearchBarDelegate, AVGCollectionViewLayoutDelegate, UICollectionViewDataSource, AVGImageServiceDelegate>
@@ -206,6 +207,16 @@
         celll.searchedImageView.progressView.hidden = YES;
         celll.searchedImageView.image = cachedImage;
     }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    AVGDetailedViewController *detailedViewController = [AVGDetailedViewController new];
+    
+    AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
+    UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
+    
+    detailedViewController.image = cachedImage;
+    [self.navigationController pushViewController:detailedViewController animated:YES];
 }
 
 #pragma mark - AVGCollectionViewLayoutDelegate

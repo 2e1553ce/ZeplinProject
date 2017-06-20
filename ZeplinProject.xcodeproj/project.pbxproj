@@ -24,6 +24,10 @@
 		193B400E1EF0136600EC54F3 /* AVGBinaryImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B400D1EF0136600EC54F3 /* AVGBinaryImageOperation.m */; };
 		19414AD81EF017F900826726 /* AVGImageInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19414AD61EF017F900826726 /* AVGImageInformation.m */; };
 		195351C41EF805C00022715C /* AVGCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 195351C31EF805C00022715C /* AVGCollectionViewLayout.m */; };
+		19CA7AE41EF91B4C0009A4D0 /* AVGDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AE31EF91B4C0009A4D0 /* AVGDetailedViewController.m */; };
+		19CA7AEC1EF944390009A4D0 /* AVGDetailedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AEB1EF944390009A4D0 /* AVGDetailedImageCell.m */; };
+		19CA7AEF1EF944640009A4D0 /* AVGDetailedLikesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AEE1EF944640009A4D0 /* AVGDetailedLikesCell.m */; };
+		19CA7AF21EF9447B0009A4D0 /* AVGDetailedCommentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AF11EF9447B0009A4D0 /* AVGDetailedCommentsCell.m */; };
 		54823CAA19C65FA7F0AA75A3 /* libPods-ZeplinProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +65,14 @@
 		19414AD91EF0181D00826726 /* AVGImageInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVGImageInformation.h; sourceTree = "<group>"; };
 		195351C21EF805C00022715C /* AVGCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGCollectionViewLayout.h; sourceTree = "<group>"; };
 		195351C31EF805C00022715C /* AVGCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGCollectionViewLayout.m; sourceTree = "<group>"; };
+		19CA7AE21EF91B4C0009A4D0 /* AVGDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedViewController.h; sourceTree = "<group>"; };
+		19CA7AE31EF91B4C0009A4D0 /* AVGDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedViewController.m; sourceTree = "<group>"; };
+		19CA7AEA1EF944390009A4D0 /* AVGDetailedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedImageCell.h; sourceTree = "<group>"; };
+		19CA7AEB1EF944390009A4D0 /* AVGDetailedImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedImageCell.m; sourceTree = "<group>"; };
+		19CA7AED1EF944640009A4D0 /* AVGDetailedLikesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedLikesCell.h; sourceTree = "<group>"; };
+		19CA7AEE1EF944640009A4D0 /* AVGDetailedLikesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedLikesCell.m; sourceTree = "<group>"; };
+		19CA7AF01EF9447B0009A4D0 /* AVGDetailedCommentsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedCommentsCell.h; sourceTree = "<group>"; };
+		19CA7AF11EF9447B0009A4D0 /* AVGDetailedCommentsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedCommentsCell.m; sourceTree = "<group>"; };
 		2B12E6CB648A2621EF130D63 /* Pods-ZeplinProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.release.xcconfig"; sourceTree = "<group>"; };
 		927012A5674ABD7AB14C1BC7 /* Pods-ZeplinProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.debug.xcconfig"; sourceTree = "<group>"; };
 		95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeplinProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				195351C01EF805690022715C /* Cell */,
-				193B3FDF1EF0087F00EC54F3 /* Thumbnail */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -143,6 +154,7 @@
 			children = (
 				04EF37F11ED979ED003B24C8 /* AVGFeedViewController.h */,
 				04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */,
+				19CA7AE11EF91B090009A4D0 /* Detailed */,
 			);
 			name = "Wall CollectionView";
 			sourceTree = "<group>";
@@ -288,9 +300,8 @@
 		195351C01EF805690022715C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */,
-				193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */,
-				195351C11EF805840022715C /* Cell layout */,
+				19CA7AE51EF942960009A4D0 /* Feed collectionView */,
+				19CA7AE61EF942D00009A4D0 /* Detailed tableView */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -302,6 +313,63 @@
 				195351C31EF805C00022715C /* AVGCollectionViewLayout.m */,
 			);
 			name = "Cell layout";
+			sourceTree = "<group>";
+		};
+		19CA7AE11EF91B090009A4D0 /* Detailed */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7AE21EF91B4C0009A4D0 /* AVGDetailedViewController.h */,
+				19CA7AE31EF91B4C0009A4D0 /* AVGDetailedViewController.m */,
+			);
+			name = Detailed;
+			sourceTree = "<group>";
+		};
+		19CA7AE51EF942960009A4D0 /* Feed collectionView */ = {
+			isa = PBXGroup;
+			children = (
+				193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */,
+				193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */,
+				193B3FDF1EF0087F00EC54F3 /* Thumbnail */,
+				195351C11EF805840022715C /* Cell layout */,
+			);
+			name = "Feed collectionView";
+			sourceTree = "<group>";
+		};
+		19CA7AE61EF942D00009A4D0 /* Detailed tableView */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7AE91EF942EA0009A4D0 /* Image with description */,
+				19CA7AE81EF942E70009A4D0 /* Likes&Comments count */,
+				19CA7AE71EF942E40009A4D0 /* Comments */,
+			);
+			name = "Detailed tableView";
+			sourceTree = "<group>";
+		};
+		19CA7AE71EF942E40009A4D0 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7AF01EF9447B0009A4D0 /* AVGDetailedCommentsCell.h */,
+				19CA7AF11EF9447B0009A4D0 /* AVGDetailedCommentsCell.m */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
+		19CA7AE81EF942E70009A4D0 /* Likes&Comments count */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7AED1EF944640009A4D0 /* AVGDetailedLikesCell.h */,
+				19CA7AEE1EF944640009A4D0 /* AVGDetailedLikesCell.m */,
+			);
+			name = "Likes&Comments count";
+			sourceTree = "<group>";
+		};
+		19CA7AE91EF942EA0009A4D0 /* Image with description */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7AEA1EF944390009A4D0 /* AVGDetailedImageCell.h */,
+				19CA7AEB1EF944390009A4D0 /* AVGDetailedImageCell.m */,
+			);
+			name = "Image with description";
 			sourceTree = "<group>";
 		};
 		6657EE7258E3BA5E67525F53 /* Frameworks */ = {
@@ -441,7 +509,9 @@
 				04EF37CD1ED97271003B24C8 /* main.m in Sources */,
 				19414AD81EF017F900826726 /* AVGImageInformation.m in Sources */,
 				193B3FFF1EF0131600EC54F3 /* AVGUrlService.m in Sources */,
+				19CA7AEC1EF944390009A4D0 /* AVGDetailedImageCell.m in Sources */,
 				193B40021EF0132300EC54F3 /* AVGLoadUrlOperation.m in Sources */,
+				19CA7AF21EF9447B0009A4D0 /* AVGDetailedCommentsCell.m in Sources */,
 				04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */,
 				193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */,
 				193B400E1EF0136600EC54F3 /* AVGBinaryImageOperation.m in Sources */,
@@ -449,6 +519,8 @@
 				193B400B1EF0135A00EC54F3 /* AVGLoadImageOperation.m in Sources */,
 				193B40081EF0134700EC54F3 /* AVGImageService.m in Sources */,
 				193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */,
+				19CA7AE41EF91B4C0009A4D0 /* AVGDetailedViewController.m in Sources */,
+				19CA7AEF1EF944640009A4D0 /* AVGDetailedLikesCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
