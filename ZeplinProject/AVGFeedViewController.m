@@ -160,18 +160,21 @@
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AVGFeedCollectionViewCell *cell = ([collectionView dequeueReusableCellWithReuseIdentifier:flickrCellIdentifier forIndexPath:indexPath]);
-    
+    NSLog(@"%ld", (long)indexPath.row);
     AVGImageService *imageService = _imageServices[indexPath.row];
     AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
     UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
+    
+    cell.label.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
+    cell.label.textColor = UIColor.redColor;
     
     if (cachedImage) {
         [cell.searchedImageView.activityIndicatorView stopAnimating];
         cell.searchedImageView.progressView.hidden = YES;
         cell.searchedImageView.image = cachedImage;
-        cell.searchedImageView.image = cachedImage;
+        //[cell setNeedsLayout];
     } else {
         //cell.delegate = self;
         imageService.delegate = self;
@@ -189,6 +192,19 @@
     AVGImageProgressState state = [service imageProgressState];
     if (state == AVGImageProgressStateDownloading && !_isLoadingBySearch) {
         //[service cancel];
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0) {
+
+    AVGFeedCollectionViewCell *celll = (AVGFeedCollectionViewCell*)cell;
+    AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
+    UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
+    #warning Не заходит в cellForItemAtIndexPath
+    if (cachedImage) {
+        [celll.searchedImageView.activityIndicatorView stopAnimating];
+        celll.searchedImageView.progressView.hidden = YES;
+        celll.searchedImageView.image = cachedImage;
     }
 }
 
@@ -247,13 +263,7 @@
             [_imageServices addObject:imageService];
         }
         
-        //NSIndexSet *set = [NSIndexSet indexSetWithIndex:0];
         dispatch_async(dispatch_get_main_queue(), ^{
-            /*
-            [self.tableView beginUpdates];
-            [self.tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView endUpdates];
-             */
             NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
             [self.feedCollectionView reloadSections:indexSet];
             [self.searchBar endEditing:YES];
@@ -288,6 +298,9 @@
 - (void)service:(AVGImageService *)service downloadedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath {
     dispatch_async(dispatch_get_main_queue(), ^{
         if (image) {
+            AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
+            [_imageCache setObject:image forKey:imageInfo.url];
+            
             AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
             cell.searchedImageView.image = image;
             [cell.searchedImageView.activityIndicatorView stopAnimating];
@@ -295,27 +308,6 @@
             [cell setNeedsLayout];
         }
     });
-    
 }
-
-- (void)service:(AVGImageService *)service binarizedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath {
-   /* dispatch_async(dispatch_get_main_queue(), ^{
-        if (image) {
-            AVGFlickrCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            cell.filterButton.enabled = NO;
-            
-            [UIView animateWithDuration:0.3f animations:^{
-                cell.searchedImageView.alpha = 0.f;
-            } completion:^(BOOL finished) {
-                [UIView animateWithDuration:0.3f animations:^{
-                    cell.searchedImageView.image = image;
-                    cell.searchedImageView.alpha = 1.f;
-                }];
-            }];
-            [cell setNeedsLayout];
-        }
-    });*/
-}
-
 
 @end

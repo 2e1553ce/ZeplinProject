@@ -26,12 +26,22 @@ NSString *const flickrCellIdentifier = @"flickrCellIdentifier";
             make.left.equalTo(self).with.offset(0);
             make.right.equalTo(self).with.offset(0);
         }];
+        
+        self.label = [UILabel new];
+        [self.searchedImageView addSubview:self.label];
+        
+        [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).with.offset(0);
+            make.left.equalTo(self).with.offset(0);
+            make.height.equalTo(@20);
+            make.width.equalTo(@40);
+        }];
     }
     return self;
 }
 
 - (void)prepareForReuse {
-    self.searchedImageView = nil;
+    self.searchedImageView.image = nil;
 }
 
 @end

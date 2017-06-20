@@ -80,22 +80,23 @@
     return CGSizeMake(width, maxY);
 }
 
-- (NSArray*)layoutAttributesForElementsInRect:(CGRect)bounds {
+- (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect{
     // Return saved attributes if there are cached attributes for this rect
-    if (CGRectEqualToRect(bounds, self.previousLayoutRect)) {
+    
+    if (CGRectEqualToRect(rect, self.previousLayoutRect)) {
         return self.previousLayoutAttributes;
     }
     [self.previousLayoutAttributes removeAllObjects];
-    self.previousLayoutRect = bounds;
+    self.previousLayoutRect = rect;
     
     // Let's take all prelayouted frames and add to the result array if they intersect given rect
     NSArray *allFrames = self.framesByIndexPath.allValues;
     int count = 0;
     for (NSValue *frameValue in allFrames) {
         ++count;
-        CGRect rect = [frameValue CGRectValue];
-        if (CGRectIntersectsRect(rect, bounds)) {
-            [self.previousLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[self.indexPathsByFrame objectForKey:[NSValue valueWithCGRect:rect]]]];
+        CGRect rectt = [frameValue CGRectValue];
+        if (CGRectIntersectsRect(rectt, rect)) {
+            [self.previousLayoutAttributes addObject:[self layoutAttributesForItemAtIndexPath:[self.indexPathsByFrame objectForKey:[NSValue valueWithCGRect:rectt]]]];
         }
     }
     return self.previousLayoutAttributes;

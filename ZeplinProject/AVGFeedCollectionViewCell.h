@@ -14,5 +14,6 @@ extern NSString *const flickrCellIdentifier;
 @interface AVGFeedCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) AVGSearchImageView *searchedImageView;
+@property (nonatomic, strong) UILabel *label;
 
 @end
