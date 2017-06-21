@@ -32,6 +32,10 @@
 		19CA7AFC1EFA992E0009A4D0 /* UIColor+AVGColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AFB1EFA992E0009A4D0 /* UIColor+AVGColor.m */; };
 		19CA7B031EFACD680009A4D0 /* AVGDetailedImageInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B021EFACD680009A4D0 /* AVGDetailedImageInformation.m */; };
 		19CA7B091EFADCFB0009A4D0 /* AVGCommentator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B081EFADCFB0009A4D0 /* AVGCommentator.m */; };
+		19CA7B0F1EFAE1D20009A4D0 /* AVGDetailedImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B0E1EFAE1D20009A4D0 /* AVGDetailedImageService.m */; };
+		19CA7B161EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B151EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m */; };
+		19CA7B191EFAE2F30009A4D0 /* AVGLoadLikesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B181EFAE2F30009A4D0 /* AVGLoadLikesOperation.m */; };
+		19CA7B1C1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B1B1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m */; };
 		54823CAA19C65FA7F0AA75A3 /* libPods-ZeplinProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +89,14 @@
 		19CA7B021EFACD680009A4D0 /* AVGDetailedImageInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedImageInformation.m; sourceTree = "<group>"; };
 		19CA7B071EFADCFB0009A4D0 /* AVGCommentator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGCommentator.h; sourceTree = "<group>"; };
 		19CA7B081EFADCFB0009A4D0 /* AVGCommentator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGCommentator.m; sourceTree = "<group>"; };
+		19CA7B0D1EFAE1D20009A4D0 /* AVGDetailedImageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedImageService.h; sourceTree = "<group>"; };
+		19CA7B0E1EFAE1D20009A4D0 /* AVGDetailedImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedImageService.m; sourceTree = "<group>"; };
+		19CA7B141EFAE2DD0009A4D0 /* AVGLoadInformationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadInformationOperation.h; sourceTree = "<group>"; };
+		19CA7B151EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadInformationOperation.m; sourceTree = "<group>"; };
+		19CA7B171EFAE2F30009A4D0 /* AVGLoadLikesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadLikesOperation.h; sourceTree = "<group>"; };
+		19CA7B181EFAE2F30009A4D0 /* AVGLoadLikesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadLikesOperation.m; sourceTree = "<group>"; };
+		19CA7B1A1EFAE3070009A4D0 /* AVGLoadCommentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadCommentsOperation.h; sourceTree = "<group>"; };
+		19CA7B1B1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadCommentsOperation.m; sourceTree = "<group>"; };
 		2B12E6CB648A2621EF130D63 /* Pods-ZeplinProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.release.xcconfig"; sourceTree = "<group>"; };
 		927012A5674ABD7AB14C1BC7 /* Pods-ZeplinProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.debug.xcconfig"; sourceTree = "<group>"; };
 		95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZeplinProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -214,6 +226,7 @@
 				193B3FEE1EF0122A00EC54F3 /* Shared Operation Container */,
 				193B3FED1EF0122400EC54F3 /* URLs load */,
 				193B3FF21EF0128900EC54F3 /* Images load */,
+				19CA7B0B1EFAE1220009A4D0 /* Images detailed info load */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -304,8 +317,8 @@
 		193B3FF61EF012C400EC54F3 /* Image info */ = {
 			isa = PBXGroup;
 			children = (
-				19CA7B001EFACCF30009A4D0 /* URLs */,
-				19CA7AFF1EFACCDD0009A4D0 /* Detailed */,
+				19CA7B001EFACCF30009A4D0 /* Image URLs */,
+				19CA7AFF1EFACCDD0009A4D0 /* Detailed image information */,
 			);
 			name = "Image info";
 			sourceTree = "<group>";
@@ -351,38 +364,38 @@
 		19CA7AE61EF942D00009A4D0 /* Detailed tableView */ = {
 			isa = PBXGroup;
 			children = (
-				19CA7AE91EF942EA0009A4D0 /* Image with description */,
-				19CA7AE81EF942E70009A4D0 /* Likes&Comments */,
-				19CA7AE71EF942E40009A4D0 /* Comments */,
+				19CA7AE91EF942EA0009A4D0 /* Image & description */,
+				19CA7AE81EF942E70009A4D0 /* Likes & comments count */,
+				19CA7AE71EF942E40009A4D0 /* Comments text */,
 			);
 			name = "Detailed tableView";
 			sourceTree = "<group>";
 		};
-		19CA7AE71EF942E40009A4D0 /* Comments */ = {
+		19CA7AE71EF942E40009A4D0 /* Comments text */ = {
 			isa = PBXGroup;
 			children = (
 				19CA7AF01EF9447B0009A4D0 /* AVGDetailedCommentsCell.h */,
 				19CA7AF11EF9447B0009A4D0 /* AVGDetailedCommentsCell.m */,
 			);
-			name = Comments;
+			name = "Comments text";
 			sourceTree = "<group>";
 		};
-		19CA7AE81EF942E70009A4D0 /* Likes&Comments */ = {
+		19CA7AE81EF942E70009A4D0 /* Likes & comments count */ = {
 			isa = PBXGroup;
 			children = (
 				19CA7AED1EF944640009A4D0 /* AVGDetailedLikesCell.h */,
 				19CA7AEE1EF944640009A4D0 /* AVGDetailedLikesCell.m */,
 			);
-			name = "Likes&Comments";
+			name = "Likes & comments count";
 			sourceTree = "<group>";
 		};
-		19CA7AE91EF942EA0009A4D0 /* Image with description */ = {
+		19CA7AE91EF942EA0009A4D0 /* Image & description */ = {
 			isa = PBXGroup;
 			children = (
 				19CA7AEA1EF944390009A4D0 /* AVGDetailedImageCell.h */,
 				19CA7AEB1EF944390009A4D0 /* AVGDetailedImageCell.m */,
 			);
-			name = "Image with description";
+			name = "Image & description";
 			sourceTree = "<group>";
 		};
 		19CA7AF31EFA965C0009A4D0 /* Categories */ = {
@@ -412,22 +425,22 @@
 			name = Color;
 			sourceTree = "<group>";
 		};
-		19CA7AFF1EFACCDD0009A4D0 /* Detailed */ = {
+		19CA7AFF1EFACCDD0009A4D0 /* Detailed image information */ = {
 			isa = PBXGroup;
 			children = (
 				19CA7B061EFADCC60009A4D0 /* Detailed image info */,
 				19CA7B041EFADCA40009A4D0 /* Commentator */,
 			);
-			name = Detailed;
+			name = "Detailed image information";
 			sourceTree = "<group>";
 		};
-		19CA7B001EFACCF30009A4D0 /* URLs */ = {
+		19CA7B001EFACCF30009A4D0 /* Image URLs */ = {
 			isa = PBXGroup;
 			children = (
 				19414AD91EF0181D00826726 /* AVGImageInformation.h */,
 				19414AD61EF017F900826726 /* AVGImageInformation.m */,
 			);
-			name = URLs;
+			name = "Image URLs";
 			sourceTree = "<group>";
 		};
 		19CA7B041EFADCA40009A4D0 /* Commentator */ = {
@@ -446,6 +459,53 @@
 				19CA7B021EFACD680009A4D0 /* AVGDetailedImageInformation.m */,
 			);
 			name = "Detailed image info";
+			sourceTree = "<group>";
+		};
+		19CA7B0B1EFAE1220009A4D0 /* Images detailed info load */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7B0D1EFAE1D20009A4D0 /* AVGDetailedImageService.h */,
+				19CA7B0E1EFAE1D20009A4D0 /* AVGDetailedImageService.m */,
+				19CA7B101EFAE2140009A4D0 /* Operations */,
+			);
+			name = "Images detailed info load";
+			sourceTree = "<group>";
+		};
+		19CA7B101EFAE2140009A4D0 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7B131EFAE2240009A4D0 /* Load information */,
+				19CA7B121EFAE2230009A4D0 /* Load likes */,
+				19CA7B111EFAE2210009A4D0 /* Load comments */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
+		19CA7B111EFAE2210009A4D0 /* Load comments */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7B1A1EFAE3070009A4D0 /* AVGLoadCommentsOperation.h */,
+				19CA7B1B1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m */,
+			);
+			name = "Load comments";
+			sourceTree = "<group>";
+		};
+		19CA7B121EFAE2230009A4D0 /* Load likes */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7B171EFAE2F30009A4D0 /* AVGLoadLikesOperation.h */,
+				19CA7B181EFAE2F30009A4D0 /* AVGLoadLikesOperation.m */,
+			);
+			name = "Load likes";
+			sourceTree = "<group>";
+		};
+		19CA7B131EFAE2240009A4D0 /* Load information */ = {
+			isa = PBXGroup;
+			children = (
+				19CA7B141EFAE2DD0009A4D0 /* AVGLoadInformationOperation.h */,
+				19CA7B151EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m */,
+			);
+			name = "Load information";
 			sourceTree = "<group>";
 		};
 		6657EE7258E3BA5E67525F53 /* Frameworks */ = {
@@ -579,7 +639,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				193B3FFC1EF0130800EC54F3 /* AVGOperationsContainer.m in Sources */,
+				19CA7B1C1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m in Sources */,
 				04EF37D01ED97271003B24C8 /* AppDelegate.m in Sources */,
+				19CA7B0F1EFAE1D20009A4D0 /* AVGDetailedImageService.m in Sources */,
 				195351C41EF805C00022715C /* AVGCollectionViewLayout.m in Sources */,
 				193B40051EF0132F00EC54F3 /* AVGParseUrlOperation.m in Sources */,
 				19CA7AF91EFA96DC0009A4D0 /* UIFont+AVGFont.m in Sources */,
@@ -597,10 +659,12 @@
 				193B400E1EF0136600EC54F3 /* AVGBinaryImageOperation.m in Sources */,
 				04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */,
 				193B400B1EF0135A00EC54F3 /* AVGLoadImageOperation.m in Sources */,
+				19CA7B161EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m in Sources */,
 				193B40081EF0134700EC54F3 /* AVGImageService.m in Sources */,
 				193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */,
 				19CA7AE41EF91B4C0009A4D0 /* AVGDetailedViewController.m in Sources */,
 				19CA7AEF1EF944640009A4D0 /* AVGDetailedLikesCell.m in Sources */,
+				19CA7B191EFAE2F30009A4D0 /* AVGLoadLikesOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
