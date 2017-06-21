@@ -8,6 +8,12 @@
 
 #import "AVGDetailedCommentsCell.h"
 
+NSString *const detailedCommentsCellIdentifier = @"detailedCommentsCellIdentifier";
+
 @implementation AVGDetailedCommentsCell
+
++ (CGFloat)heightForCell {
+    return 60.f;
+}
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "AVGDetailedImageCell.h"
+#import "UIFont+AVGFont.h"
+#import "UIColor+AVGColor.h"
 #import "Masonry.h"
 
 NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
@@ -27,8 +29,13 @@ NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
 
 - (void)createSubviews {
     
-    self.detailedImageView = [UIImageView new]; // СТандартную imageView стягивает при клике на ней
+    self.detailedImageView = [UIImageView new]; // Стандартную imageView стягивает при клике на ней
+    
     self.detailedDescriptionLabel = [UILabel new];
+    self.detailedDescriptionLabel.font = [UIFont imageDescription];
+    self.detailedDescriptionLabel.textColor = [UIColor imageDescription];
+    self.detailedDescriptionLabel.numberOfLines = 0;
+    
     [self addSubview:self.detailedImageView];
     [self addSubview:self.detailedDescriptionLabel];
     
@@ -44,8 +51,9 @@ NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
     
     [self.detailedDescriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.detailedDescriptionLabel).with.offset(12);
-        make.left.equalTo(superview).with.offset(15); // wtf
+        make.left.equalTo(superview).with.offset(15);
         make.right.equalTo(superview).with.offset(-15);
+        make.height.lessThanOrEqualTo(@40);
         make.bottom.equalTo(superview).with.offset(-12); // dynamic
     }];
 }

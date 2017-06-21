@@ -8,6 +8,8 @@
 
 #import "AVGDetailedViewController.h"
 #import "AVGDetailedImageCell.h"
+#import "AVGDetailedLikesCell.h"
+#import "AVGDetailedCommentsCell.h"
 #import <Masonry.h>
 
 @interface AVGDetailedViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -26,6 +28,8 @@
     
     self.tableView = [UITableView new];
     [self.tableView registerClass:[AVGDetailedImageCell class] forCellReuseIdentifier:detailedImageCellIdentifier];
+    [self.tableView registerClass:[AVGDetailedLikesCell class] forCellReuseIdentifier:detailedLikesCellIdentifier];
+    [self.tableView registerClass:[AVGDetailedCommentsCell class] forCellReuseIdentifier:detailedCommentsCellIdentifier];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -40,22 +44,39 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AVGDetailedImageCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedImageCellIdentifier forIndexPath:indexPath];
     
-    cell.detailedImageView.image = self.image;
-    cell.detailedDescriptionLabel.text = @"Описание описание описание описание описание описание";
-    
-    return  cell;
+    if (indexPath.row == 0) {
+        AVGDetailedImageCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedImageCellIdentifier forIndexPath:indexPath];
+        cell.detailedImageView.image = self.image;
+        cell.detailedDescriptionLabel.text = @"Is there any way to have a label wordwrap text as needed? I have the line breaks set to word wrap and the label is tall enough for two lines, but it appears that it will only wrap on line breaks. Do I have to add line breaks to make it wrap properly? I just want it to wrap if it can't fit it in horizontally.";
+        return  cell;
+        
+    } else if (indexPath.row == 1) {
+        AVGDetailedLikesCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedLikesCellIdentifier forIndexPath:indexPath];
+        cell.likesLabel.text = @"10 lukasov";
+        cell.commentsLabel.text = @"10 commentsov";
+        return cell;
+        
+    } else {
+        AVGDetailedCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedCommentsCellIdentifier forIndexPath:indexPath];
+        return cell;
+    }
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [AVGDetailedImageCell heightForCell];
+    if (indexPath.row == 0) {
+        return [AVGDetailedImageCell heightForCell];
+    } else if (indexPath.row == 1) {
+        return [AVGDetailedLikesCell heightForCell];
+    } else {
+        return [AVGDetailedCommentsCell heightForCell];
+    }
 }
 
 @end

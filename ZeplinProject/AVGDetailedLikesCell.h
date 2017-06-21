@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const detailedLikesCellIdentifier;
+
 @interface AVGDetailedLikesCell : UITableViewCell
+
+@property (nonatomic, strong) UIImageView *likesImageView;
+@property (nonatomic, strong) UIImageView *commentsImageView;
+@property (nonatomic, strong) UILabel *likesLabel;
+@property (nonatomic, strong) UILabel *commentsLabel;
+
++ (CGFloat)heightForCell;
 
 @end
