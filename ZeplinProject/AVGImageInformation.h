@@ -11,5 +11,6 @@
 @interface AVGImageInformation : NSObject
 
 @property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *imageID;
 
 @end

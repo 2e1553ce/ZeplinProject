@@ -9,7 +9,7 @@
 #import "AVGUrlService.h"
 #import "AVGLoadUrlOperation.h"
 #import "AVGParseUrlOperation.h"
-#import "AVGOperationsContainer.h"
+#import "AVGUrlContainer.h"
 
 @interface AVGUrlService ()
 
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) AVGLoadUrlOperation *loadUrlsOperation;
 @property (nonatomic, strong) AVGParseUrlOperation *parseUrlsOperation;
 
-@property (nonatomic, strong) AVGOperationsContainer *operationDataContainer;
+@property (nonatomic, strong) AVGUrlContainer *operationDataContainer;
 
 @end
 
@@ -43,7 +43,7 @@ static NSInteger const perPage = 250;
 - (void)loadInformationWithText:(NSString *)text
                         forPage:(NSInteger)page {
     
-    self.operationDataContainer = [AVGOperationsContainer new];
+    self.operationDataContainer = [AVGUrlContainer new];
     
     self.loadUrlsOperation = [AVGLoadUrlOperation new];
     self.loadUrlsOperation.container = self.operationDataContainer;

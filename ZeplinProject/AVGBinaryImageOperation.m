@@ -7,7 +7,7 @@
 //
 
 #import "AVGBinaryImageOperation.h"
-#import "AVGOperationsContainer.h"
+#import "AVGLoadParseContainer.h"
 @import UIKit;
 
 @implementation AVGBinaryImageOperation

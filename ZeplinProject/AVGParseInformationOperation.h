@@ -1,5 +1,5 @@
 //
-//  AVGLoadInformationOperation.h
+//  AVGParseInformationOperation.h
 //  ZeplinProject
 //
 //  Created by aiuar on 21.06.17.
@@ -10,7 +10,7 @@
 
 @class AVGDetailedInformationContainer;
 
-@interface AVGLoadInformationOperation : NSOperation
+@interface AVGParseInformationOperation : NSOperation
 
 @property (nonatomic, strong) AVGDetailedInformationContainer *container;
 

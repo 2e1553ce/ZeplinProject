@@ -10,11 +10,13 @@
 #import "AVGDetailedImageCell.h"
 #import "AVGDetailedLikesCell.h"
 #import "AVGDetailedCommentsCell.h"
+#import "AVGDetailedImageService.h"
 #import <Masonry.h>
 
 @interface AVGDetailedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) AVGDetailedImageService *detailedImageService;
 
 @end
 
@@ -40,6 +42,11 @@
         make.left.equalTo(superview).with.offset(0);
         make.right.equalTo(superview).with.offset(0);
         make.bottom.equalTo(superview).with.offset(0);
+    }];
+    
+    self.detailedImageService = [[AVGDetailedImageService alloc] initWithImageID:self.imageID];
+    [self.detailedImageService getImageInformationWithCompletionHandler:^(AVGDetailedImageInformation *info) {
+        
     }];
 }
 

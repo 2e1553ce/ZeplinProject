@@ -7,7 +7,7 @@
 //
 
 @import Foundation;
-@class AVGOperationsContainer;
+@class AVGUrlContainer;
 
 @interface AVGLoadUrlOperation : NSOperation
 
@@ -15,6 +15,6 @@
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, assign) NSInteger perPage;
 
-@property (nonatomic, strong) AVGOperationsContainer *container;
+@property (nonatomic, strong) AVGUrlContainer *container;
 
 @end

@@ -9,14 +9,14 @@
 #import "AVGImageService.h"
 #import "AVGBinaryImageOperation.h"
 #import "AVGFeedCollectionViewCell.h"
-#import "AVGOperationsContainer.h"
+#import "AVGLoadParseContainer.h"
 
 @interface AVGImageService ()
 
 @property (nonatomic, strong) NSOperationQueue *queue;
 @property (nonatomic, strong) AVGLoadImageOperation *loadOperation;
 @property (nonatomic, strong) AVGBinaryImageOperation *binaryOperation;
-@property (nonatomic, strong) AVGOperationsContainer *operationDataContainer;
+@property (nonatomic, strong) AVGLoadParseContainer *operationDataContainer;
 
 @property (nonatomic, strong) NSCache *cache;
 @property (nonatomic, strong) NSIndexPath *indexPath;
@@ -36,7 +36,7 @@
     if (self) {
         self.semaphore = dispatch_semaphore_create(0);
         self.queue = [NSOperationQueue new];
-        self.operationDataContainer = [AVGOperationsContainer new];
+        self.operationDataContainer = [AVGLoadParseContainer new];
     }
     
     return  self;

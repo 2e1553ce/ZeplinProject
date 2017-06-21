@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AVGCommentator.h"
+#import "AVGLikeInformation.h"
 
-@class AVGCommentator;
 @class UIImageView;
 
 @interface AVGDetailedImageInformation : NSObject
@@ -23,5 +24,6 @@
 @property (nonatomic, strong) NSString *ownerAvatarUrl;
 
 @property (nonatomic, strong) NSArray<AVGCommentator*> *commentators;
+@property (nonatomic, strong) NSArray<AVGLikeInformation*> *likesInfo;
 
 @end

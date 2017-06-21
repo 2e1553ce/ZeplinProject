@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class AVGDetailedInformationContainer;
+
 @interface AVGLoadLikesOperation : NSOperation
+
+@property (nonatomic, strong) AVGDetailedInformationContainer *container;
 
 @end

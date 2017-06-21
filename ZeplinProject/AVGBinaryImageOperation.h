@@ -8,10 +8,10 @@
 
 @import Foundation;
 
-@class UIImage, AVGOperationsContainer;
+@class UIImage, AVGLoadParseContainer;
 
 @interface AVGBinaryImageOperation : NSBlockOperation
 
-@property (nonatomic, strong) AVGOperationsContainer *operationDataContainer;
+@property (nonatomic, strong) AVGLoadParseContainer *operationDataContainer;
 
 @end

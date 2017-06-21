@@ -8,7 +8,7 @@
 
 @import UIKit;
 #import "AVGLoadImageOperation.h"
-#import "AVGOperationsContainer.h"
+#import "AVGLoadParseContainer.h"
 
 @interface AVGLoadImageOperation () <NSURLSessionDelegate>
 

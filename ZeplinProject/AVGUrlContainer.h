@@ -1,5 +1,5 @@
 //
-//  AVGOperationsContainer.h
+//  AVGUrlContainer.h
 //  FlickerImages
 //
 //  Created by aiuar on 28.05.17.
@@ -11,10 +11,9 @@
 
 @class AVGImageInformation;
 
-@interface AVGOperationsContainer : NSObject
+@interface AVGUrlContainer : NSObject
 
 @property (nonatomic, copy) NSData *dataFromFlickr;
 @property (nonatomic, copy) NSArray <AVGImageInformation *> *imagesUrl;
-@property (nonatomic, strong) UIImage *image;
 
 @end

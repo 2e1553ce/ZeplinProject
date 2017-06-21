@@ -7,7 +7,7 @@
 //
 
 #import "AVGLoadUrlOperation.h"
-#import "AVGOperationsContainer.h"
+#import "AVGUrlContainer.h"
 
 @interface AVGLoadUrlOperation ()
 

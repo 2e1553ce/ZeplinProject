@@ -11,5 +11,6 @@
 @interface AVGDetailedViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *image;
+@property (nonatomic, strong) NSString *imageID;
 
 @end

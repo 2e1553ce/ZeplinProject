@@ -7,7 +7,7 @@
 //
 
 #import "AVGParseUrlOperation.h"
-#import "AVGOperationsContainer.h"
+#import "AVGUrlContainer.h"
 #import "AVGImageInformation.h"
 
 @implementation AVGParseUrlOperation
@@ -33,6 +33,7 @@
                          object[@"server"],
                          object[@"id"],
                          object[@"secret"]];
+            image.imageID = object[@"id"];
             
             [images addObject:image];
         }

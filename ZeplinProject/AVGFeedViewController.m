@@ -216,6 +216,7 @@
     UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
     
     detailedViewController.image = cachedImage;
+    detailedViewController.imageID = imageInfo.imageID;
     [self.navigationController pushViewController:detailedViewController animated:YES];
 }
 

@@ -1,5 +1,5 @@
 //
-//  AVGCommentator.h
+//  AVGLikeInformation.h
 //  ZeplinProject
 //
 //  Created by aiuar on 21.06.17.
@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AVGCommentator : NSObject
+@interface AVGLikeInformation : NSObject
 
-@property (nonatomic, strong) NSString *avatarURL;
+@property (nonatomic, assign) NSInteger likesCount;
 @property (nonatomic, strong) NSString *nickName;
-@property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) NSString *avatarURL;
 @property (nonatomic, strong) NSDate *date;
 
 @end

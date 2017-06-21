@@ -8,10 +8,10 @@
 
 @import Foundation;
 
-@class AVGOperationsContainer;
+@class AVGUrlContainer;
 
 @interface AVGParseUrlOperation : NSOperation
 
-@property (nonatomic, strong) AVGOperationsContainer *container;
+@property (nonatomic, strong) AVGUrlContainer *container;
 
 @end
