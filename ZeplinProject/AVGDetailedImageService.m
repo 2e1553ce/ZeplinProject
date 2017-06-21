@@ -60,8 +60,12 @@
     [self.queue addOperation:self.commentsOperation];
     [self.queue addOperation:self.parseOperation];
     
+    __weak typeof(self) weakSelf = self;
     self.parseOperation.completionBlock = ^{
-        completion(self.operationContainer.information);
+        __strong typeof(self) strongSelf = weakSelf;
+        if (strongSelf) {
+            completion(strongSelf.operationContainer.information);
+        }
     };
 }
 

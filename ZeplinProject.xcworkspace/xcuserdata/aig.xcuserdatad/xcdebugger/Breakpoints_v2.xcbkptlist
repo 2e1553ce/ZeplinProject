@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ZeplinProject/AVGParseInformationOperation.m"
-            timestampString = "519775649.690441"
+            timestampString = "519777233.024663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
             landmarkName = "-main"
             landmarkType = "7">
          </BreakpointContent>

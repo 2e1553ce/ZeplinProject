@@ -46,7 +46,12 @@
         NSString *iconserver = ownerDict[@"iconserver"];
         NSString *nsid = ownerDict[@"nsid"];
         NSString *ownerAvatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
-        //http://farm{icon-farm}.staticflickr.com/{icon-server}/buddyicons/{nsid}.jpg
+        
+        imageInfo.title = title;
+        imageInfo.imageDescription = description;
+        imageInfo.ownerNickName = nickName;
+        imageInfo.location = location;
+        imageInfo.ownerAvatarUrl = ownerAvatarURL;
     }
     
     if (self.container.likesInformation) {
@@ -59,7 +64,7 @@
     }
     
     if (self.container.commentsInformation) {
-        // Dlya kazhdogo AVGCOmmentator - avatarURL, nickName, comment, date
+        // For each AVGCOmmentator - avatarURL, nickName, comment, date
         NSError *error;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.container.commentsInformation
                                                              options:0
