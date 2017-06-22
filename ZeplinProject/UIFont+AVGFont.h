@@ -11,7 +11,11 @@
 @interface UIFont (AVGFont)
 
 @property (class, nonatomic, readonly) UIFont *imageDescription;
+@property (class, nonatomic, readonly) UIFont *commentatorNickName;
+@property (class, nonatomic, readonly) UIFont *commentatorComment;
 
 + (UIFont *)imageDescription;
++ (UIFont *)commentatorNickName;
++ (UIFont *)commentatorComment;
 
 @end

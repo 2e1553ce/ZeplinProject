@@ -67,7 +67,6 @@
 - (void)loadImageFromUrlString:(NSString *)urlString
                       andCache:(NSCache *)cache
                        forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     self.cache = cache;
     self.urlString = urlString;
     self.indexPath = indexPath;

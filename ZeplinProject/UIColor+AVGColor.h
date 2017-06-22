@@ -11,7 +11,9 @@
 @interface UIColor (AVGColor)
 
 @property (class, nonatomic, readonly) UIColor *imageDescription;
+@property (class, nonatomic, readonly) UIColor *commentatorComment;
 
 + (UIColor *)imageDescription;
++ (UIColor *)commentatorComment;
 
 @end

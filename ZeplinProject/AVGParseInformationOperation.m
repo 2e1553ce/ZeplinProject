@@ -37,7 +37,7 @@
         NSString *locality = localityDict[@"_content"];
         NSDictionary *regionDict = locationDict[@"region"];
         NSString *region = regionDict[@"_content"];
-        NSString *location = [NSString stringWithFormat:@"%@, %@", region, locality];
+        NSString *location = [NSString stringWithFormat:@"%@, %@", locality, region];
         if (!location || [location isEqualToString: @""]) {
             location = ownerDict[@"location"];
         }
@@ -60,7 +60,26 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.container.likesInformation
                                                              options:0
                                                                error:&error];
-        dict = dict[@"photos"];
+        dict = dict[@"photo"];
+        dict = dict[@"person"];
+        NSInteger likesCount = [dict count];
+        NSMutableArray *likesInformation = [NSMutableArray new];
+        for (id person in dict) {
+            AVGLikeInformation *likeInfo = [AVGLikeInformation new];
+            likeInfo.nickName = person[@"username"];
+            likeInfo.date = person[@"favedate"];
+            
+            NSString *iconfarm = person[@"iconfarm"];
+            NSString *iconserver = person[@"iconserver"];
+            NSString *nsid = person[@"nsid"];
+            NSString *avatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
+            likeInfo.avatarURL = avatarURL;
+            
+            [likesInformation addObject:likeInfo];
+        }
+        
+        imageInfo.likeCount = likesCount;
+        imageInfo.likesInfo = likesInformation;
     }
     
     if (self.container.commentsInformation) {
@@ -69,8 +88,29 @@
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.container.commentsInformation
                                                              options:0
                                                                error:&error];
-        dict = dict[@"photos"];
+        dict = dict[@"comments"];
+        dict = dict[@"comment"];
+        NSMutableArray *commentsInformation = [NSMutableArray new];
+        for (id person in dict) {
+            AVGCommentator *commentator = [AVGCommentator new];
+            commentator.nickName = person[@"authorname"];
+            #warning remove tags
+            #warning check for nil
+            commentator.comment = person[@"_content"];
+            commentator.date = person[@"datecreate"];
+            
+            NSString *iconfarm = person[@"iconfarm"];
+            NSString *iconserver = person[@"iconserver"];
+            NSString *nsid = person[@"author"];
+            NSString *avatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
+            commentator.avatarURL = avatarURL;
+            
+            [commentsInformation addObject:commentator];
+        }
+        
+        imageInfo.commentators = commentsInformation;
     }
+    self.container.information = imageInfo;
 }
 
 @end

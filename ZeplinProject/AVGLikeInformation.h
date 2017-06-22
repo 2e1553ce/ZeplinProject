@@ -10,9 +10,8 @@
 
 @interface AVGLikeInformation : NSObject
 
-@property (nonatomic, assign) NSInteger likesCount;
 @property (nonatomic, strong) NSString *nickName;
 @property (nonatomic, strong) NSString *avatarURL;
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSString *date;
 
 @end

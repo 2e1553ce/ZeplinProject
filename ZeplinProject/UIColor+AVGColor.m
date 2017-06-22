@@ -14,4 +14,8 @@
     return [UIColor colorWithRed:170.f / 255.f green:170.f / 255.f blue:170.f / 255.f alpha:1.f];
 }
 
++ (UIColor *)commentatorComment {
+    return [UIColor colorWithRed:170.f / 255.f green:170.f / 255.f blue:170.f / 255.f alpha:1.f];
+}
+
 @end

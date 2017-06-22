@@ -15,4 +15,14 @@
     return font;
 }
 
++ (UIFont *)commentatorNickName {
+    UIFont *font = [UIFont systemFontOfSize:14];
+    return font;
+}
+
++ (UIFont *)commentatorComment {
+    UIFont *font = [UIFont systemFontOfSize:13];
+    return font;
+}
+
 @end
