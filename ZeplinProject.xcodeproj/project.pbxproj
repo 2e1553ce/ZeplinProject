@@ -13,6 +13,7 @@
 		04EF37DB1ED97271003B24C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04EF37D91ED97271003B24C8 /* LaunchScreen.storyboard */; };
 		04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */; };
 		04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */; };
+		19209BBD1EFFD07A0081F2C3 /* AVGImageLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BBC1EFFD07A0081F2C3 /* AVGImageLocationView.m */; };
 		193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */; };
 		193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */; };
 		193B3FFC1EF0130800EC54F3 /* AVGUrlContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FFB1EF0130800EC54F3 /* AVGUrlContainer.m */; };
@@ -34,8 +35,6 @@
 		19CA7B091EFADCFB0009A4D0 /* AVGCommentator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B081EFADCFB0009A4D0 /* AVGCommentator.m */; };
 		19CA7B0F1EFAE1D20009A4D0 /* AVGDetailedImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B0E1EFAE1D20009A4D0 /* AVGDetailedImageService.m */; };
 		19CA7B161EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B151EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m */; };
-		19CA7B191EFAE2F30009A4D0 /* AVGLoadLikesOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B181EFAE2F30009A4D0 /* AVGLoadLikesOperation.m */; };
-		19CA7B1C1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B1B1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m */; };
 		19CA7B201EFAF6710009A4D0 /* AVGLikeInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B1F1EFAF6710009A4D0 /* AVGLikeInformation.m */; };
 		19CA7B241EFB019A0009A4D0 /* AVGParseInformationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B231EFB019A0009A4D0 /* AVGParseInformationOperation.m */; };
 		19CA7B281EFB043B0009A4D0 /* AVGLoadParseContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B271EFB043B0009A4D0 /* AVGLoadParseContainer.m */; };
@@ -55,6 +54,8 @@
 		04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFavoriteViewController.m; sourceTree = "<group>"; };
 		04EF37F11ED979ED003B24C8 /* AVGFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedViewController.h; sourceTree = "<group>"; };
 		04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedViewController.m; sourceTree = "<group>"; };
+		19209BBB1EFFD07A0081F2C3 /* AVGImageLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGImageLocationView.h; sourceTree = "<group>"; };
+		19209BBC1EFFD07A0081F2C3 /* AVGImageLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImageLocationView.m; sourceTree = "<group>"; };
 		193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedCollectionViewCell.h; sourceTree = "<group>"; };
 		193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedCollectionViewCell.m; sourceTree = "<group>"; };
 		193B3FE01EF0089500EC54F3 /* AVGSearchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGSearchImageView.h; sourceTree = "<group>"; };
@@ -97,10 +98,6 @@
 		19CA7B0E1EFAE1D20009A4D0 /* AVGDetailedImageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedImageService.m; sourceTree = "<group>"; };
 		19CA7B141EFAE2DD0009A4D0 /* AVGLoadInformationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadInformationOperation.h; sourceTree = "<group>"; };
 		19CA7B151EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadInformationOperation.m; sourceTree = "<group>"; };
-		19CA7B171EFAE2F30009A4D0 /* AVGLoadLikesOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadLikesOperation.h; sourceTree = "<group>"; };
-		19CA7B181EFAE2F30009A4D0 /* AVGLoadLikesOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadLikesOperation.m; sourceTree = "<group>"; };
-		19CA7B1A1EFAE3070009A4D0 /* AVGLoadCommentsOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadCommentsOperation.h; sourceTree = "<group>"; };
-		19CA7B1B1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadCommentsOperation.m; sourceTree = "<group>"; };
 		19CA7B1E1EFAF6710009A4D0 /* AVGLikeInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLikeInformation.h; sourceTree = "<group>"; };
 		19CA7B1F1EFAF6710009A4D0 /* AVGLikeInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLikeInformation.m; sourceTree = "<group>"; };
 		19CA7B221EFB019A0009A4D0 /* AVGParseInformationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGParseInformationOperation.h; sourceTree = "<group>"; };
@@ -182,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				195351C01EF805690022715C /* Cell */,
+				19209BB91EFFD0150081F2C3 /* Detailed image */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -212,6 +210,23 @@
 				2B12E6CB648A2621EF130D63 /* Pods-ZeplinProject.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		19209BB91EFFD0150081F2C3 /* Detailed image */ = {
+			isa = PBXGroup;
+			children = (
+				19209BBA1EFFD0390081F2C3 /* Navigation titleView */,
+			);
+			name = "Detailed image";
+			sourceTree = "<group>";
+		};
+		19209BBA1EFFD0390081F2C3 /* Navigation titleView */ = {
+			isa = PBXGroup;
+			children = (
+				19209BBB1EFFD07A0081F2C3 /* AVGImageLocationView.h */,
+				19209BBC1EFFD07A0081F2C3 /* AVGImageLocationView.m */,
+			);
+			name = "Navigation titleView";
 			sourceTree = "<group>";
 		};
 		193B3FDF1EF0087F00EC54F3 /* Thumbnail */ = {
@@ -482,29 +497,9 @@
 			children = (
 				19CA7B291EFB06690009A4D0 /* Detailed operations container */,
 				19CA7B131EFAE2240009A4D0 /* Load information */,
-				19CA7B121EFAE2230009A4D0 /* Load likes */,
-				19CA7B111EFAE2210009A4D0 /* Load comments */,
 				19CA7B211EFB01520009A4D0 /* Parse detailed information */,
 			);
 			name = Operations;
-			sourceTree = "<group>";
-		};
-		19CA7B111EFAE2210009A4D0 /* Load comments */ = {
-			isa = PBXGroup;
-			children = (
-				19CA7B1A1EFAE3070009A4D0 /* AVGLoadCommentsOperation.h */,
-				19CA7B1B1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m */,
-			);
-			name = "Load comments";
-			sourceTree = "<group>";
-		};
-		19CA7B121EFAE2230009A4D0 /* Load likes */ = {
-			isa = PBXGroup;
-			children = (
-				19CA7B171EFAE2F30009A4D0 /* AVGLoadLikesOperation.h */,
-				19CA7B181EFAE2F30009A4D0 /* AVGLoadLikesOperation.m */,
-			);
-			name = "Load likes";
 			sourceTree = "<group>";
 		};
 		19CA7B131EFAE2240009A4D0 /* Load information */ = {
@@ -683,7 +678,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				193B3FFC1EF0130800EC54F3 /* AVGUrlContainer.m in Sources */,
-				19CA7B1C1EFAE3070009A4D0 /* AVGLoadCommentsOperation.m in Sources */,
 				04EF37D01ED97271003B24C8 /* AppDelegate.m in Sources */,
 				19CA7B0F1EFAE1D20009A4D0 /* AVGDetailedImageService.m in Sources */,
 				19CA7B201EFAF6710009A4D0 /* AVGLikeInformation.m in Sources */,
@@ -701,6 +695,7 @@
 				19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */,
 				19CA7B281EFB043B0009A4D0 /* AVGLoadParseContainer.m in Sources */,
 				04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */,
+				19209BBD1EFFD07A0081F2C3 /* AVGImageLocationView.m in Sources */,
 				193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */,
 				19CA7B241EFB019A0009A4D0 /* AVGParseInformationOperation.m in Sources */,
 				19CA7B091EFADCFB0009A4D0 /* AVGCommentator.m in Sources */,
@@ -712,7 +707,6 @@
 				193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */,
 				19CA7AE41EF91B4C0009A4D0 /* AVGDetailedViewController.m in Sources */,
 				19CA7AEF1EF944640009A4D0 /* AVGDetailedLikesCell.m in Sources */,
-				19CA7B191EFAE2F30009A4D0 /* AVGLoadLikesOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

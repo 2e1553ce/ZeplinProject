@@ -10,17 +10,23 @@
 
 @implementation UIFont (AVGFont)
 
+// Нужно ли объединять? А если измениться у какого-то одного размер или стиль?
 + (UIFont *)imageDescription {
     UIFont *font = [UIFont systemFontOfSize:14];
     return font;
 }
 
-+ (UIFont *)commentatorNickName {
++ (UIFont *)nickName {
     UIFont *font = [UIFont systemFontOfSize:14];
     return font;
 }
 
-+ (UIFont *)commentatorComment {
++ (UIFont *)imageLocation {
+    UIFont *font = [UIFont systemFontOfSize:13];
+    return font;
+}
+
++ (UIFont *)comment {
     UIFont *font = [UIFont systemFontOfSize:13];
     return font;
 }

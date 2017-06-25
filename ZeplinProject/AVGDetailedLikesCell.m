@@ -36,11 +36,11 @@ NSString *const detailedLikesCellIdentifier = @"detailedLikesCellIdentifier";
     
     self.likesLabel = [UILabel new];
     self.likesLabel.font = UIFont.imageDescription;
-    self.likesLabel.textColor = UIColor.imageDescription;
+    self.likesLabel.textColor = UIColor.customLightGrayColor;
     
     self.commentsLabel = [UILabel new];
     self.commentsLabel.font = UIFont.imageDescription;
-    self.commentsLabel.textColor = UIColor.imageDescription;
+    self.commentsLabel.textColor = UIColor.customLightGrayColor;
     
     [self addSubview:self.likesImageView];
     [self addSubview:self.commentsImageView];

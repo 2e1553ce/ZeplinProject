@@ -10,12 +10,12 @@
 
 @implementation UIColor (AVGColor)
 
-+ (UIColor *)imageDescription {
++ (UIColor *)customLightGrayColor {
     return [UIColor colorWithRed:170.f / 255.f green:170.f / 255.f blue:170.f / 255.f alpha:1.f];
 }
 
-+ (UIColor *)commentatorComment {
-    return [UIColor colorWithRed:170.f / 255.f green:170.f / 255.f blue:170.f / 255.f alpha:1.f];
++ (UIColor *)customLightBlueColor {
+    return [UIColor colorWithRed:40.f / 255.f green:171.f / 255.f blue:236.f / 255.f alpha:1.f];
 }
 
 @end

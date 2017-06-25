@@ -10,8 +10,6 @@
 #import "AVGDetailedImageInformation.h"
 #import "AVGCommentator.h"
 #import "AVGLoadInformationOperation.h"
-#import "AVGLoadLikesOperation.h"
-#import "AVGLoadCommentsOperation.h"
 #import "AVGParseInformationOperation.h"
 #import "AVGDetailedInformationContainer.h"
 
@@ -20,8 +18,8 @@
 @property (nonatomic, strong) NSOperationQueue *queue;
 
 @property (nonatomic, strong) AVGLoadInformationOperation *informationOperation;
-@property (nonatomic, strong) AVGLoadLikesOperation *likesOperation;
-@property (nonatomic, strong) AVGLoadCommentsOperation *commentsOperation;
+@property (nonatomic, strong) AVGLoadInformationOperation *likesOperation;
+@property (nonatomic, strong) AVGLoadInformationOperation *commentsOperation;
 @property (nonatomic, strong) AVGParseInformationOperation *parseOperation;
 
 @property (nonatomic, strong) AVGDetailedInformationContainer *operationContainer;
@@ -37,11 +35,11 @@
         self.operationContainer = [AVGDetailedInformationContainer new];
         self.operationContainer.imageID = imageID;
         
-        self.informationOperation = [AVGLoadInformationOperation new];
+        self.informationOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeInfo];
         self.informationOperation.container = self.operationContainer;
-        self.likesOperation = [AVGLoadLikesOperation new];
+        self.likesOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeFavorites];
         self.likesOperation.container = self.operationContainer;
-        self.commentsOperation = [AVGLoadCommentsOperation new];
+        self.commentsOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeComments];
         self.commentsOperation.container = self.operationContainer;
         self.parseOperation = [AVGParseInformationOperation new];
         self.parseOperation.container = self.operationContainer;

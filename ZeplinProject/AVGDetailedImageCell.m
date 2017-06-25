@@ -32,8 +32,8 @@ NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
     self.detailedImageView = [UIImageView new]; // Стандартную imageView стягивает при клике на ней
     
     self.detailedDescriptionLabel = [UILabel new];
-    self.detailedDescriptionLabel.font = [UIFont imageDescription];
-    self.detailedDescriptionLabel.textColor = [UIColor imageDescription];
+    self.detailedDescriptionLabel.font = UIFont.imageDescription;
+    self.detailedDescriptionLabel.textColor = UIColor.customLightGrayColor;
     self.detailedDescriptionLabel.numberOfLines = 0;
     
     [self addSubview:self.detailedImageView];

@@ -10,10 +10,10 @@
 
 @interface UIColor (AVGColor)
 
-@property (class, nonatomic, readonly) UIColor *imageDescription;
-@property (class, nonatomic, readonly) UIColor *commentatorComment;
+@property (class, nonatomic, readonly) UIColor *customLightGrayColor;
+@property (class, nonatomic, readonly) UIColor *customLightBlueColor;
 
-+ (UIColor *)imageDescription;
-+ (UIColor *)commentatorComment;
++ (UIColor *)customLightGrayColor;
++ (UIColor *)customLightBlueColor;
 
 @end

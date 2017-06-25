@@ -37,9 +37,17 @@
         NSString *locality = localityDict[@"_content"];
         NSDictionary *regionDict = locationDict[@"region"];
         NSString *region = regionDict[@"_content"];
-        NSString *location = [NSString stringWithFormat:@"%@, %@", locality, region];
-        if (!location || [location isEqualToString: @""]) {
-            location = ownerDict[@"location"];
+        NSString *location;
+        if (locality) {
+            location = [NSString stringWithFormat:@"%@", locality];
+            if (region) {
+                location = [NSString stringWithFormat:@"%@, %@", location, region];
+            }
+        } else {
+            location = [NSString stringWithFormat:@"%@", region];
+            if (!location || [location isEqualToString: @""]) {
+                location = ownerDict[@"location"];
+            }
         }
 
         NSString *iconfarm = ownerDict[@"iconfarm"];

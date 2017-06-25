@@ -54,6 +54,16 @@
 - (void)prepareLayout {
     [super prepareLayout];
     // calculate and save frames for all indexPaths. Unfortunately, we must do it for all cells to know content size of the collection
+    [self.framesByIndexPath removeAllObjects];
+    [self.indexPathsByFrame removeAllObjects];
+    [self.previousLayoutAttributes removeAllObjects];
+    
+    self.leftCounter = 0;
+    self.rightCounter = 0;
+    self.isLeftBig = YES;
+    self.isRightBig = NO;
+    self.lastFrame = CGRectZero;
+    
     for (int i = 0; i < [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0]; i++) {
         NSIndexPath *path = [NSIndexPath indexPathForItem:i inSection:0];
         [self frameForIndexPath:path];

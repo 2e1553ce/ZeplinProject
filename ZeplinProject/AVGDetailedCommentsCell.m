@@ -31,11 +31,12 @@ NSString *const detailedCommentsCellIdentifier = @"detailedCommentsCellIdentifie
     self.avatarImageView.layer.cornerRadius = 19.f;
     
     self.nickNameLabel = [UILabel new];
-    self.nickNameLabel.font = UIFont.commentatorNickName;
+    self.nickNameLabel.font = UIFont.nickName;
     
     self.commentLabel = [UILabel new];
-    self.commentLabel.font = UIFont.commentatorComment;
-    self.commentLabel.textColor = UIColor.commentatorComment;
+    self.commentLabel.numberOfLines = 0;
+    self.commentLabel.font = UIFont.comment;
+    self.commentLabel.textColor = UIColor.customLightGrayColor;
     
     [self addSubview:self.avatarImageView];
     [self addSubview:self.nickNameLabel];
@@ -52,15 +53,15 @@ NSString *const detailedCommentsCellIdentifier = @"detailedCommentsCellIdentifie
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(14);
         make.left.equalTo(self.avatarImageView.mas_right).with.offset(8);
-        //make.right.equalTo(superview).with.offset(-10);
+        make.right.equalTo(superview).with.offset(-10);
         make.height.equalTo(@16);
     }];
     
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nickNameLabel.mas_bottom);
         make.left.equalTo(self.avatarImageView.mas_right).with.offset(8);
-        //make.right.equalTo(superview).with.offset(-10);
-        make.height.equalTo(@16);
+        make.right.equalTo(superview).with.offset(-10);
+        make.bottom.equalTo(superview).with.offset(-14);
     }];
 }
 
