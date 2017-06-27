@@ -14,6 +14,8 @@
 
 @implementation AVGFavoriteViewController
 
+#pragma mark - Initialization
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -23,6 +25,8 @@
     }
     return self;
 }
+
+#pragma mark - View controller life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

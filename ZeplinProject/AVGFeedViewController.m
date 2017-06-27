@@ -202,9 +202,6 @@
     AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
     UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
     
-    feedCell.label.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
-    feedCell.label.textColor = UIColor.redColor;
-    
     if (cachedImage) {
         [feedCell.searchedImageView.activityIndicatorView stopAnimating];
         feedCell.searchedImageView.progressView.hidden = YES;
