@@ -31,4 +31,9 @@
     return font;
 }
 
++ (UIFont *)settingsTitle {
+    UIFont *font = [UIFont systemFontOfSize:17];
+    return font;
+}
+
 @end

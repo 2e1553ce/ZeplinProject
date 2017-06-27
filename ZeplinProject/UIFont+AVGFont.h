@@ -12,10 +12,12 @@
 @property (class, nonatomic, readonly) UIFont *imageLocation;
 @property (class, nonatomic, readonly) UIFont *nickName;
 @property (class, nonatomic, readonly) UIFont *comment;
+@property (class, nonatomic, readonly) UIFont *settingsTitle;
 
 + (UIFont *)imageDescription;
 + (UIFont *)imageLocation;
 + (UIFont *)nickName;
 + (UIFont *)comment;
++ (UIFont *)settingsTitle;
 
 @end

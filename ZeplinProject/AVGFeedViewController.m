@@ -13,6 +13,7 @@
 #import "AVGFeedCollectionViewCell.h"
 #import "AVGCollectionViewLayout.h"
 #import "AVGDetailedViewController.h"
+#import "AVGSettingsViewController.h"
 
 @interface AVGFeedViewController () <UISearchBarDelegate, UICollectionViewDataSource, AVGCollectionViewLayoutDelegate, AVGImageServiceDelegate>
 
@@ -50,7 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = UIColor.customLightHoarColor;
     
     // Services
     self.urlService = [AVGUrlService new];
@@ -80,7 +81,7 @@
     AVGCollectionViewLayout *flowLayout = [AVGCollectionViewLayout new];
     flowLayout.delegate = self;
     self.feedCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
-    self.feedCollectionView.backgroundColor = UIColor.whiteColor;
+    self.feedCollectionView.backgroundColor = UIColor.customLightHoarColor;
     self.feedCollectionView.delegate = self;
     self.feedCollectionView.dataSource = self;
     [self.feedCollectionView registerClass:[AVGFeedCollectionViewCell class] forCellWithReuseIdentifier:flickrCellIdentifier];
@@ -168,7 +169,8 @@
 #pragma mark - Actions
 
 - (void)optionsButtonAction:(UIBarButtonItem *)sender {
-    
+    AVGSettingsViewController *settingsViewController = [AVGSettingsViewController new];
+    [self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 #pragma mark - UICollectionDataSource

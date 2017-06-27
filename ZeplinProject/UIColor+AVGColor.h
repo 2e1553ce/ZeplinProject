@@ -12,10 +12,12 @@
 @property (class, nonatomic, readonly) UIColor *customLightBlueColor;
 @property (class, nonatomic, readonly) UIColor *customMiddleRedColor;
 @property (class, nonatomic, readonly) UIColor *customAzureColor;
+@property (class, nonatomic, readonly) UIColor *customLightHoarColor;
 
 + (UIColor *)customLightGrayColor;
 + (UIColor *)customLightBlueColor;
 + (UIColor *)customMiddleRedColor;
 + (UIColor *)customAzureColor;
++ (UIColor *)customLightHoarColor;
 
 @end

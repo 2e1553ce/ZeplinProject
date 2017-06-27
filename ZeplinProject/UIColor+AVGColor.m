@@ -26,4 +26,8 @@
     return [UIColor colorWithRed:255.f / 255.f green:38.f / 255.f blue:70.f / 255.f alpha:1.f];
 }
 
++ (UIColor *)customLightHoarColor {
+    return [UIColor colorWithRed:245.f / 255.f green:245.f / 255.f blue:245.f / 255.f alpha:1.f];
+}
+
 @end
