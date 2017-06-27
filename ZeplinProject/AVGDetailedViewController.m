@@ -41,14 +41,31 @@
     [super viewDidLoad];
     
     self.navigationController.tabBarController.tabBar.hidden = YES;
+    self.imageServices = [NSMutableArray new];
+    self.imageCache = [NSCache new];
+    self.imageCache.countLimit = 50;
     
+    [self configureNavigationBarButtons];
+    [self configureNavigationTitleView];
+    [self configureTableView];
+    
+    [self getImageAdditionalInformation];
+}
+
+#pragma mark - Configure interface
+
+- (void)configureNavigationBarButtons {
+    // Back button
     UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStyleDone target:self action:@selector(backButtonAction:)];
     barBtn.tintColor = UIColor.customLightBlueColor;
     self.navigationItem.leftBarButtonItem = barBtn;
     
+    // Add to favorite button
     UIBarButtonItem *addToFavoritesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavoriteAction:)];
     self.navigationItem.rightBarButtonItem = addToFavoritesButton;
-    
+}
+
+- (void)configureNavigationTitleView {
     self.locationView = [AVGImageLocationView new];
     self.navigationItem.titleView = self.locationView;
     UIView *titleView = self.navigationItem.titleView;
@@ -58,11 +75,9 @@
         make.width.equalTo(@(width));
         make.height.equalTo(@34);
     }];
-    
-    self.imageServices = [NSMutableArray new];
-    self.imageCache = [NSCache new];
-    _imageCache.countLimit = 50;
-    
+}
+
+- (void)configureTableView {
     self.tableView = [UITableView new];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     [self.tableView registerClass:[AVGDetailedImageCell class] forCellReuseIdentifier:detailedImageCellIdentifier];
@@ -79,7 +94,11 @@
         make.right.equalTo(superview).with.offset(0);
         make.bottom.equalTo(superview).with.offset(0);
     }];
-    
+}
+
+#pragma mark - Get full image info
+
+- (void)getImageAdditionalInformation {
     self.detailedImageService = [[AVGDetailedImageService alloc] initWithImageID:self.imageID];
     [self.detailedImageService getImageInformationWithCompletionHandler:^(AVGDetailedImageInformation *info) {
         self.imageInfo = info;
@@ -97,9 +116,6 @@
             
             NSDate *dateOne, *dateTwo;
             NSTimeInterval secondsOne, secondsTwo;
-            
-            
-            
             
             if ([obj1 isKindOfClass:[AVGCommentator class]]) {
                 commentator1 = (AVGCommentator *)obj1;

@@ -146,7 +146,6 @@
     for (id person in dict) {
         AVGCommentator *commentator = [AVGCommentator new];
         commentator.nickName = person[@"authorname"];
-#warning check for nil
         commentator.comment = person[@"_content"];
         commentator.date = person[@"datecreate"];
         

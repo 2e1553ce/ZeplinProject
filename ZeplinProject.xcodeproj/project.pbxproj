@@ -20,6 +20,9 @@
 		19209BD31F02FB9D0081F2C3 /* AVGSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BD21F02FB9D0081F2C3 /* AVGSettingsCell.m */; };
 		19209BD61F0306ED0081F2C3 /* FavoriteModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 19209BD41F0306ED0081F2C3 /* FavoriteModel.xcdatamodeld */; };
 		19209BD91F0307E10081F2C3 /* AVGCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BD81F0307E10081F2C3 /* AVGCoreDataStack.m */; };
+		19209BDD1F0313510081F2C3 /* AVGCoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BDC1F0313510081F2C3 /* AVGCoreDataService.m */; };
+		19209BFF1F0322720081F2C3 /* AVGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BFE1F0322720081F2C3 /* AVGImage.m */; };
+		19209C021F0323050081F2C3 /* AVGOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209C011F0323050081F2C3 /* AVGOwner.m */; };
 		193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */; };
 		193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */; };
 		193B3FFC1EF0130800EC54F3 /* AVGUrlContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FFB1EF0130800EC54F3 /* AVGUrlContainer.m */; };
@@ -74,6 +77,12 @@
 		19209BD51F0306ED0081F2C3 /* FavoriteModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteModel.xcdatamodel; sourceTree = "<group>"; };
 		19209BD71F0307E10081F2C3 /* AVGCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGCoreDataStack.h; sourceTree = "<group>"; };
 		19209BD81F0307E10081F2C3 /* AVGCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGCoreDataStack.m; sourceTree = "<group>"; };
+		19209BDB1F0313510081F2C3 /* AVGCoreDataService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGCoreDataService.h; sourceTree = "<group>"; };
+		19209BDC1F0313510081F2C3 /* AVGCoreDataService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGCoreDataService.m; sourceTree = "<group>"; };
+		19209BFD1F0322720081F2C3 /* AVGImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGImage.h; sourceTree = "<group>"; };
+		19209BFE1F0322720081F2C3 /* AVGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImage.m; sourceTree = "<group>"; };
+		19209C001F0323050081F2C3 /* AVGOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGOwner.h; sourceTree = "<group>"; };
+		19209C011F0323050081F2C3 /* AVGOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGOwner.m; sourceTree = "<group>"; };
 		193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedCollectionViewCell.h; sourceTree = "<group>"; };
 		193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedCollectionViewCell.m; sourceTree = "<group>"; };
 		193B3FE01EF0089500EC54F3 /* AVGSearchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGSearchImageView.h; sourceTree = "<group>"; };
@@ -255,6 +264,8 @@
 				19209BD41F0306ED0081F2C3 /* FavoriteModel.xcdatamodeld */,
 				19209BD71F0307E10081F2C3 /* AVGCoreDataStack.h */,
 				19209BD81F0307E10081F2C3 /* AVGCoreDataStack.m */,
+				19209BDE1F031F900081F2C3 /* Entities */,
+				19209BDA1F0313260081F2C3 /* Service */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -293,6 +304,26 @@
 				19209BD21F02FB9D0081F2C3 /* AVGSettingsCell.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		19209BDA1F0313260081F2C3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				19209BDB1F0313510081F2C3 /* AVGCoreDataService.h */,
+				19209BDC1F0313510081F2C3 /* AVGCoreDataService.m */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
+		19209BDE1F031F900081F2C3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				19209BFD1F0322720081F2C3 /* AVGImage.h */,
+				19209BFE1F0322720081F2C3 /* AVGImage.m */,
+				19209C001F0323050081F2C3 /* AVGOwner.h */,
+				19209C011F0323050081F2C3 /* AVGOwner.m */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		193B3FDF1EF0087F00EC54F3 /* Thumbnail */ = {
@@ -748,11 +779,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				193B3FFC1EF0130800EC54F3 /* AVGUrlContainer.m in Sources */,
+				19209C021F0323050081F2C3 /* AVGOwner.m in Sources */,
 				04EF37D01ED97271003B24C8 /* AppDelegate.m in Sources */,
 				19CA7B0F1EFAE1D20009A4D0 /* AVGDetailedImageService.m in Sources */,
 				19CA7B201EFAF6710009A4D0 /* AVGLikeInformation.m in Sources */,
 				19209BCA1F028B800081F2C3 /* AVGConstants.m in Sources */,
 				195351C41EF805C00022715C /* AVGCollectionViewLayout.m in Sources */,
+				19209BFF1F0322720081F2C3 /* AVGImage.m in Sources */,
 				193B40051EF0132F00EC54F3 /* AVGParseUrlOperation.m in Sources */,
 				19209BCF1F02E5690081F2C3 /* AVGSettingsViewController.m in Sources */,
 				19209BD91F0307E10081F2C3 /* AVGCoreDataStack.m in Sources */,
@@ -767,6 +800,7 @@
 				193B40021EF0132300EC54F3 /* AVGLoadUrlOperation.m in Sources */,
 				19CA7AF21EF9447B0009A4D0 /* AVGDetailedCommentsCell.m in Sources */,
 				19209BD61F0306ED0081F2C3 /* FavoriteModel.xcdatamodeld in Sources */,
+				19209BDD1F0313510081F2C3 /* AVGCoreDataService.m in Sources */,
 				19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */,
 				19CA7B281EFB043B0009A4D0 /* AVGLoadParseContainer.m in Sources */,
 				04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */,

@@ -6,8 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@class CoreData;
-
 @interface AVGCoreDataStack : NSObject
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *mainContext;

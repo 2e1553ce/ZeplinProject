@@ -7,7 +7,6 @@
 //
 
 #import "AVGCoreDataStack.h"
-@import CoreData;
 
 @interface AVGCoreDataStack ()
 

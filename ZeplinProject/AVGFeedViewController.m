@@ -108,7 +108,7 @@
     self.navigationItem.titleView = self.searchBar;
 }
 
-#pragma mark - Options button configuration
+#pragma mark - Settings button configuration
 
 - (void)configurateOptionsButton {
     UIImage *optionsImage = [UIImage imageNamed:@"icSettings"];
