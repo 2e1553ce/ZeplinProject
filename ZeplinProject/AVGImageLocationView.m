@@ -7,11 +7,10 @@
 //
 
 #import "AVGImageLocationView.h"
-#import "UIColor+AVGColor.h"
-#import "UIFont+AVGFont.h"
-#import <Masonry.h>
 
 @implementation AVGImageLocationView
+
+#pragma mark - Initialization
 
 - (instancetype)init {
     self = [super init];
@@ -20,6 +19,8 @@
     }
     return self;
 }
+
+#pragma mark - Creating Subviews
 
 - (void)createSubviews {
     _nickNameLabel = [UILabel new];

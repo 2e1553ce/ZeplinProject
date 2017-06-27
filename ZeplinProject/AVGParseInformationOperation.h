@@ -6,8 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @class AVGDetailedInformationContainer;
 
 @interface AVGParseInformationOperation : NSOperation

@@ -14,21 +14,19 @@
 #import "AVGDetailedImageInformation.h"
 #import "AVGImageService.h"
 #import "AVGImageLocationView.h"
-#import "UIColor+AVGColor.h"
-#import "UIFont+AVGFont.h"
-#import <Masonry.h>
 
 @interface AVGDetailedViewController () <UITableViewDelegate, UITableViewDataSource, AVGImageServiceDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) AVGImageLocationView *locationView;
 @property (nonatomic, strong) AVGDetailedImageService *detailedImageService;
-@property (nonatomic, strong) NSMutableArray <AVGImageService*> *imageServices;
+@property (nonatomic, strong) NSMutableArray<AVGImageService*> *imageServices;
 @property (nonatomic, strong) NSCache *imageCache; // need service
 
 @property (nonatomic, strong) AVGDetailedImageInformation *imageInfo;
-@property (nonatomic, strong) NSArray *likes;
-@property (nonatomic, strong) NSArray *comments;
+@property (nonatomic, copy) NSArray *likesAndComments;
+@property (nonatomic, copy) NSArray *likes;
+@property (nonatomic, copy) NSArray *comments;
 
 @property (nonatomic, strong) AVGImageService *imageService;
 
@@ -37,12 +35,19 @@
 
 @implementation AVGDetailedViewController
 
+#pragma mark - Life cycle of view controller
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *barBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStyleDone target:self action:@selector(backButtonAction:)];
+    self.navigationController.tabBarController.tabBar.hidden = YES;
+    
+    UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStyleDone target:self action:@selector(backButtonAction:)];
     barBtn.tintColor = UIColor.customLightBlueColor;
     self.navigationItem.leftBarButtonItem = barBtn;
+    
+    UIBarButtonItem *addToFavoritesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavoriteAction:)];
+    self.navigationItem.rightBarButtonItem = addToFavoritesButton;
     
     self.locationView = [AVGImageLocationView new];
     self.navigationItem.titleView = self.locationView;
@@ -81,7 +86,57 @@
         self.likes = info.likesInfo;
         self.comments = info.commentators;
         
-        NSUInteger countOfServices = [info.commentators count];
+        NSMutableArray *commentsAndLikes = [NSMutableArray arrayWithArray:self.comments];
+        [commentsAndLikes addObjectsFromArray:self.likes];
+        
+        self.likesAndComments = [commentsAndLikes sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            AVGCommentator *commentator1 = [AVGCommentator new];
+            AVGCommentator *commentator2 = [AVGCommentator new];
+            AVGLikeInformation *like1 = [AVGLikeInformation new];
+            AVGLikeInformation *like2 = [AVGLikeInformation new];
+            
+            NSDate *dateOne, *dateTwo;
+            NSTimeInterval secondsOne, secondsTwo;
+            
+            
+            
+            
+            if ([obj1 isKindOfClass:[AVGCommentator class]]) {
+                commentator1 = (AVGCommentator *)obj1;
+                if ([obj2 isKindOfClass:[AVGCommentator class]]) {
+                    commentator2 = (AVGCommentator *)obj2;
+                    secondsOne = [commentator1.date doubleValue];
+                    dateOne = [NSDate dateWithTimeIntervalSince1970:secondsOne];
+                    secondsTwo = [commentator2.date doubleValue];
+                    dateTwo = [NSDate dateWithTimeIntervalSince1970:secondsTwo];
+                } else {
+                    like2 = (AVGLikeInformation *)obj2;
+                    secondsOne = [commentator1.date doubleValue];
+                    dateOne = [NSDate dateWithTimeIntervalSince1970:secondsOne];
+                    secondsTwo = [like2.date doubleValue];
+                    dateTwo = [NSDate dateWithTimeIntervalSince1970:secondsTwo];
+                }
+            } else {
+                like1 = (AVGLikeInformation *)obj1;
+                if ([obj2 isKindOfClass:[AVGCommentator class]]) {
+                    commentator2 = (AVGCommentator *)obj2;
+                    secondsOne = [like1.date doubleValue];
+                    dateOne = [NSDate dateWithTimeIntervalSince1970:secondsOne];
+                    secondsTwo = [commentator2.date doubleValue];
+                    dateTwo = [NSDate dateWithTimeIntervalSince1970:secondsTwo];
+                } else {
+                    like2 = (AVGLikeInformation *)obj2;
+                    secondsOne = [like1.date doubleValue];
+                    dateOne = [NSDate dateWithTimeIntervalSince1970:secondsOne];
+                    secondsTwo = [like2.date doubleValue];
+                    dateTwo = [NSDate dateWithTimeIntervalSince1970:secondsTwo];
+                }
+            }
+            
+            return [dateOne compare:dateTwo];
+        }];
+        
+        NSUInteger countOfServices = [self.likesAndComments count];
         for (NSUInteger i = 0; i < countOfServices; i++) {
             AVGImageService *imageService = [AVGImageService new];
             [_imageServices addObject:imageService];
@@ -104,64 +159,74 @@
     }];
 }
 
+#pragma mark UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2 + [self.comments count];//[self.likes count] + [self.comments count];
+    return 2 + [self.likesAndComments count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // Image & description counters
     if (indexPath.row == 0) {
         AVGDetailedImageCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedImageCellIdentifier forIndexPath:indexPath];
         cell.detailedImageView.image = self.image;
         cell.detailedDescriptionLabel.text = self.imageInfo.imageDescription ? self.imageInfo.imageDescription : self.imageInfo.title;
         return  cell;
         
-    } else if (indexPath.row == 1) {
+    }
+    // Likes & comments
+    else if (indexPath.row == 1) {
         AVGDetailedLikesCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedLikesCellIdentifier forIndexPath:indexPath];
         
-        NSString *likeTitleString;
-        if ([self.likes count] % 10 == 1) {
-            likeTitleString = @"лайк";
-        } else if ([self.likes count] % 10 > 1 && [self.likes count] % 10 < 5) {
-            likeTitleString = @"лайка";
-        } else {
-            likeTitleString = @"лайков";
-        }
-        
-        NSString *commentTitleString;
-        if ([self.comments count] % 10 == 1) {
-            commentTitleString = @"комментарий";
-        } else if ([self.comments count] % 10 > 1 && [self.comments count] % 10 < 5) {
-            commentTitleString = @"комментария";
-        } else {
-            commentTitleString = @"комментариев";
-        }
+        NSString *likeTitleString = [NSString declensionStringFor:AVGDeclensionTypeLike andCount:[self.likes count]];
+        NSString *commentTitleString = [NSString declensionStringFor:AVGDeclensionTypeComment andCount:[self.comments count]];
         
         cell.likesLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.likes count], likeTitleString];
         cell.commentsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.comments count], commentTitleString];
         return cell;
         
-    } else {
+    }
+    // Comments
+    else {
         AVGDetailedCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedCommentsCellIdentifier forIndexPath:indexPath];
-        AVGCommentator *commentator = self.comments[indexPath.row - 2];
-        cell.nickNameLabel.text = commentator.nickName;
-        
-        NSString *comment = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
-        NSMutableAttributedString *attributedComment =
-        [[NSMutableAttributedString alloc]
-         initWithString: comment];
-        
-        [attributedComment addAttribute:NSForegroundColorAttributeName
-                     value:UIColor.customLightBlueColor
-                     range:NSMakeRange(22, [comment length] - 22)];
-        cell.commentLabel.attributedText = attributedComment;
-        //cell.commentLabel.text = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
-        //cell.commentLabel.text = [NSString stringWithFormat:@"%@", commentator.comment];
-        
-        AVGImageService *imageService = self.imageServices[indexPath.row - 2];
-        imageService.delegate = self;
-        imageService.imageState = AVGImageStateNormal;
-        [imageService loadImageFromUrlString:commentator.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+        if ([self.likesAndComments[indexPath.row - 2] isKindOfClass:[AVGCommentator class]]) {
+            AVGCommentator *commentator = self.likesAndComments[indexPath.row - 2];
+            cell.nickNameLabel.text = commentator.nickName;
+            
+            NSString *comment = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
+            NSMutableAttributedString *attributedComment =
+            [[NSMutableAttributedString alloc]
+             initWithString: comment];
+            
+            [attributedComment addAttribute:NSForegroundColorAttributeName
+                                      value:UIColor.customLightBlueColor
+                                      range:NSMakeRange(22, [comment length] - 22)];
+            cell.commentLabel.attributedText = attributedComment;
+            
+            AVGImageService *imageService = self.imageServices[indexPath.row - 2];
+            imageService.delegate = self;
+            imageService.imageState = AVGImageStateNormal;
+            [imageService loadImageFromUrlString:commentator.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+        } else {
+            AVGLikeInformation *like = self.likesAndComments[indexPath.row - 2];
+            cell.nickNameLabel.text = like.nickName;
+            
+            NSString *comment = [NSString stringWithFormat:@"оценил ваше фото."];
+            NSMutableAttributedString *attributedComment =
+            [[NSMutableAttributedString alloc]
+             initWithString: comment];
+            
+            [attributedComment addAttribute:NSForegroundColorAttributeName
+                                      value:UIColor.customMiddleRedColor
+                                      range:NSMakeRange(0, 6)];
+            cell.commentLabel.attributedText = attributedComment;
+            
+            AVGImageService *imageService = self.imageServices[indexPath.row - 2];
+            imageService.delegate = self;
+            imageService.imageState = AVGImageStateNormal;
+            [imageService loadImageFromUrlString:like.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+        }
         
         return cell;
     }
@@ -175,53 +240,52 @@
     } else if (indexPath.row == 1) {
         return [AVGDetailedLikesCell heightForCell];
     } else {
-        //return [AVGDetailedCommentsCell heightForCell];
-        AVGCommentator *commentator = self.comments[indexPath.row - 2];
-        //AVGDetailedCommentsCell *cell = (AVGDetailedCommentsCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        
-        NSStringDrawingContext *ctx = [NSStringDrawingContext new];
-        NSString *commentString = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
-        NSAttributedString *aString = [[NSAttributedString alloc] initWithString:commentString];
-        UILabel *calculationLabel = [UILabel new];
-        calculationLabel.font = UIFont.comment;
-        [calculationLabel setAttributedText:aString];
-        CGSize sizeForLabel = CGSizeMake(CGRectGetWidth(self.view.bounds) - 72.f, CGFLOAT_MAX); // 72 for offset between comment and left border
-        CGRect textRect = [calculationLabel.text boundingRectWithSize:sizeForLabel options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:calculationLabel.font} context:ctx];
-        
-        if ([AVGDetailedCommentsCell heightForCell] > textRect.size.height + 44.48) { // 44.48 => min height of commentLabel is 15.52.f(textRect), height of cell is 60.f
-            return [AVGDetailedCommentsCell heightForCell];
+        if ([self.likesAndComments[indexPath.row - 2] isKindOfClass:[AVGCommentator class]]) {
+            AVGCommentator *commentator = self.likesAndComments[indexPath.row - 2];
+            
+            NSStringDrawingContext *ctx = [NSStringDrawingContext new];
+            NSString *commentString = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
+            NSAttributedString *aString = [[NSAttributedString alloc] initWithString:commentString];
+            UILabel *calculationLabel = [UILabel new];
+            calculationLabel.font = UIFont.comment;
+            [calculationLabel setAttributedText:aString];
+            CGSize sizeForLabel = CGSizeMake(CGRectGetWidth(self.view.bounds) - 72.f, CGFLOAT_MAX); // 72 for offset between comment and left border
+            CGRect textRect = [calculationLabel.text boundingRectWithSize:sizeForLabel options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:calculationLabel.font} context:ctx];
+            
+            if ([AVGDetailedCommentsCell heightForCell] > textRect.size.height + 44.48) { // 44.48 => min height of commentLabel is 15.52.f(textRect), height of cell is 60.f
+                return [AVGDetailedCommentsCell heightForCell];
+            } else {
+                return 44.48f + textRect.size.height;
+            }
+
         } else {
-            return 44.48f + textRect.size.height;
+            NSStringDrawingContext *ctx = [NSStringDrawingContext new];
+            NSString *commentString = [NSString stringWithFormat:@"оценил ваше фото."];
+            NSAttributedString *aString = [[NSAttributedString alloc] initWithString:commentString];
+            UILabel *calculationLabel = [UILabel new];
+            calculationLabel.font = UIFont.comment;
+            [calculationLabel setAttributedText:aString];
+            CGSize sizeForLabel = CGSizeMake(CGRectGetWidth(self.view.bounds) - 72.f, CGFLOAT_MAX); // 72 for offset between comment and left border
+            CGRect textRect = [calculationLabel.text boundingRectWithSize:sizeForLabel options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:calculationLabel.font} context:ctx];
+            
+            if ([AVGDetailedCommentsCell heightForCell] > textRect.size.height + 44.48) { // 44.48 => min height of commentLabel is 15.52.f(textRect), height of cell is 60.f
+                return [AVGDetailedCommentsCell heightForCell];
+            } else {
+                return 44.48f + textRect.size.height;
+            }
+
         }
     }
 }
 
-
 #pragma mark - AVGImageServiceDelegate
 
 - (void)serviceStartedImageDownload:(AVGImageService *)service forRowAtIndexPath:(NSIndexPath*)indexPath {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (indexPath.row > 1) {
-            AVGDetailedCommentsCell *cell = (AVGDetailedCommentsCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        }
-        //cell.searchedImageView.progressView.hidden = NO;
-        //cell.searchedImageView.activityIndicatorView.hidden = NO;
-        //cell.searchedImageView.progressView.progress = 0.f;
-        //[cell.searchedImageView.activityIndicatorView startAnimating];
-    });
-    
+    // required but no needed
 }
 
 - (void)service:(AVGImageService *)service updateImageDownloadProgress:(float)progress forRowAtIndexPath:(NSIndexPath*)indexPath {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (indexPath.row > 1) {
-            AVGDetailedCommentsCell *cell = (AVGDetailedCommentsCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-            //cell.searchedImageView.progressView.progress = progress;
-        }
-    });
-    
+    // required but no needed
 }
 
 - (void)service:(AVGImageService *)service downloadedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath {
@@ -232,13 +296,8 @@
             }
         } else {
             if (image) {
-                //AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
-                //[_imageCache setObject:image forKey:imageInfo.url];
-                
                 AVGDetailedCommentsCell *cell = (AVGDetailedCommentsCell *)[self.tableView cellForRowAtIndexPath:indexPath];
                 cell.avatarImageView.image = image;
-                //[cell.searchedImageView.activityIndicatorView stopAnimating];
-                //cell.searchedImageView.progressView.hidden = YES;
                 [cell setNeedsLayout];
             }
         }
@@ -249,6 +308,10 @@
 
 - (void)backButtonAction:(UIBarButtonItem *)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)addToFavoriteAction:(UIBarButtonItem *)sender {
+    
 }
 
 @end

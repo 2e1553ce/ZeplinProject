@@ -7,9 +7,6 @@
 //
 
 #import "AVGDetailedLikesCell.h"
-#import "UIColor+AVGColor.h"
-#import "UIFont+AVGFont.h"
-#import <Masonry.h>
 
 NSString *const detailedLikesCellIdentifier = @"detailedLikesCellIdentifier";
 
@@ -28,50 +25,50 @@ NSString *const detailedLikesCellIdentifier = @"detailedLikesCellIdentifier";
 #pragma mark - Constraints
 
 - (void)createSubviews {
-    self.likesImageView = [UIImageView new];
-    self.likesImageView.image = [UIImage imageNamed:@"btnLikeSuggestion"];
+    _likesImageView = [UIImageView new];
+    _likesImageView.image = [UIImage imageNamed:@"btnLikeSuggestion"];
     
-    self.commentsImageView = [UIImageView new];
-    self.commentsImageView.image = [UIImage imageNamed:@"fill984"];
+    _commentsImageView = [UIImageView new];
+    _commentsImageView.image = [UIImage imageNamed:@"fill984"];
     
-    self.likesLabel = [UILabel new];
-    self.likesLabel.font = UIFont.imageDescription;
-    self.likesLabel.textColor = UIColor.customLightGrayColor;
+    _likesLabel = [UILabel new];
+    _likesLabel.font = UIFont.imageDescription;
+    _likesLabel.textColor = UIColor.customLightGrayColor;
     
-    self.commentsLabel = [UILabel new];
-    self.commentsLabel.font = UIFont.imageDescription;
-    self.commentsLabel.textColor = UIColor.customLightGrayColor;
+    _commentsLabel = [UILabel new];
+    _commentsLabel.font = UIFont.imageDescription;
+    _commentsLabel.textColor = UIColor.customLightGrayColor;
     
-    [self addSubview:self.likesImageView];
-    [self addSubview:self.commentsImageView];
-    [self addSubview:self.likesLabel];
-    [self addSubview:self.commentsLabel];
+    [self addSubview:_likesImageView];
+    [self addSubview:_commentsImageView];
+    [self addSubview:_likesLabel];
+    [self addSubview:_commentsLabel];
     
     UIView *superview = self;
     // Masonry
-    [self.likesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_likesImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(21.2f);
         make.left.equalTo(superview).with.offset(16.f);
         make.width.equalTo(@15.9f);
         make.height.equalTo(@14.3f);
     }];
     
-    [self.likesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_likesLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(20.5f);
         make.left.equalTo(self.likesImageView.mas_right).with.offset(7.1f);
         make.height.equalTo(@17.f);
     }];
     
-    [self.commentsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_commentsImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(21.5f);
-        make.left.equalTo(self.likesLabel.mas_right).with.offset(16.3f);
+        make.left.equalTo(_likesLabel.mas_right).with.offset(16.3f);
         make.width.equalTo(@18.f);
         make.height.equalTo(@15.f);
     }];
     
-    [self.commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_commentsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(20.5f);
-        make.left.equalTo(self.commentsImageView.mas_right).with.offset(6.f);
+        make.left.equalTo(_commentsImageView.mas_right).with.offset(6.f);
         make.height.equalTo(@17.f);
     }];
 }

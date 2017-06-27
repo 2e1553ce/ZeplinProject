@@ -6,9 +6,7 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@import  Foundation;
-
-@class UIImage, AVGLoadParseContainer;
+@class AVGLoadParseContainer;
 
 typedef NS_ENUM(NSInteger, AVGImageProgressState) {
     AVGImageProgressStateNew = 0,
@@ -27,11 +25,34 @@ typedef void (^downloadProgressBlock)(float progress);
 @property (nonatomic, assign) AVGImageProgressState imageProgressState;
 @property (nonatomic, strong) AVGLoadParseContainer *operationDataContainer;
 
+/**
+ Method resume image download
+ */
 - (void)resumeDownload;
+
+/**
+ Method pause image download
+ */
 - (void)pauseDownload;
+
+/**
+ Method cancel image download
+ */
 - (void)cancelDownload;
 
+/**
+ Initialization
+
+ @return Self
+ */
 - (instancetype)init;
+
+/**
+ Designited initializator
+
+ @param urlString Url for image load
+ @return Self
+ */
 - (instancetype)initWithUrlString:(NSString *)urlString NS_DESIGNATED_INITIALIZER;
 
 @end

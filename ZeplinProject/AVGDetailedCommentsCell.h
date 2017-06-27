@@ -6,8 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 extern NSString *const detailedCommentsCellIdentifier;
 
 typedef NS_ENUM(NSInteger, AVGCommentType) {
@@ -23,6 +21,11 @@ typedef NS_ENUM(NSInteger, AVGCommentType) {
 @property (nonatomic, strong) UILabel *actionLabel;
 @property (nonatomic, strong) UILabel *commentLabel;
 
+/**
+ Method giving height for cell
+ 
+ @return Height
+ */
 + (CGFloat)heightForCell;
 
 @end

@@ -15,17 +15,15 @@
 #pragma mark - Parse urls
 
 - (void)main {
-    
     if (self.container.dataFromFlickr) {
-        
         NSError *error;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.container.dataFromFlickr
                                                              options:0
                                                                error:&error];
         dict = dict[@"photos"];
         dict = dict[@"photo"];
-        
         NSMutableArray *images = [NSMutableArray new];
+        
         for (id object in dict) {
             AVGImageInformation *image = [AVGImageInformation new];
             image.url = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",
@@ -33,8 +31,8 @@
                          object[@"server"],
                          object[@"id"],
                          object[@"secret"]];
-            image.imageID = object[@"id"];
             
+            image.imageID = object[@"id"];
             [images addObject:image];
         }
         self.container.imagesUrl = images;

@@ -8,9 +8,10 @@
 
 #import "AVGBinaryImageOperation.h"
 #import "AVGLoadParseContainer.h"
-@import UIKit;
 
 @implementation AVGBinaryImageOperation
+
+#pragma mark - Binarization
 
 - (void)main {
     if (self.operationDataContainer) {

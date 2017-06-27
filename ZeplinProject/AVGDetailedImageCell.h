@@ -6,8 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 extern NSString *const detailedImageCellIdentifier;
 
 @interface AVGDetailedImageCell : UITableViewCell
@@ -15,6 +13,11 @@ extern NSString *const detailedImageCellIdentifier;
 @property (nonatomic, strong) UIImageView *detailedImageView;
 @property (nonatomic, strong) UILabel *detailedDescriptionLabel;
 
+/**
+ Method giving height for cell
+
+ @return Height
+ */
 + (CGFloat)heightForCell;
 
 @end

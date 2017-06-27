@@ -10,4 +10,15 @@
 
 @implementation AVGDetailedInformationContainer
 
+#pragma mark - Initialization
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    }
+    return self;
+}
+
 @end

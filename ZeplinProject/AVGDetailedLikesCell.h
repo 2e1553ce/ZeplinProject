@@ -6,8 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 extern NSString *const detailedLikesCellIdentifier;
 
 @interface AVGDetailedLikesCell : UITableViewCell
@@ -17,6 +15,11 @@ extern NSString *const detailedLikesCellIdentifier;
 @property (nonatomic, strong) UILabel *likesLabel;
 @property (nonatomic, strong) UILabel *commentsLabel;
 
+/**
+ Method giving height for cell
+ 
+ @return Height
+ */
 + (CGFloat)heightForCell;
 
 @end

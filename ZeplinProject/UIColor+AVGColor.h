@@ -6,14 +6,16 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface UIColor (AVGColor)
 
 @property (class, nonatomic, readonly) UIColor *customLightGrayColor;
 @property (class, nonatomic, readonly) UIColor *customLightBlueColor;
+@property (class, nonatomic, readonly) UIColor *customMiddleRedColor;
+@property (class, nonatomic, readonly) UIColor *customAzureColor;
 
 + (UIColor *)customLightGrayColor;
 + (UIColor *)customLightBlueColor;
++ (UIColor *)customMiddleRedColor;
++ (UIColor *)customAzureColor;
 
 @end

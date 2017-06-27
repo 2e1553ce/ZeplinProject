@@ -17,8 +17,9 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        UITabBarItem *tabBar = [[UITabBarItem alloc] initWithTitle:@"Избранное" image:[UIImage imageNamed:@"icLikes"] tag:1];
-        self.tabBarItem = tabBar;
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Избранное" image:[UIImage imageNamed:@"icLikes"] tag:1];
+        tabBarItem.titlePositionAdjustment = UIOffsetMake(-20, 0);
+        self.tabBarItem = tabBarItem;
     }
     return self;
 }

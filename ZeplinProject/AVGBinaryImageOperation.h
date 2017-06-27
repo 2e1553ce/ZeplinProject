@@ -6,9 +6,7 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@import Foundation;
-
-@class UIImage, AVGLoadParseContainer;
+@class AVGLoadParseContainer;
 
 @interface AVGBinaryImageOperation : NSBlockOperation
 

@@ -8,7 +8,6 @@
 
 #import "AVGImageService.h"
 #import "AVGBinaryImageOperation.h"
-#import "AVGFeedCollectionViewCell.h"
 #import "AVGLoadParseContainer.h"
 
 @interface AVGImageService ()
@@ -32,13 +31,11 @@
 
 - (instancetype)init {
     self = [super init];
-    
     if (self) {
-        self.semaphore = dispatch_semaphore_create(0);
-        self.queue = [NSOperationQueue new];
-        self.operationDataContainer = [AVGLoadParseContainer new];
+        _semaphore = dispatch_semaphore_create(0);
+        _queue = [NSOperationQueue new];
+        _operationDataContainer = [AVGLoadParseContainer new];
     }
-    
     return  self;
 }
 
@@ -48,11 +45,7 @@
     return self.loadOperation.imageProgressState;
 }
 
-#pragma mark - Resume, pause , cancel image load
-
-- (void)resume {
-    
-}
+#pragma mark - Resume, pause, cancel image load
 
 - (void)pause {
     [self.loadOperation pauseDownload];
@@ -67,16 +60,16 @@
 - (void)loadImageFromUrlString:(NSString *)urlString
                       andCache:(NSCache *)cache
                        forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.queue cancelAllOperations];
+    
     self.cache = cache;
     self.urlString = urlString;
     self.indexPath = indexPath;
     
-    [self.queue cancelAllOperations];
-    
     self.loadOperation = [AVGLoadImageOperation new];
-    self.binaryOperation = [AVGBinaryImageOperation new];
-    
     self.loadOperation.operationDataContainer = self.operationDataContainer;
+    self.binaryOperation = [AVGBinaryImageOperation new];
     self.binaryOperation.operationDataContainer = self.operationDataContainer;
     [self.binaryOperation addDependency:self.loadOperation];
     
@@ -101,7 +94,6 @@
     self.loadOperation.completionBlock = ^{
         __strong typeof(self) strongSelf = weakSelf;
         if (strongSelf) {
-            
             if (strongSelf.operationDataContainer.image) {
                 [strongSelf.cache setObject:strongSelf.operationDataContainer.image forKey:urlString];
             }
@@ -111,7 +103,6 @@
 }
 
 - (void)filterImageforRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     if (self.binaryOperation.isFinished) {
         return;
     }
@@ -122,13 +113,13 @@
         
         __weak typeof(self) weakSelf = self;
         self.binaryOperation.completionBlock = ^{
+            
             __strong typeof(self) strongSelf = weakSelf;
             if (strongSelf) {
                 
                 if (strongSelf.operationDataContainer.image) {
                     [strongSelf.cache setObject:strongSelf.operationDataContainer.image forKey:strongSelf.urlString];
                 }
-                
                 strongSelf.imageState = AVGImageStateBinarized;
                 [strongSelf.delegate service:strongSelf binarizedImage:strongSelf.operationDataContainer.image forRowAtIndexPath:indexPath];
             }

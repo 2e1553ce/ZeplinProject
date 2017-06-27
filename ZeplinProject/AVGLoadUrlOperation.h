@@ -6,7 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@import Foundation;
 @class AVGUrlContainer;
 
 @interface AVGLoadUrlOperation : NSOperation
@@ -16,5 +15,6 @@
 @property (nonatomic, assign) NSInteger perPage;
 
 @property (nonatomic, strong) AVGUrlContainer *container;
+@property (nonatomic, strong) NSURLSession *session;
 
 @end

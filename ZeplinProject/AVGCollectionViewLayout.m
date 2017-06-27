@@ -29,22 +29,21 @@
 
 @end
 
-
 @implementation AVGCollectionViewLayout
 
-#pragma mark - Initialization methods
+#pragma mark - Initialization
 
 - (id)init {
     if (self = [super init]) {
-        self.framesByIndexPath = [NSMutableDictionary new];
-        self.indexPathsByFrame = [NSMutableDictionary new];
-        self.previousLayoutAttributes = [[NSMutableArray alloc] init];
+        _framesByIndexPath = [NSMutableDictionary new];
+        _indexPathsByFrame = [NSMutableDictionary new];
+        _previousLayoutAttributes = [[NSMutableArray alloc] init];
         
-        self.leftCounter = 0;
-        self.rightCounter = 0;
-        self.isLeftBig = YES;
-        self.isRightBig = NO;
-        self.lastFrame = CGRectZero;
+        _leftCounter = 0;
+        _rightCounter = 0;
+        _isLeftBig = YES;
+        _isRightBig = NO;
+        _lastFrame = CGRectZero;
     }
     return self;
 }
@@ -53,7 +52,7 @@
 
 - (void)prepareLayout {
     [super prepareLayout];
-    // calculate and save frames for all indexPaths. Unfortunately, we must do it for all cells to know content size of the collection
+    
     [self.framesByIndexPath removeAllObjects];
     [self.indexPathsByFrame removeAllObjects];
     [self.previousLayoutAttributes removeAllObjects];
@@ -64,6 +63,7 @@
     self.isRightBig = NO;
     self.lastFrame = CGRectZero;
     
+    // calculate and save frames for all indexPaths. Unfortunately, we must do it for all cells to know content size of the collection
     for (int i = 0; i < [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0]; i++) {
         NSIndexPath *path = [NSIndexPath indexPathForItem:i inSection:0];
         [self frameForIndexPath:path];
@@ -76,7 +76,6 @@
     [self.indexPathsByFrame removeAllObjects];
     [self.previousLayoutAttributes removeAllObjects];
     self.previousLayoutRect = CGRectZero;
-    //[self flushEdgeXPositions];
     [super invalidateLayout];
 
 }
@@ -86,7 +85,6 @@
 - (CGSize)collectionViewContentSize {
     CGFloat width = CGRectGetWidth(self.collectionView.frame);
     CGFloat maxY = CGRectGetMaxY(self.lastFrame);
-    
     return CGSizeMake(width, maxY);
 }
 
@@ -130,8 +128,8 @@
 
 #pragma mark Supplementary methods
 #warning Optimize
-// Main method, calculating frames for every 12 frames
 
+// Main method, calculating frames for every 12 frames
 - (CGRect)frameForIndexPath:(NSIndexPath*)path {
     NSValue *v = [self.framesByIndexPath objectForKey:path];
     if (v) {

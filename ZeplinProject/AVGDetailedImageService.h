@@ -6,8 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @class AVGDetailedImageInformation;
 
 @interface AVGDetailedImageService : NSObject
@@ -16,5 +14,11 @@
 - (instancetype)new NS_UNAVAILABLE;
 - (instancetype)initWithImageID:(NSString *)imageID NS_DESIGNATED_INITIALIZER;
 
+/**
+ Method getting full information about image by ID
+
+ @param completion Callback with image information
+ */
 - (void)getImageInformationWithCompletionHandler:(void (^)(AVGDetailedImageInformation *info))completion;
+
 @end

@@ -11,7 +11,6 @@
 
 @interface AVGLoadInformationOperation ()
 
-@property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSURLSessionDataTask *sessionDataTask;
 
 @end
@@ -24,8 +23,8 @@
     self = [super init];
     if (self) {
         NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-        self.session = [NSURLSession sessionWithConfiguration:sessionConfig];
-        self.method = method;
+        _session = [NSURLSession sessionWithConfiguration:sessionConfig];
+        _method = method;
     }
     return  self;
 }
@@ -33,36 +32,13 @@
 #pragma mark - Load image information
 
 - (void)main {
-    
     if (self.sessionDataTask) {
         [self.sessionDataTask cancel];
     }
     
-    NSString *urlMethod;
-    switch (self.method) {
-        case AVGURLMethodTypeInfo:
-            urlMethod = @"flickr.photos.getInfo";
-            break;
-        case AVGURLMethodTypeFavorites:
-            urlMethod = @"flickr.photos.getFavorites";
-            break;
-        case AVGURLMethodTypeComments:
-            urlMethod = @"flickr.photos.comments.getList";
-            break;
-    }
-    
-    NSString *query = [NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=%@&api_key=c55f5a419863413f77af53764f86bd66&nojsoncallback=1&format=json&photo_id=%@", urlMethod, self.container.imageID];
-    NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
-                                       [NSCharacterSet URLFragmentAllowedCharacterSet]]];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest new];
-    [request setURL:url];
-    [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSURLRequest *request = [self createRequest];
     
     dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    
     self.sessionDataTask = [self.session dataTaskWithRequest:request
                                            completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                                
@@ -80,9 +56,58 @@
                                                dispatch_semaphore_signal(semaphore);
                                            }];
     [self.sessionDataTask resume];
-#warning needed?
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    [self.session finishTasksAndInvalidate];
+}
+
+#pragma mark - Request
+
+- (NSURLRequest *)createRequest {
+    NSURL *url = [self createURL];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest new];
+    [request setURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    return request;
+}
+
+#pragma mark - URL
+
+- (NSURL *)createURL {
+    NSString *urlMethod;
+    switch (self.method) {
+        case AVGURLMethodTypeInfo:
+            urlMethod = kApiMethodPhotoInfo;
+            break;
+        case AVGURLMethodTypeFavorites:
+            urlMethod = kApiMethodPhotoFavoritesInfo;
+            break;
+        case AVGURLMethodTypeComments:
+            urlMethod = kApiMethodPhotoCommentsInfo;
+            break;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithString:kApiBaseUrlString];
+    NSDictionary *queryDictionary = @{ @"method":           urlMethod,
+                                       @"format":           kApiFormatJSON,
+                                       @"nojsoncallback":   kApiNoJSONCallback
+                                       };
+    NSMutableArray *queryItems = [NSMutableArray array];
+    for (NSString *key in queryDictionary) {
+        [queryItems addObject:[NSURLQueryItem queryItemWithName:key value:queryDictionary[key]]];
+    }
+    components.queryItems = queryItems;
+    NSString *urlBaseString = [components.URL absoluteString];
+    
+    NSString *urlParametersString = [NSString
+                                     stringWithFormat:@"&api_key=%s&photo_id=%@", kApiKey, self.container.imageID];
+    
+    NSString *query = [NSString stringWithFormat:@"%@%@", urlBaseString, urlParametersString];
+    NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
+                                       [NSCharacterSet URLFragmentAllowedCharacterSet]]];
+    return url;
 }
 
 @end

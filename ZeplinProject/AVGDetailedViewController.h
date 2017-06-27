@@ -6,11 +6,9 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @interface AVGDetailedViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *image;
-@property (nonatomic, strong) NSString *imageID;
+@property (nonatomic, copy) NSString *imageID;
 
 @end

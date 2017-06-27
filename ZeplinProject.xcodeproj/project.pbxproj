@@ -14,6 +14,8 @@
 		04EF37F01ED97981003B24C8 /* AVGFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37EF1ED97981003B24C8 /* AVGFavoriteViewController.m */; };
 		04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */; };
 		19209BBD1EFFD07A0081F2C3 /* AVGImageLocationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BBC1EFFD07A0081F2C3 /* AVGImageLocationView.m */; };
+		19209BC21F01423F0081F2C3 /* NSString+Declension.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BC11F01423F0081F2C3 /* NSString+Declension.m */; };
+		19209BCA1F028B800081F2C3 /* AVGConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BC91F028B800081F2C3 /* AVGConstants.m */; };
 		193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */; };
 		193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */; };
 		193B3FFC1EF0130800EC54F3 /* AVGUrlContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FFB1EF0130800EC54F3 /* AVGUrlContainer.m */; };
@@ -56,6 +58,11 @@
 		04EF37F21ED979ED003B24C8 /* AVGFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedViewController.m; sourceTree = "<group>"; };
 		19209BBB1EFFD07A0081F2C3 /* AVGImageLocationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGImageLocationView.h; sourceTree = "<group>"; };
 		19209BBC1EFFD07A0081F2C3 /* AVGImageLocationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImageLocationView.m; sourceTree = "<group>"; };
+		19209BC01F01423F0081F2C3 /* NSString+Declension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Declension.h"; sourceTree = "<group>"; };
+		19209BC11F01423F0081F2C3 /* NSString+Declension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Declension.m"; sourceTree = "<group>"; };
+		19209BC31F026BF20081F2C3 /* ZeplinProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ZeplinProject-Prefix.pch"; sourceTree = "<group>"; };
+		19209BC81F028B800081F2C3 /* AVGConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGConstants.h; sourceTree = "<group>"; };
+		19209BC91F028B800081F2C3 /* AVGConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGConstants.m; sourceTree = "<group>"; };
 		193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedCollectionViewCell.h; sourceTree = "<group>"; };
 		193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedCollectionViewCell.m; sourceTree = "<group>"; };
 		193B3FE01EF0089500EC54F3 /* AVGSearchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGSearchImageView.h; sourceTree = "<group>"; };
@@ -153,6 +160,7 @@
 				04EF37D71ED97271003B24C8 /* Assets.xcassets */,
 				04EF37D91ED97271003B24C8 /* LaunchScreen.storyboard */,
 				04EF37DC1ED97271003B24C8 /* Info.plist */,
+				19209BC31F026BF20081F2C3 /* ZeplinProject-Prefix.pch */,
 				04EF37CB1ED97271003B24C8 /* Supporting Files */,
 			);
 			path = ZeplinProject;
@@ -229,6 +237,31 @@
 			name = "Navigation titleView";
 			sourceTree = "<group>";
 		};
+		19209BBE1F0086630081F2C3 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		19209BBF1F0142180081F2C3 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				19209BC01F01423F0081F2C3 /* NSString+Declension.h */,
+				19209BC11F01423F0081F2C3 /* NSString+Declension.m */,
+			);
+			name = NSString;
+			sourceTree = "<group>";
+		};
+		19209BCB1F028D220081F2C3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				19209BC81F028B800081F2C3 /* AVGConstants.h */,
+				19209BC91F028B800081F2C3 /* AVGConstants.m */,
+			);
+			name = Constants;
+			sourceTree = "<group>";
+		};
 		193B3FDF1EF0087F00EC54F3 /* Thumbnail */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +275,9 @@
 			isa = PBXGroup;
 			children = (
 				193B3FEC1EF011F500EC54F3 /* Service */,
+				19209BBE1F0086630081F2C3 /* Core Data */,
 				193B3FF61EF012C400EC54F3 /* Image info */,
+				19209BCB1F028D220081F2C3 /* Constants */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -429,6 +464,7 @@
 		19CA7AF31EFA965C0009A4D0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				19209BBF1F0142180081F2C3 /* NSString */,
 				19CA7AFE1EFA99A40009A4D0 /* Color */,
 				19CA7AFD1EFA999A0009A4D0 /* Font */,
 			);
@@ -681,6 +717,7 @@
 				04EF37D01ED97271003B24C8 /* AppDelegate.m in Sources */,
 				19CA7B0F1EFAE1D20009A4D0 /* AVGDetailedImageService.m in Sources */,
 				19CA7B201EFAF6710009A4D0 /* AVGLikeInformation.m in Sources */,
+				19209BCA1F028B800081F2C3 /* AVGConstants.m in Sources */,
 				195351C41EF805C00022715C /* AVGCollectionViewLayout.m in Sources */,
 				193B40051EF0132F00EC54F3 /* AVGParseUrlOperation.m in Sources */,
 				19CA7AF91EFA96DC0009A4D0 /* UIFont+AVGFont.m in Sources */,
@@ -690,6 +727,7 @@
 				19CA7AFC1EFA992E0009A4D0 /* UIColor+AVGColor.m in Sources */,
 				193B3FFF1EF0131600EC54F3 /* AVGUrlService.m in Sources */,
 				19CA7AEC1EF944390009A4D0 /* AVGDetailedImageCell.m in Sources */,
+				19209BC21F01423F0081F2C3 /* NSString+Declension.m in Sources */,
 				193B40021EF0132300EC54F3 /* AVGLoadUrlOperation.m in Sources */,
 				19CA7AF21EF9447B0009A4D0 /* AVGDetailedCommentsCell.m in Sources */,
 				19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */,
@@ -832,6 +870,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z48WYVF59J;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/aig/Documents/ZeplinProject//ZeplinProject/ZeplinProject-Prefix.pch";
 				INFOPLIST_FILE = ZeplinProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -846,6 +886,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z48WYVF59J;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "/Users/aig/Documents/ZeplinProject//ZeplinProject/ZeplinProject-Prefix.pch";
 				INFOPLIST_FILE = ZeplinProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

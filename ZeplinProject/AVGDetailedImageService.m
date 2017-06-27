@@ -21,36 +21,45 @@
 @property (nonatomic, strong) AVGLoadInformationOperation *likesOperation;
 @property (nonatomic, strong) AVGLoadInformationOperation *commentsOperation;
 @property (nonatomic, strong) AVGParseInformationOperation *parseOperation;
-
 @property (nonatomic, strong) AVGDetailedInformationContainer *operationContainer;
 
 @end
 
 @implementation AVGDetailedImageService
 
+#pragma mark - Initialization
+
 - (instancetype)initWithImageID:(NSString *)imageID {
     self = [super init];
     if (self) {
-        self.queue = [NSOperationQueue new];
-        self.operationContainer = [AVGDetailedInformationContainer new];
-        self.operationContainer.imageID = imageID;
+        _queue = [NSOperationQueue new];
+        _operationContainer = [AVGDetailedInformationContainer new];
+        _operationContainer.imageID = imageID;
         
-        self.informationOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeInfo];
-        self.informationOperation.container = self.operationContainer;
-        self.likesOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeFavorites];
-        self.likesOperation.container = self.operationContainer;
-        self.commentsOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeComments];
-        self.commentsOperation.container = self.operationContainer;
-        self.parseOperation = [AVGParseInformationOperation new];
-        self.parseOperation.container = self.operationContainer;
+        _informationOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeInfo];
+        _informationOperation.container = _operationContainer;
+        _informationOperation.session = _operationContainer.session;
         
-        [self.likesOperation addDependency:self.informationOperation];
-        [self.commentsOperation addDependency:self.likesOperation];
-        [self.parseOperation addDependency:self.commentsOperation];
+        _likesOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeFavorites];
+        _likesOperation.container = _operationContainer;
+        _likesOperation.session = _operationContainer.session;
+        
+        _commentsOperation = [[AVGLoadInformationOperation alloc] initWithMethod:AVGURLMethodTypeComments];
+        _commentsOperation.container = _operationContainer;
+        _commentsOperation.session = _operationContainer.session;
+        
+        _parseOperation = [AVGParseInformationOperation new];
+        _parseOperation.container = _operationContainer;
+        
+        [_likesOperation addDependency:_informationOperation];
+        [_commentsOperation addDependency:_likesOperation];
+        [_parseOperation addDependency:_commentsOperation];
     }
     
     return  self;
 }
+
+#pragma mark - Get image info
 
 - (void)getImageInformationWithCompletionHandler:(void (^)(AVGDetailedImageInformation *info))completion {
     [self.queue addOperation:self.informationOperation];

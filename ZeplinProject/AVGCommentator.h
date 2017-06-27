@@ -6,13 +6,11 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface AVGCommentator : NSObject
 
-@property (nonatomic, strong) NSString *avatarURL;
-@property (nonatomic, strong) NSString *nickName;
-@property (nonatomic, strong) NSString *comment;
-@property (nonatomic, strong) NSString *date;
+@property (nonatomic, copy) NSString *avatarURL;
+@property (nonatomic, copy) NSString *nickName;
+@property (nonatomic, copy) NSString *comment;
+@property (nonatomic, copy) NSString *date;
 
 @end

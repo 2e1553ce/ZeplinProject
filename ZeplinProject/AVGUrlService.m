@@ -33,7 +33,8 @@ static NSInteger const perPage = 250;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.queue = [NSOperationQueue new];
+        _queue = [NSOperationQueue new];
+        _operationDataContainer = [AVGUrlContainer new];
     }
     return  self;
 }
@@ -43,18 +44,16 @@ static NSInteger const perPage = 250;
 - (void)loadInformationWithText:(NSString *)text
                         forPage:(NSInteger)page {
     
-    self.operationDataContainer = [AVGUrlContainer new];
-    
     self.loadUrlsOperation = [AVGLoadUrlOperation new];
     self.loadUrlsOperation.container = self.operationDataContainer;
+    self.loadUrlsOperation.session = self.operationDataContainer.session;
+    self.loadUrlsOperation.searchText = text;
+    self.loadUrlsOperation.page = page;
+    self.loadUrlsOperation.perPage = perPage;
     
     self.parseUrlsOperation = [AVGParseUrlOperation new];
     self.parseUrlsOperation.container = self.operationDataContainer;
     [self.parseUrlsOperation addDependency:self.loadUrlsOperation];
-    
-    self.loadUrlsOperation.searchText = text;
-    self.loadUrlsOperation.page = page;
-    self.loadUrlsOperation.perPage = perPage;
     
     [self.queue cancelAllOperations];
     [self.queue addOperation:self.loadUrlsOperation];

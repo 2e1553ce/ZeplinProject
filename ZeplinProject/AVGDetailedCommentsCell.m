@@ -15,6 +15,8 @@ NSString *const detailedCommentsCellIdentifier = @"detailedCommentsCellIdentifie
 
 @implementation AVGDetailedCommentsCell
 
+#pragma mark - Initialization
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -23,43 +25,43 @@ NSString *const detailedCommentsCellIdentifier = @"detailedCommentsCellIdentifie
     return self;
 }
 
-#pragma mark - Constraints
+#pragma mark - Creating subviews
 
 - (void)createSubviews {
-    self.avatarImageView = [UIImageView new];
-    self.avatarImageView.layer.masksToBounds = YES;
-    self.avatarImageView.layer.cornerRadius = 19.f;
+    _avatarImageView = [UIImageView new];
+    _avatarImageView.layer.masksToBounds = YES;
+    _avatarImageView.layer.cornerRadius = 19.f;
     
-    self.nickNameLabel = [UILabel new];
-    self.nickNameLabel.font = UIFont.nickName;
+    _nickNameLabel = [UILabel new];
+    _nickNameLabel.font = UIFont.nickName;
     
-    self.commentLabel = [UILabel new];
-    self.commentLabel.numberOfLines = 0;
-    self.commentLabel.font = UIFont.comment;
-    self.commentLabel.textColor = UIColor.customLightGrayColor;
+    _commentLabel = [UILabel new];
+    _commentLabel.numberOfLines = 0;
+    _commentLabel.font = UIFont.comment;
+    _commentLabel.textColor = UIColor.customLightGrayColor;
     
-    [self addSubview:self.avatarImageView];
-    [self addSubview:self.nickNameLabel];
-    [self addSubview:self.commentLabel];
+    [self addSubview:_avatarImageView];
+    [self addSubview:_nickNameLabel];
+    [self addSubview:_commentLabel];
     
     UIView *superview = self;
-    [self.avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(11);
         make.left.equalTo(superview).with.offset(16);
         make.width.equalTo(@38);
         make.height.equalTo(@38);
     }];
     
-    [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(superview).with.offset(14);
-        make.left.equalTo(self.avatarImageView.mas_right).with.offset(8);
+        make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
         make.right.equalTo(superview).with.offset(-10);
         make.height.equalTo(@16);
     }];
     
-    [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.nickNameLabel.mas_bottom);
-        make.left.equalTo(self.avatarImageView.mas_right).with.offset(8);
+    [_commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_nickNameLabel.mas_bottom);
+        make.left.equalTo(_avatarImageView.mas_right).with.offset(8);
         make.right.equalTo(superview).with.offset(-10);
         make.bottom.equalTo(superview).with.offset(-14);
     }];

@@ -13,9 +13,8 @@
 #import "AVGFeedCollectionViewCell.h"
 #import "AVGCollectionViewLayout.h"
 #import "AVGDetailedViewController.h"
-#import <Masonry.h>
 
-@interface AVGFeedViewController () <UISearchBarDelegate, AVGCollectionViewLayoutDelegate, UICollectionViewDataSource, AVGImageServiceDelegate>
+@interface AVGFeedViewController () <UISearchBarDelegate, UICollectionViewDataSource, AVGCollectionViewLayoutDelegate, AVGImageServiceDelegate>
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, copy)   NSString *searchText;
@@ -34,46 +33,49 @@
 
 @implementation AVGFeedViewController
 
+#pragma mark - Initialization
+
 - (instancetype)init {
     self = [super init];
     if (self) {
-        UITabBarItem *tabBar = [[UITabBarItem alloc] initWithTitle:@"Лента" image:[UIImage imageNamed:@"icFeed"] tag:0];
-        self.tabBarItem = tabBar;
+        UITabBar.appearance.tintColor = UIColor.customAzureColor;
+        UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Лента" image:[UIImage imageNamed:@"icFeed"] tag:0];
+        [tabBarItem setTitlePositionAdjustment:UIOffsetMake(18, 0)];
+        self.tabBarItem = tabBarItem;
     }
     return self;
 }
 
+#pragma mark - Life cycle of viewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.view.backgroundColor = UIColor.whiteColor;
-    //self.title = @"";
-    // Options navigation button
-    UIImage *optionsImage = [UIImage imageNamed:@"icSettings"];
-    UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc] initWithImage:optionsImage
-                                                                      style:UIBarButtonItemStylePlain
-                                                                     target:self
-                                                                     action:@selector(optionsButtonAction:)];
-    optionsButton.tintColor = UIColor.blackColor;
-    self.navigationItem.rightBarButtonItem = optionsButton;
     
     // Services
     self.urlService = [AVGUrlService new];
-    self.imageCache = [NSCache new];
-    _imageCache.countLimit = 50;
     self.imageServices = [NSMutableArray new];
+    self.imageCache = [NSCache new];
+    self.imageCache.countLimit = 50;
     self.isLoading = NO;
-    _isLoadingBySearch = YES;
+    self.isLoadingBySearch = YES;
     
+    // Options button at top-right corner
+    [self configurateOptionsButton];
     // SearchBar
-    CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 40.f);
-    self.searchBar = [[UISearchBar alloc] initWithFrame:bounds];
-    self.searchBar.delegate = self;
-    [self.searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"rectangle121"] forState:UIControlStateNormal];
-    self.searchBar.placeholder = @"Поиск";
-    
-    self.navigationItem.titleView = self.searchBar;
-    
+    [self configurateSearchBar];
+    // Collection view
+    [self configurateColectionView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.tabBarController.tabBar.hidden = NO;
+}
+
+#pragma mark - Collection view configuration
+
+- (void)configurateColectionView {
     // CollectionView
     AVGCollectionViewLayout *flowLayout = [AVGCollectionViewLayout new];
     flowLayout.delegate = self;
@@ -93,6 +95,30 @@
     }];
 }
 
+#pragma mark - SearchBar configuration
+
+- (void)configurateSearchBar {
+    // SearchBar
+    CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 40.f);
+    self.searchBar = [[UISearchBar alloc] initWithFrame:bounds];
+    self.searchBar.delegate = self;
+    [self.searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"rectangle121"] forState:UIControlStateNormal];
+    self.searchBar.placeholder = @"Поиск";
+    self.navigationItem.titleView = self.searchBar;
+}
+
+#pragma mark - Options button configuration
+
+- (void)configurateOptionsButton {
+    UIImage *optionsImage = [UIImage imageNamed:@"icSettings"];
+    UIBarButtonItem *optionsButton = [[UIBarButtonItem alloc] initWithImage:optionsImage
+                                                                      style:UIBarButtonItemStylePlain
+                                                                     target:self
+                                                                     action:@selector(optionsButtonAction:)];
+    optionsButton.tintColor = UIColor.blackColor;
+    self.navigationItem.rightBarButtonItem = optionsButton;
+}
+
 #pragma mark - Download when scrolling
 /*
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -109,40 +135,31 @@
 #pragma mark - Page loading (AVGImageService.m contains variable how many images load per page)
 
 - (void)loadImages {
-    _isLoadingBySearch = NO;
-    _page++;
+    self.isLoadingBySearch = NO;
+    self.page++;
     
-    [_urlService loadInformationWithText:_searchText forPage:_page];
-    [_urlService parseInformationWithCompletionHandler:^(NSArray *imageUrls) {
+    [self.urlService loadInformationWithText:_searchText forPage:self.page];
+    [self.urlService parseInformationWithCompletionHandler:^(NSArray *imageUrls) {
         
-        [_arrayOfImagesInformation addObjectsFromArray:[imageUrls mutableCopy]];
+        [self.arrayOfImagesInformation addObjectsFromArray:[imageUrls mutableCopy]];
         NSUInteger countOfImages = [imageUrls count];
         for (NSUInteger i = 0; i < countOfImages; i++) {
             AVGImageService *imageService = [AVGImageService new];
-            [_imageServices addObject:imageService];
+            [self.imageServices addObject:imageService];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
             NSMutableArray *arrayOfIndexPathes = [[NSMutableArray alloc] init];
-            
-            for(int i = (int)[_arrayOfImagesInformation count] - (int)[imageUrls count]; i < [_arrayOfImagesInformation count]; ++i){
+            for(int i = (int)[self.arrayOfImagesInformation count] - (int)[imageUrls count]; i < [self.arrayOfImagesInformation count]; ++i){
                 
                 [arrayOfIndexPathes addObject:[NSIndexPath indexPathForRow:i inSection:0]];
             }
             
-            //self.tableView.tableFooterView.hidden = YES;
-            //[_indicatorFooter stopAnimating];
-            
-            /*
-            [self.tableView beginUpdates];
-            [self.tableView insertRowsAtIndexPaths:arrayOfIndexPathes withRowAnimation:UITableViewRowAnimationFade];
-            [self.tableView endUpdates];
-             */
             NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
             [self.feedCollectionView reloadSections:indexSet];
             [self.searchBar endEditing:YES];
-            _isLoading = NO;
+            self.isLoading = NO;
         });
     }];
     
@@ -190,9 +207,7 @@
         [feedCell.searchedImageView.activityIndicatorView stopAnimating];
         feedCell.searchedImageView.progressView.hidden = YES;
         feedCell.searchedImageView.image = cachedImage;
-        //[cell setNeedsLayout];
     } else {
-        //cell.delegate = self;
         imageService.delegate = self;
         imageService.imageState = AVGImageStateNormal;
         [imageService loadImageFromUrlString:imageInfo.url andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
@@ -243,37 +258,31 @@
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    //[UIView animateWithDuration:1.f animations:^{
-        [searchBar resignFirstResponder];
-    //}];
+    [searchBar resignFirstResponder];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
 
-    _page = 1;
-    _isLoadingBySearch = YES;
+    self.page = 1;
+    self.isLoadingBySearch = YES;
+    self.searchText = searchBar.text;
     
-    _searchText = searchBar.text;
-    
-    [_urlService loadInformationWithText:_searchText forPage:_page];
-    [_urlService parseInformationWithCompletionHandler:^(NSArray *imageUrls) {
-        
-        _arrayOfImagesInformation = [imageUrls mutableCopy];
+    [self.urlService loadInformationWithText:_searchText forPage:self.page];
+    [self.urlService parseInformationWithCompletionHandler:^(NSArray *imageUrls) {
+        self.arrayOfImagesInformation = [imageUrls mutableCopy];
         NSUInteger countOfImages = [imageUrls count];
-        [_imageServices removeAllObjects];
+        [self.imageServices removeAllObjects];
         for (NSUInteger i = 0; i < countOfImages; i++) {
             AVGImageService *imageService = [AVGImageService new];
-            [_imageServices addObject:imageService];
+            [self.imageServices addObject:imageService];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-            [self.feedCollectionView reloadData];//reloadSections:indexSet];
+            [self.feedCollectionView reloadData];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
             [self.feedCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
             [self.searchBar endEditing:YES];
-            _isLoading = NO;
+            self.isLoading = NO;
         });
     }];
 }
@@ -281,7 +290,6 @@
 #pragma mark - AVGImageServiceDelegate
 
 - (void)serviceStartedImageDownload:(AVGImageService *)service forRowAtIndexPath:(NSIndexPath*)indexPath {
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
         cell.searchedImageView.progressView.hidden = NO;
@@ -306,7 +314,6 @@
         if (image) {
             AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
             [_imageCache setObject:image forKey:imageInfo.url];
-            
             AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
             cell.searchedImageView.image = image;
             [cell.searchedImageView.activityIndicatorView stopAnimating];

@@ -6,7 +6,6 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@import UIKit;
 #import "AVGLoadImageOperation.h"
 #import "AVGLoadParseContainer.h"
 
@@ -16,11 +15,10 @@
 @property (nonatomic, strong) NSURLSessionDataTask *sessionDataTask;
 
 @property (nonatomic, retain) NSMutableData *dataToDownload;
-@property (nonatomic) float downloadSize;
-@property (nonatomic) float downloadProgress;
+@property (nonatomic, assign) float downloadSize;
+@property (nonatomic, assign) float downloadProgress;
 
 @property (nonatomic, strong) dispatch_semaphore_t dataTaskSemaphore;
-
 
 @end
 
@@ -29,9 +27,10 @@
 #pragma mark - Initialization
 
 - (instancetype)init {
+    // тк делегат тут нужен не могу вынести сессию
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    self.session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    self.imageProgressState = AVGImageProgressStateNew;
+    _session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    _imageProgressState = AVGImageProgressStateNew;
     
     return [self initWithUrlString:nil];
 }
@@ -48,22 +47,15 @@
 
 - (void)main {
     if (self.urlString) {
+        self.dataTaskSemaphore = dispatch_semaphore_create(0);
         
         NSURL *photoUrl = [NSURL URLWithString:[self.urlString stringByAddingPercentEncodingWithAllowedCharacters:
                                                 [NSCharacterSet URLFragmentAllowedCharacterSet]]];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest new];
-        [request setURL:photoUrl];
-        [request setHTTPMethod:@"GET"];
-        
-        self.dataTaskSemaphore = dispatch_semaphore_create(0);
-        
         self.sessionDataTask = [self.session dataTaskWithURL:photoUrl];
         [self.sessionDataTask resume];
         self.imageProgressState = AVGImageProgressStateDownloading;
         
         dispatch_semaphore_wait(self.dataTaskSemaphore, DISPATCH_TIME_FOREVER);
-        [self.session finishTasksAndInvalidate]; // why did u do that
     }
 }
 
@@ -72,12 +64,10 @@
 - (void)resumeDownload {
     // not using
     self.imageProgressState = AVGImageProgressStateDownloading;
-    NSLog(@"DOWNLOADING");
     [self.sessionDataTask resume];
 }
 
 - (void)pauseDownload {
-    NSLog(@"PAUSED");
     self.imageProgressState = AVGImageProgressStatePaused;
     [self.sessionDataTask cancel]; // :DD
 }
@@ -87,7 +77,6 @@
     [self.sessionDataTask cancel];
     dispatch_semaphore_signal(self.dataTaskSemaphore);
     self.imageProgressState = AVGImageProgressStateCancelled;
-    NSLog(@"CANCELED");
 }
 
 #pragma mark - NSURLSessionDelegate
@@ -98,7 +87,6 @@ didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
     
     completionHandler(NSURLSessionResponseAllow);
-    
     self.downloadProgress = 0.0f;
     self.downloadSize = [response expectedContentLength];
     self.dataToDownload = [NSMutableData new];
@@ -108,7 +96,6 @@ didReceiveResponse:(NSURLResponse *)response
     
     [self.dataToDownload appendData:data];
     self.downloadProgress = [self.dataToDownload length ] / self.downloadSize;
-    //NSLog(@"%f", self.downloadProgress);
 
     if (self.downloadProgressBlock) {
         self.downloadProgressBlock(self.downloadProgress);
@@ -118,7 +105,6 @@ didReceiveResponse:(NSURLResponse *)response
         self.imageProgressState = AVGImageProgressStateDownloaded;
         self.operationDataContainer.image = [UIImage imageWithData:self.dataToDownload];
         dispatch_semaphore_signal(self.dataTaskSemaphore);
-        NSLog(@"DOWNLOADED!");
     }
 }
 
