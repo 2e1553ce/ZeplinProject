@@ -146,7 +146,11 @@
         self.imageService.delegate = self;
         self.imageService.imageState = AVGImageStateNormal;
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        [self.imageService loadImageFromUrlString:info.ownerAvatarUrl andCache:self.imageCache forRowAtIndexPath:indexPath];
+        if (info.ownerAvatarUrl) {
+            [self.imageService loadImageFromUrlString:info.ownerAvatarUrl andCache:self.imageCache forRowAtIndexPath:indexPath];
+        } else {
+            self.locationView.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             
@@ -207,7 +211,12 @@
             AVGImageService *imageService = self.imageServices[indexPath.row - 2];
             imageService.delegate = self;
             imageService.imageState = AVGImageStateNormal;
-            [imageService loadImageFromUrlString:commentator.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+            if (commentator.avatarURL) {
+                [imageService loadImageFromUrlString:commentator.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+            } else {
+                cell.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
+            }
+            
         } else {
             AVGLikeInformation *like = self.likesAndComments[indexPath.row - 2];
             cell.nickNameLabel.text = like.nickName;
@@ -225,7 +234,11 @@
             AVGImageService *imageService = self.imageServices[indexPath.row - 2];
             imageService.delegate = self;
             imageService.imageState = AVGImageStateNormal;
-            [imageService loadImageFromUrlString:like.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+            if (like.avatarURL) {
+                [imageService loadImageFromUrlString:like.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+            } else {
+                cell.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
+            }
         }
         
         return cell;

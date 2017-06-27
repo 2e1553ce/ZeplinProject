@@ -75,10 +75,15 @@
     }
     
     // Owner avatarURL
-    NSString *iconfarm = ownerDict[@"iconfarm"];
+    NSString *iconfarm = [ownerDict[@"iconfarm"] stringValue];
     NSString *iconserver = ownerDict[@"iconserver"];
-    NSString *nsid = ownerDict[@"nsid"];
-    NSString *ownerAvatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
+    NSString *ownerAvatarURL;
+    if ([iconfarm isEqualToString:@"0"] || [iconserver isEqualToString:@"0"]) {
+        ownerAvatarURL = nil;
+    } else {
+        NSString *nsid = ownerDict[@"nsid"];
+        ownerAvatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
+    }
     
     // Adding to model
     imageInfo.title = title;
@@ -107,12 +112,17 @@
         likeInfo.nickName = person[@"username"];
         likeInfo.date = person[@"favedate"];
         
-        NSString *iconfarm = person[@"iconfarm"];
+        NSString *iconfarm = [person[@"iconfarm"] stringValue];
         NSString *iconserver = person[@"iconserver"];
-        NSString *nsid = person[@"nsid"];
-        NSString *avatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
-        likeInfo.avatarURL = avatarURL;
+        NSString *avatarURL;
+        if ([iconfarm isEqualToString:@"0"] || [iconserver isEqualToString:@"0"]) {
+            avatarURL = nil;
+        } else {
+            NSString *nsid = person[@"nsid"];
+            avatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
+        }
         
+        likeInfo.avatarURL = avatarURL;
         [likesInformation addObject:likeInfo];
     }
     // Adding to model
@@ -140,12 +150,17 @@
         commentator.comment = person[@"_content"];
         commentator.date = person[@"datecreate"];
         
-        NSString *iconfarm = person[@"iconfarm"];
+        NSString *iconfarm = [person[@"iconfarm"] stringValue];
         NSString *iconserver = person[@"iconserver"];
-        NSString *nsid = person[@"author"];
-        NSString *avatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
-        commentator.avatarURL = avatarURL;
+        NSString *avatarURL;
+        if ([iconfarm isEqualToString:@"0"] || [iconserver isEqualToString:@"0"]) {
+            avatarURL = nil;
+        } else {
+            NSString *nsid = person[@"author"];
+            avatarURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/buddyicons/%@.jpg", iconfarm, iconserver, nsid];
+        }
         
+        commentator.avatarURL = avatarURL;
         [commentsInformation addObject:commentator];
     }
     // Adding to model
