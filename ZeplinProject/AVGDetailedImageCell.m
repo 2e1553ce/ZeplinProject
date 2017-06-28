@@ -27,6 +27,8 @@ NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
 - (void)createSubviews {
     
     _detailedImageView = [UIImageView new]; // Стандартную imageView стягивает при клике на ней
+    _detailedImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _detailedImageView.clipsToBounds = YES;
     
     _detailedDescriptionLabel = [UILabel new];
     _detailedDescriptionLabel.font = UIFont.imageDescription;

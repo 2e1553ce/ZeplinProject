@@ -32,6 +32,11 @@
 @property (nonatomic, strong) AVGImageService *imageService;
 @property (nonatomic, strong) AVGStorageFacade *storageFacade;
 
+@property (nonatomic, strong) UIView *viewForCellClick;
+@property (nonatomic, strong) UIImageView *clickedImageView;
+@property (nonatomic, strong) NSIndexPath *clickedIndexPath;
+@property (nonatomic, assign) BOOL clicked;
+
 @end
 
 @implementation AVGDetailedViewController
@@ -44,6 +49,7 @@
     self.navigationController.tabBarController.tabBar.hidden = YES;
     self.imageServices = [NSMutableArray new];
     self.storageFacade = [AVGStorageFacade new];
+    self.clicked = NO;
     self.imageCache = [NSCache new];
     self.imageCache.countLimit = 50;
     
@@ -266,6 +272,55 @@
 
 #pragma mark - UITableViewDelegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 0) {
+        if (!self.clicked) {
+            UIView *superview = self.view;
+            self.viewForCellClick = [UIView new];
+            self.viewForCellClick.backgroundColor = UIColor.grayColor;
+            self.viewForCellClick.alpha = 0.7f;
+            
+            UITapGestureRecognizer *singleFingerTap =
+            [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                    action:@selector(viewForCellClicked:)];
+            [self.viewForCellClick addGestureRecognizer:singleFingerTap];
+            
+            [self.navigationController.view addSubview:self.viewForCellClick];
+            [self.viewForCellClick mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(superview);
+                make.width.equalTo(superview);
+                make.height.equalTo(superview);
+            }];
+            
+            self.clickedImageView = [UIImageView new];
+            self.clickedImageView.alpha = 0.f;
+            
+            AVGDetailedImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            [UIView animateWithDuration:0.2f animations:^{
+                cell.detailedImageView.alpha = 0.f;
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.2f animations:^{
+                    self.clickedImageView.alpha = 1.f;
+                    self.viewForCellClick.alpha = 0.7f;
+                }];
+            }];
+            
+            self.clickedImageView.contentMode = UIViewContentModeScaleAspectFill;
+            self.clickedImageView.image = self.image;
+            [self.navigationController.view addSubview:self.clickedImageView];
+            [self.clickedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.equalTo(superview);
+                make.width.equalTo(superview);
+                make.height.equalTo(@200);
+            }];
+            self.clicked = !self.clicked;
+            self.clickedIndexPath = indexPath;
+        }
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return [AVGDetailedImageCell heightForCell];
@@ -344,6 +399,19 @@
 
 - (void)addToFavoriteAction:(UIBarButtonItem *)sender {
     [self.storageFacade saveImage:self.image withImageInformation:self.imageInfo];
+}
+
+- (void)viewForCellClicked:(UITapGestureRecognizer *)recognizer {
+    AVGDetailedImageCell *cell = [self.tableView cellForRowAtIndexPath:self.clickedIndexPath];
+    [UIView animateWithDuration:0.2f animations:^{
+        self.clickedImageView.alpha = 0.f;
+        self.viewForCellClick.alpha = 0.f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.2f animations:^{
+            cell.detailedImageView.alpha = 1.f;
+        }];
+    }];
+    self.clicked = !self.clicked;
 }
 
 @end
