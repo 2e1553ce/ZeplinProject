@@ -11,6 +11,7 @@
 @implementation AVGImage
 
 @dynamic folderPath;
+@dynamic identifier;
 @dynamic location;
 @dynamic title;
 @dynamic ownerID;

@@ -12,7 +12,7 @@
 
 @property (nullable, nonatomic, copy) NSString *nickName;
 @property (nullable, nonatomic, copy) NSString *avatarFolderPath;
-@property (nonatomic) int32_t id;
+@property (nullable, nonatomic, copy) NSString *id;
 @property (nullable, nonatomic, retain) NSSet<AVGImage *> *image;
 
 @end

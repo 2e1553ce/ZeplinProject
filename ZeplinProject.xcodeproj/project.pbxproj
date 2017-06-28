@@ -23,6 +23,9 @@
 		19209BDD1F0313510081F2C3 /* AVGCoreDataService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BDC1F0313510081F2C3 /* AVGCoreDataService.m */; };
 		19209BFF1F0322720081F2C3 /* AVGImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209BFE1F0322720081F2C3 /* AVGImage.m */; };
 		19209C021F0323050081F2C3 /* AVGOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209C011F0323050081F2C3 /* AVGOwner.m */; };
+		19209C061F03280C0081F2C3 /* AVGFavoriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209C051F03280C0081F2C3 /* AVGFavoriteCell.m */; };
+		19209C0B1F03CB410081F2C3 /* AVGFolderStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209C0A1F03CB410081F2C3 /* AVGFolderStorageService.m */; };
+		19209C0E1F03ED6C0081F2C3 /* AVGStorageFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 19209C0D1F03ED6C0081F2C3 /* AVGStorageFacade.m */; };
 		193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */; };
 		193B3FE21EF0089500EC54F3 /* AVGSearchImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FE11EF0089500EC54F3 /* AVGSearchImageView.m */; };
 		193B3FFC1EF0130800EC54F3 /* AVGUrlContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B3FFB1EF0130800EC54F3 /* AVGUrlContainer.m */; };
@@ -83,6 +86,12 @@
 		19209BFE1F0322720081F2C3 /* AVGImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGImage.m; sourceTree = "<group>"; };
 		19209C001F0323050081F2C3 /* AVGOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGOwner.h; sourceTree = "<group>"; };
 		19209C011F0323050081F2C3 /* AVGOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGOwner.m; sourceTree = "<group>"; };
+		19209C041F03280C0081F2C3 /* AVGFavoriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFavoriteCell.h; sourceTree = "<group>"; };
+		19209C051F03280C0081F2C3 /* AVGFavoriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFavoriteCell.m; sourceTree = "<group>"; };
+		19209C091F03CB410081F2C3 /* AVGFolderStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFolderStorageService.h; sourceTree = "<group>"; };
+		19209C0A1F03CB410081F2C3 /* AVGFolderStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFolderStorageService.m; sourceTree = "<group>"; };
+		19209C0C1F03ED6C0081F2C3 /* AVGStorageFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGStorageFacade.h; sourceTree = "<group>"; };
+		19209C0D1F03ED6C0081F2C3 /* AVGStorageFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGStorageFacade.m; sourceTree = "<group>"; };
 		193B3F7E1EEC830200EC54F3 /* AVGFeedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGFeedCollectionViewCell.h; sourceTree = "<group>"; };
 		193B3F7F1EEC830200EC54F3 /* AVGFeedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGFeedCollectionViewCell.m; sourceTree = "<group>"; };
 		193B3FE01EF0089500EC54F3 /* AVGSearchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGSearchImageView.h; sourceTree = "<group>"; };
@@ -309,8 +318,12 @@
 		19209BDA1F0313260081F2C3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				19209C0C1F03ED6C0081F2C3 /* AVGStorageFacade.h */,
+				19209C0D1F03ED6C0081F2C3 /* AVGStorageFacade.m */,
 				19209BDB1F0313510081F2C3 /* AVGCoreDataService.h */,
 				19209BDC1F0313510081F2C3 /* AVGCoreDataService.m */,
+				19209C091F03CB410081F2C3 /* AVGFolderStorageService.h */,
+				19209C0A1F03CB410081F2C3 /* AVGFolderStorageService.m */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -324,6 +337,15 @@
 				19209C011F0323050081F2C3 /* AVGOwner.m */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		19209C031F0327E30081F2C3 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				19209C041F03280C0081F2C3 /* AVGFavoriteCell.h */,
+				19209C051F03280C0081F2C3 /* AVGFavoriteCell.m */,
+			);
+			name = Favorite;
 			sourceTree = "<group>";
 		};
 		193B3FDF1EF0087F00EC54F3 /* Thumbnail */ = {
@@ -453,6 +475,7 @@
 		195351C01EF805690022715C /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				19209C031F0327E30081F2C3 /* Favorite */,
 				19CA7AE51EF942960009A4D0 /* Feed */,
 				19CA7AE61EF942D00009A4D0 /* Detailed */,
 				19209BD01F02FB3C0081F2C3 /* Settings */,
@@ -788,6 +811,7 @@
 				19209BFF1F0322720081F2C3 /* AVGImage.m in Sources */,
 				193B40051EF0132F00EC54F3 /* AVGParseUrlOperation.m in Sources */,
 				19209BCF1F02E5690081F2C3 /* AVGSettingsViewController.m in Sources */,
+				19209C061F03280C0081F2C3 /* AVGFavoriteCell.m in Sources */,
 				19209BD91F0307E10081F2C3 /* AVGCoreDataStack.m in Sources */,
 				19CA7AF91EFA96DC0009A4D0 /* UIFont+AVGFont.m in Sources */,
 				04EF37CD1ED97271003B24C8 /* main.m in Sources */,
@@ -797,6 +821,7 @@
 				193B3FFF1EF0131600EC54F3 /* AVGUrlService.m in Sources */,
 				19CA7AEC1EF944390009A4D0 /* AVGDetailedImageCell.m in Sources */,
 				19209BC21F01423F0081F2C3 /* NSString+Declension.m in Sources */,
+				19209C0B1F03CB410081F2C3 /* AVGFolderStorageService.m in Sources */,
 				193B40021EF0132300EC54F3 /* AVGLoadUrlOperation.m in Sources */,
 				19CA7AF21EF9447B0009A4D0 /* AVGDetailedCommentsCell.m in Sources */,
 				19209BD61F0306ED0081F2C3 /* FavoriteModel.xcdatamodeld in Sources */,
@@ -804,6 +829,7 @@
 				19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */,
 				19CA7B281EFB043B0009A4D0 /* AVGLoadParseContainer.m in Sources */,
 				04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */,
+				19209C0E1F03ED6C0081F2C3 /* AVGStorageFacade.m in Sources */,
 				19209BD31F02FB9D0081F2C3 /* AVGSettingsCell.m in Sources */,
 				19209BBD1EFFD07A0081F2C3 /* AVGImageLocationView.m in Sources */,
 				193B3F801EEC830200EC54F3 /* AVGFeedCollectionViewCell.m in Sources */,

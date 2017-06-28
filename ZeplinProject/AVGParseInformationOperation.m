@@ -74,6 +74,8 @@
         }
     }
     
+    // Owner identifier
+    NSString *ownerIdentifier = ownerDict[@"nsid"];
     // Owner avatarURL
     NSString *iconfarm = [ownerDict[@"iconfarm"] stringValue];
     NSString *iconserver = ownerDict[@"iconserver"];
@@ -90,6 +92,7 @@
     imageInfo.imageDescription = description;
     imageInfo.ownerNickName = nickName;
     imageInfo.location = location;
+    imageInfo.ownerIdentifier = ownerIdentifier;
     imageInfo.ownerAvatarUrl = ownerAvatarURL;
 }
 

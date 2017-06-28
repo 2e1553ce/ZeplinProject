@@ -11,9 +11,10 @@
 @interface AVGImage : NSManagedObject
 
 @property (nullable, nonatomic, copy) NSString *folderPath;
+@property (nullable, nonatomic, copy) NSString *identifier;
 @property (nullable, nonatomic, copy) NSString *location;
 @property (nullable, nonatomic, copy) NSString *title;
-@property (nonatomic) int32_t ownerID;
+@property (nullable, nonatomic, copy) NSString *ownerID;
 @property (nullable, nonatomic, retain) AVGOwner *owner;
 
 @end

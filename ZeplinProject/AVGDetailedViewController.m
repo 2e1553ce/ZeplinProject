@@ -14,6 +14,7 @@
 #import "AVGDetailedImageInformation.h"
 #import "AVGImageService.h"
 #import "AVGImageLocationView.h"
+#import "AVGStorageFacade.h"
 
 @interface AVGDetailedViewController () <UITableViewDelegate, UITableViewDataSource, AVGImageServiceDelegate>
 
@@ -29,7 +30,7 @@
 @property (nonatomic, copy) NSArray *comments;
 
 @property (nonatomic, strong) AVGImageService *imageService;
-
+@property (nonatomic, strong) AVGStorageFacade *storageFacade;
 
 @end
 
@@ -42,6 +43,7 @@
     
     self.navigationController.tabBarController.tabBar.hidden = YES;
     self.imageServices = [NSMutableArray new];
+    self.storageFacade = [AVGStorageFacade new];
     self.imageCache = [NSCache new];
     self.imageCache.countLimit = 50;
     
@@ -102,6 +104,7 @@
     self.detailedImageService = [[AVGDetailedImageService alloc] initWithImageID:self.imageID];
     [self.detailedImageService getImageInformationWithCompletionHandler:^(AVGDetailedImageInformation *info) {
         self.imageInfo = info;
+        self.imageInfo.identifier = self.imageID;
         self.likes = info.likesInfo;
         self.comments = info.commentators;
         
@@ -340,7 +343,7 @@
 }
 
 - (void)addToFavoriteAction:(UIBarButtonItem *)sender {
-    
+    [self.storageFacade saveImage:self.image withImageInformation:self.imageInfo];
 }
 
 @end

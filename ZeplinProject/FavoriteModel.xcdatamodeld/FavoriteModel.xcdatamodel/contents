@@ -2,19 +2,20 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="AVGImage" representedClassName="AVGImage" syncable="YES">
         <attribute name="folderPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="ownerID" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="ownerID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AVGOwner" inverseName="image" inverseEntity="AVGOwner" syncable="YES"/>
     </entity>
     <entity name="AVGOwner" representedClassName="AVGOwner" syncable="YES">
         <attribute name="avatarFolderPath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="image" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="AVGImage" inverseName="owner" inverseEntity="AVGImage" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AVGImage" positionX="-299" positionY="-19" width="128" height="118"/>
-        <element name="AVGOwner" positionX="-99" positionY="-4" width="128" height="103"/>
+        <element name="AVGImage" positionX="-299" positionY="-19" width="128" height="133"/>
+        <element name="AVGOwner" positionX="-99" positionY="11" width="117" height="103"/>
     </elements>
 </model>

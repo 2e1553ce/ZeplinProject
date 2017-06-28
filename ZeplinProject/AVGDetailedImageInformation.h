@@ -11,12 +11,15 @@
 
 @interface AVGDetailedImageInformation : NSObject
 
+@property (nonatomic, copy) NSString *identifier;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *imageDescription;
 @property (nonatomic, copy) NSString *location;
+@property (nonatomic, copy) NSString *folderPath;
 @property (nonatomic, assign) NSInteger likeCount;
 @property (nonatomic, assign) NSInteger commentCount;
 
+@property (nonatomic, copy) NSString *ownerIdentifier;
 @property (nonatomic, copy) NSString *ownerNickName;
 @property (nonatomic, copy) NSString *ownerAvatarUrl;
 
