@@ -14,9 +14,9 @@ extern NSString *const settingsCellIdentifier;
 
 
 /**
- Cell for height
+ Метод получающий высоту для ячейки
 
- @return Height
+ @return Высота
  */
 + (CGFloat)cellHeight;
 

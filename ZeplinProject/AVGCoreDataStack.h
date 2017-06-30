@@ -15,7 +15,7 @@
 + (instancetype)new NS_UNAVAILABLE;
 
 /**
- Core data stack initialization
+ Инициализация стека кор даты
 
  @return Self
  */

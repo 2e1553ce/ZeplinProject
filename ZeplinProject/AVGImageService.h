@@ -20,37 +20,37 @@ typedef NS_ENUM(NSInteger, AVGImageState) {
 @property (nonatomic, weak) id<AVGImageServiceDelegate> delegate;
 
 /**
- Method load image from urlString and cache it
+ Метод для загрузки картинки по url
 
- @param urlString Image url
- @param cache Cache for image
- @param indexPath Indexpath of cell
+ @param urlString Url картинки
+ @param cache Кэш
+ @param indexPath Индекс ячейки
  */
 - (void)loadImageFromUrlString:(NSString *)urlString
                       andCache:(NSCache *)cache
              forRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
- Method binarize image
+ Метод накладывающий фильтр на картинку
 
- @param indexPath Indexpath of cell
+ @param indexPath Индекс ячейки
  */
 - (void)filterImageforRowAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
- Method for getting image state
+ Метод для получения стейта картинки
 
- @return state of image - normal or binarized
+ @return Стейт картинки - нормальная / фильтрованная
  */
 - (AVGImageProgressState)imageProgressState;
 
 /**
- Method pausing image download
+ Метод приостанавливает загрузку картинки
  */
 - (void)pause;
 
 /**
- Method canceling image download
+ Метод отменяет загрузку картинки
  */
 - (void)cancel;
 

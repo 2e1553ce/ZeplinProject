@@ -16,9 +16,38 @@
 
 @interface AVGFeedDataProvider ()
 
+@property (nonatomic, copy)   NSString *searchText;
+@property (nonatomic, strong) NSCache *imageCache; // need service
+@property (nonatomic, assign) NSInteger page;
+
+@property (nonatomic, strong) NSMutableArray <AVGImageService *> *imageServices;
+@property (nonatomic, strong) NSMutableArray <AVGImageInformation *> *arrayOfImagesInformation;
+@property (nonatomic, strong) AVGUrlService *urlService;
+
+@property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, assign) BOOL isLoadingBySearch;
+
 @end
 
 @implementation AVGFeedDataProvider
+
+#pragma mark - Initialization
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // Cache
+        _imageCache = [NSCache new];
+        _imageCache.countLimit = 100;
+        // Services
+        _urlService = [AVGUrlService new];
+        _imageServices = [NSMutableArray new];
+        
+        _isLoading = NO;
+        _isLoadingBySearch = YES;
+    }
+    return self;
+}
 
 #pragma mark - UICollectionDataSource
 
@@ -26,7 +55,6 @@
     return [self.arrayOfImagesInformation count];
 }
 
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     AVGFeedCollectionViewCell *cell = ([collectionView dequeueReusableCellWithReuseIdentifier:flickrCellIdentifier forIndexPath:indexPath]);
     return cell;
@@ -61,7 +89,6 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
     UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
     if (cachedImage) {

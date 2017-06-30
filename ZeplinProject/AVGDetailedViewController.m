@@ -19,11 +19,8 @@
 @interface AVGDetailedViewController () <UITableViewDelegate, UITableViewDataSource, AVGImageServiceDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) AVGImageLocationView *locationView;
-@property (nonatomic, strong) AVGDetailedImageService *detailedImageService;
 @property (nonatomic, strong) NSMutableArray<AVGImageService*> *imageServices;
 @property (nonatomic, strong) NSCache *imageCache; // need service
-
 @property (nonatomic, strong) UIBarButtonItem *addToFavoritesButton;
 
 @property (nonatomic, strong) AVGDetailedImageInformation *imageInfo;
@@ -31,14 +28,16 @@
 @property (nonatomic, copy) NSArray *likes;
 @property (nonatomic, copy) NSArray *comments;
 
+@property (nonatomic, strong) AVGDetailedImageService *detailedImageService;
 @property (nonatomic, strong) AVGImageService *imageService;
 @property (nonatomic, strong) AVGStorageFacade *storageFacade;
 
+@property (nonatomic, strong) AVGImageLocationView *locationView;
 @property (nonatomic, strong) UIView *viewForCellClick;
 @property (nonatomic, strong) UIImageView *clickedImageView;
 @property (nonatomic, strong) NSIndexPath *clickedIndexPath;
-@property (nonatomic, assign) BOOL clicked;
 @property (nonatomic, strong) UIImageView *checkMarkImageView;
+@property (nonatomic, assign) BOOL clicked;
 
 @end
 
@@ -60,6 +59,7 @@
     [self configureNavigationTitleView];
     [self configureTableView];
     [self configureCheckMark];
+    [self configureImageViewForClick];
     
     [self getImageAdditionalInformation];
 }
@@ -120,6 +120,34 @@
         make.centerY.equalTo(self.view).with.offset(-100.f);
     }];
     self.checkMarkImageView.alpha = 0.f;
+}
+
+- (void)configureImageViewForClick {
+    UIView *superview = self.view;
+    
+    self.viewForCellClick = [UIView new];
+    self.viewForCellClick.backgroundColor = UIColor.grayColor;
+    self.viewForCellClick.alpha = 0.f;
+    
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(viewForCellClicked:)];
+    [self.viewForCellClick addGestureRecognizer:singleFingerTap];
+    [self.view addSubview:self.viewForCellClick];
+    [self.viewForCellClick mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(superview);
+        make.width.equalTo(superview);
+        make.height.equalTo(superview);
+    }];
+    
+    self.clickedImageView = [UIImageView new];
+    self.clickedImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.view addSubview:self.clickedImageView];
+    [self.clickedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(superview);
+        make.width.equalTo(superview);
+        make.height.equalTo(@200);
+    }];
 }
 
 #pragma mark - Get full image info
@@ -296,24 +324,8 @@
     
     if (indexPath.row == 0) {
         if (!self.clicked) {
-            UIView *superview = self.view;
-            self.viewForCellClick = [UIView new];
-            self.viewForCellClick.backgroundColor = UIColor.grayColor;
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
             self.viewForCellClick.alpha = 0.7f;
-            
-            UITapGestureRecognizer *singleFingerTap =
-            [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                    action:@selector(viewForCellClicked:)];
-            [self.viewForCellClick addGestureRecognizer:singleFingerTap];
-            
-            [self.navigationController.view addSubview:self.viewForCellClick];
-            [self.viewForCellClick mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.center.equalTo(superview);
-                make.width.equalTo(superview);
-                make.height.equalTo(superview);
-            }];
-            
-            self.clickedImageView = [UIImageView new];
             self.clickedImageView.alpha = 0.f;
             
             AVGDetailedImageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -326,14 +338,7 @@
                 }];
             }];
             
-            self.clickedImageView.contentMode = UIViewContentModeScaleAspectFill;
             self.clickedImageView.image = self.image;
-            [self.navigationController.view addSubview:self.clickedImageView];
-            [self.clickedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.center.equalTo(superview);
-                make.width.equalTo(superview);
-                make.height.equalTo(@200);
-            }];
             self.clicked = !self.clicked;
             self.clickedIndexPath = indexPath;
         }
@@ -428,8 +433,11 @@
     }];
 }
 
+#pragma mark - Gestures
+
 - (void)viewForCellClicked:(UITapGestureRecognizer *)recognizer {
     AVGDetailedImageCell *cell = [self.tableView cellForRowAtIndexPath:self.clickedIndexPath];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [UIView animateWithDuration:0.2f animations:^{
         self.clickedImageView.alpha = 0.f;
         self.viewForCellClick.alpha = 0.f;

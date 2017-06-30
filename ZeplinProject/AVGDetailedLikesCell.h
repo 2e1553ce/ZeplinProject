@@ -16,9 +16,9 @@ extern NSString *const detailedLikesCellIdentifier;
 @property (nonatomic, strong) UILabel *commentsLabel;
 
 /**
- Method giving height for cell
+ Метод получающий высоту для ячейки 
  
- @return Height
+ @return Высота
  */
 + (CGFloat)heightForCell;
 

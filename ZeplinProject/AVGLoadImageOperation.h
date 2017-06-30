@@ -26,31 +26,31 @@ typedef void (^downloadProgressBlock)(float progress);
 @property (nonatomic, strong) AVGLoadParseContainer *operationDataContainer;
 
 /**
- Method resume image download
+ Метод возобновляющий загрузку
  */
 - (void)resumeDownload;
 
 /**
- Method pause image download
+ Метод приостанавливающий загрузку
  */
 - (void)pauseDownload;
 
 /**
- Method cancel image download
+ Метод отменяющий загрузку
  */
 - (void)cancelDownload;
 
 /**
- Initialization
+ Инициализация
 
  @return Self
  */
 - (instancetype)init;
 
 /**
- Designited initializator
+ Назначенный инициализатор
 
- @param urlString Url for image load
+ @param urlString Url для загрузки картинки
  @return Self
  */
 - (instancetype)initWithUrlString:(NSString *)urlString NS_DESIGNATED_INITIALIZER;

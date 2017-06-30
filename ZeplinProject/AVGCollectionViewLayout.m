@@ -37,7 +37,6 @@
         _framesByIndexPath = [NSMutableDictionary new];
         _indexPathsByFrame = [NSMutableDictionary new];
         _previousLayoutAttributes = [[NSMutableArray alloc] init];
-
         _lastFrame = CGRectZero;
     }
     return self;
@@ -150,7 +149,6 @@
     
     for (NSUInteger i = 0; i < self.rows; i++) {
         for (NSUInteger j = 0; j < self.columns; j++) {
-            
             if ([self.matrix[i][j] boolValue]) {
                 if (path.row % 12 == 0 || path.row % 12 == 7) {
                     self.matrix[i][j + 1] = @(NO);

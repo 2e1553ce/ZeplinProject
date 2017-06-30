@@ -11,17 +11,17 @@
 @interface AVGCoreDataService : NSObject
 
 /**
- Method saving detailed image information and folderPath for image
+ Метод сохраняет детальную информацию о картинке и путь на диске
 
  @param imageInfo AVGDetailedImageInfo
- @param folderPath Folder path on disk
+ @param folderPath Путь на диске
  */
 - (void)saveImageInformation:(AVGDetailedImageInformation *)imageInfo andFolderPath:(NSString *)folderPath;
 
 /**
- Method getting image info and folder path
+ Метод возвращающий информацию по сохраненной картинке
 
- @return NSArray of AVGDetailedImageInformation
+ @return NSArray в котором AVGDetailedImageInformation
  */
 - (NSArray *)getImagesInformation;
 

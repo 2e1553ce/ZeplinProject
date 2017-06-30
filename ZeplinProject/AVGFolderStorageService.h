@@ -9,19 +9,19 @@
 @interface AVGFolderStorageService : NSObject
 
 /**
- Method saving UIImage to disk
+ Метод сохраняющий картинку на диск
 
- @param image UIImage
- @param identifier UIImage identifier from Flickr
- @return Folder path where image was saved
+ @param image Картинка
+ @param identifier Идентификатор картинки
+ @return Путь на диске, куда сохранили картинку
  */
 - (NSString *)saveImage:(UIImage *)image withID:(NSString *)identifier;
 
 /**
- Method getting image from disk
+ Метод возвращающий картинку, сохраненнию на диске
 
- @param imagePath Image path on disk
- @return UIImage from disk
+ @param imagePath Путь на диске
+ @return UIImage Картинка
  */
 - (UIImage *)getImageFrom:(NSString *)imagePath;
 

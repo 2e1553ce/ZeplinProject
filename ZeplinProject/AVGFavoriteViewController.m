@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) UITableView *favoriteTableView;
 @property (nonatomic, strong) AVGStorageFacade *storageFacade;
-@property (nonatomic, strong) NSArray *imagesInfo;
+@property (nonatomic, copy) NSArray *imagesInfo;
 
 @end
 

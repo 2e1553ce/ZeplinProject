@@ -25,8 +25,9 @@ typedef NS_ENUM(NSInteger, AVGURLMethodType) {
 
 /**
  Initializator by URL method for gettiong info about image/imageLikes/imageComments
+ Инициализатор по методу Api: информация о картинке/информация о комментариях/инцформация о лайках
 
- @param method Type of method
+ @param method Api метод(перечисление сверху)
  @return Self
  */
 - (instancetype)initWithMethod:(AVGURLMethodType)method NS_DESIGNATED_INITIALIZER;

@@ -7,9 +7,6 @@
 //
 
 #import "AVGFeedViewController.h"
-#import "AVGImageService.h"
-#import "AVGUrlService.h"
-#import "AVGImageInformation.h"
 #import "AVGFeedCollectionViewCell.h"
 #import "AVGCollectionViewLayout.h"
 #import "AVGDetailedViewController.h"
@@ -19,18 +16,8 @@
 @interface AVGFeedViewController ()
 
 @property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, copy)   NSString *searchText;
 @property (nonatomic, strong) UICollectionView *feedCollectionView;
 @property (nonatomic, strong) AVGFeedDataProvider *feedDataProvider;
-
-@property (nonatomic, strong) NSCache *imageCache; // need service
-@property (nonatomic, assign) NSInteger page;
-
-@property (nonatomic, strong) NSMutableArray <AVGImageService *> *imageServices;
-@property (nonatomic, strong) NSMutableArray <AVGImageInformation *> *arrayOfImagesInformation;
-@property (nonatomic, strong) AVGUrlService *urlService;
-@property (nonatomic, assign) BOOL isLoading;
-@property (nonatomic, assign) BOOL isLoadingBySearch; // при втором и далее поиске(через серч бар) вызывает didEndDisplay и канселит загрузку
 
 @end
 
@@ -55,19 +42,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.customLightHoarColor;
-    
-    // Services
-    self.urlService = [AVGUrlService new];
-    self.feedDataProvider.urlService = self.urlService;
-    self.imageServices = [NSMutableArray new];
-    self.feedDataProvider.imageServices = self.imageServices;
-    self.imageCache = [NSCache new];
-    self.feedDataProvider.imageCache = self.imageCache;
-    self.imageCache.countLimit = 100;
-    self.isLoading = NO;
-    self.feedDataProvider.isLoading = self.isLoading;
-    self.isLoadingBySearch = YES;
-    self.feedDataProvider.isLoadingBySearch = self.isLoadingBySearch;
     
     // Options button at top-right corner
     [self configurateOptionsButton];
@@ -129,52 +103,6 @@
                                                                      action:@selector(optionsButtonAction:)];
     optionsButton.tintColor = UIColor.blackColor;
     self.navigationItem.rightBarButtonItem = optionsButton;
-}
-
-#pragma mark - Download when scrolling
-/*
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
-        if (!_isLoading) {
-            _isLoading = YES;
-            //self.tableView.tableFooterView.hidden = NO;
-            //[_indicatorFooter startAnimating];
-            [self loadImages];
-        }
-    }
-}*/
-
-#pragma mark - Page loading (AVGImageService.m contains variable how many images load per page)
-
-- (void)loadImages {
-    self.isLoadingBySearch = NO;
-    self.page++;
-    
-    [self.urlService loadInformationWithText:_searchText forPage:self.page];
-    [self.urlService parseInformationWithCompletionHandler:^(NSArray *imageUrls) {
-        
-        [self.arrayOfImagesInformation addObjectsFromArray:[imageUrls mutableCopy]];
-        NSUInteger countOfImages = [imageUrls count];
-        for (NSUInteger i = 0; i < countOfImages; i++) {
-            AVGImageService *imageService = [AVGImageService new];
-            [self.imageServices addObject:imageService];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            NSMutableArray *arrayOfIndexPathes = [[NSMutableArray alloc] init];
-            for(int i = (int)[self.arrayOfImagesInformation count] - (int)[imageUrls count]; i < [self.arrayOfImagesInformation count]; ++i){
-                
-                [arrayOfIndexPathes addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-            }
-            
-            NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:0];
-            [self.feedCollectionView reloadSections:indexSet];
-            [self.searchBar endEditing:YES];
-            self.isLoading = NO;
-        });
-    }];
-    
 }
 
 #pragma mark - Actions

@@ -11,36 +11,35 @@
 @protocol AVGCollectionViewLayoutDelegate <UICollectionViewDelegate>
 
 /**
- Method for taking width of item in collection view
-
- @param layout Custom layout
- @param indexPath Indexpath for item
- @return Width
+ Метод запрашивающий ширину ячейки
+ @param layout Кастомный лэяут
+ @param indexPath Индекс ячейки
+ @return Ширина
  */
 - (CGFloat)collectionLayout:(AVGCollectionViewLayout*)layout preferredWidthForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 
 /**
- Method for taking insets for item in collection view
+ Метод запрашивающий отступы для ячейки
 
- @param layout Custom layout
- @param indexPath Indexpath for item
+ @param layout Кастомный лэяут
+ @param indexPath Индекс ячейки
  @return Insets
  */
 - (UIEdgeInsets)collectionLayout:(AVGCollectionViewLayout*)layout edgeInsetsForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
- Getting items count
+ Метод запрашивающий количество ячеек
 
- @return <#return value description#>
+ @return Количество ячеек
  */
 - (NSInteger)countOfItems;
 
 /**
- <#Description#>
+ Метод запрашивающий ширину самой маленькой ячейки
 
- @return <#return value description#>
+ @return Ширина
  */
 - (CGFloat)lowerestCellWidth;
 

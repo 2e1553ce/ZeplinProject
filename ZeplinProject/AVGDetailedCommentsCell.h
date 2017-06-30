@@ -22,9 +22,9 @@ typedef NS_ENUM(NSInteger, AVGCommentType) {
 @property (nonatomic, strong) UILabel *commentLabel;
 
 /**
- Method giving height for cell
+ Метод получающий высоту для ячейки
  
- @return Height
+ @return Высота
  */
 + (CGFloat)heightForCell;
 

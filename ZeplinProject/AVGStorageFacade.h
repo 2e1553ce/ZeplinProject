@@ -11,17 +11,17 @@
 @interface AVGStorageFacade : NSObject
 
 /**
- Facade for saving image on the disk and information about it to CoreData
+ Фасад для сохранения картинки на диск и информации о ней в кор дату
  
- @param image Image
- @param imageInfo Information about image and image owner
+ @param image Картинка
+ @param imageInfo Информация о картинке
  */
 - (void)saveImage:(UIImage *)image withImageInformation:(AVGDetailedImageInformation *)imageInfo;
 
 /**
- Getting Images from disk and information about it from CoreData
+ Метод возвращаюший массив картинок с информацией о них
 
- @return NSArray contains NSDictionaries, each NSDictionary contains @{@"image":UIImage, @"imageInformation":AVGDetailedInformation}
+ @return NSArray, внутри NSDictionaries, каждый NSDictionary содержит @{@"image":UIImage, @"imageInformation":AVGDetailedInformation}
  */
 - (NSArray *)getImagesWithInformation;
 

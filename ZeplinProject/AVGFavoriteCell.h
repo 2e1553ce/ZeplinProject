@@ -15,9 +15,9 @@ extern NSString *const favoriteCellIdentifier;
 @property (nonatomic, strong) UILabel *locationLabel;
 
 /**
- Height for cell
+ Высота ячейки
 
- @return Height
+ @return Высота
  */
 + (CGFloat)heightForCell;
 

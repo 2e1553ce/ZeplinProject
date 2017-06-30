@@ -14,11 +14,11 @@ typedef NS_ENUM(NSInteger, AVGDeclensionType){
 @interface NSString (Declension)
 
 /**
- Method for getting declension of NSString with AVGDeclensionType type
+ Метод для склонения в зависимости от количества комментариев/лайков
 
  @param type Enum AVGDeclensionType
- @param count Count for declension
- @return Declensioned string
+ @param count Количество комментариев/лайков
+ @return Строка, которую склоняли
  */
 + (NSString *)declensionStringFor:(AVGDeclensionType)type andCount:(NSInteger)count;
 

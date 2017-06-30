@@ -14,18 +14,18 @@
 @property (nonatomic, copy) NSArray <AVGImageInformation *> *imagesUrls;
 
 /**
- Method loading information about images
+ Метод для загрузки информации о фотографиях, из которых собираются url'ы к ним
 
- @param text Search query
- @param page Offset for page loading
+ @param text Поисковый запрос
+ @param page Для постраничной загрузки
  */
 - (void)loadInformationWithText:(NSString *)text
                         forPage:(NSInteger)page;
 
 /**
- Method parsing information about image like "url, imageID" for downloading thumbnails
+ Метод парсит полученную информацию о фотографиях
 
- @param completion Callback for update UI
+ @param completion Колбек для апдейта UI
  */
 - (void)parseInformationWithCompletionHandler:(void(^)(NSArray *imageUrls))completion;
 

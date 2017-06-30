@@ -11,40 +11,39 @@
 @protocol AVGImageServiceDelegate <NSObject>
 
 /**
- Method notificate download indicators of cell
+ Метод уведомляет о начале загрузки, включаем активити индикаторы
  
- @param service Service
- @param indexPath Indexpath of cell
+ @param service Ссылка на себя
+ @param indexPath Индекс ячейки которую апдейтим
  */
 - (void)serviceStartedImageDownload:(AVGImageService *)service forRowAtIndexPath:(NSIndexPath*)indexPath;
 
 /**
- Method update progress bar of cell
+ Метод для апдейта прогресс бара на ячейках которые грузят картинку
  
- @param service Service
- @param progress Downloaded progress value
- @param indexPath Indexpath of cell
+ @param service Ссылка на себя
+ @param progress Сколько скачалось
+ @param indexPath Индекс ячейки
  */
 - (void)service:(AVGImageService *)service updateImageDownloadProgress:(float)progress forRowAtIndexPath:(NSIndexPath*)indexPath;
 
 /**
- Method notificate cell when image downloaded
- so we can set it and hide indicators
+ Метод уведомляет о конце загрузки картинки, сбрасываем индикаторы
  
- @param service Service
- @param image Downloaded image
- @param indexPath Indexpath of cell
+ @param service Ссылка на себя
+ @param image Скаченная картинка
+ @param indexPath Индекс ячейки
  */
 - (void)service:(AVGImageService *)service downloadedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath;
 
 @optional
 
 /**
- Method for image binarization
+ Метод для передачи контроллеру обработанной картинки
  
- @param service Service
- @param image Binarized image
- @param indexPath Indexpath of cell where we will change normal image to binarized
+ @param service Ссылка на себя
+ @param image Обработанная картинка
+ @param indexPath Индекс ячейки
  */
 - (void)service:(AVGImageService *)service binarizedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath;
 

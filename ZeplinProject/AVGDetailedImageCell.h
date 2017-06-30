@@ -15,9 +15,9 @@ extern NSString *const detailedImageCellIdentifier;
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 /**
- Method giving height for cell
-
- @return Height
+ Метод получающий высоту для ячейки
+ 
+ @return Высота
  */
 + (CGFloat)heightForCell;
 

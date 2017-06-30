@@ -15,9 +15,9 @@
 - (instancetype)initWithImageID:(NSString *)imageID NS_DESIGNATED_INITIALIZER;
 
 /**
- Method getting full information about image by ID
+ Метод загружающий полную информацию о картинке по ее ID
 
- @param completion Callback with image information
+ @param completion Колбек с информацией о картинке
  */
 - (void)getImageInformationWithCompletionHandler:(void (^)(AVGDetailedImageInformation *info))completion;
 
