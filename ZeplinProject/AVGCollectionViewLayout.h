@@ -30,6 +30,20 @@
  */
 - (UIEdgeInsets)collectionLayout:(AVGCollectionViewLayout*)layout edgeInsetsForItemAtIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ Getting items count
+
+ @return <#return value description#>
+ */
+- (NSInteger)countOfItems;
+
+/**
+ <#Description#>
+
+ @return <#return value description#>
+ */
+- (CGFloat)lowerestCellWidth;
+
 @end
 
 @interface AVGCollectionViewLayout : UICollectionViewFlowLayout

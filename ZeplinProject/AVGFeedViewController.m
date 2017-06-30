@@ -14,12 +14,14 @@
 #import "AVGCollectionViewLayout.h"
 #import "AVGDetailedViewController.h"
 #import "AVGSettingsViewController.h"
+#import "AVGFeedDataProvider.h"
 
-@interface AVGFeedViewController () <UISearchBarDelegate, UICollectionViewDataSource, AVGCollectionViewLayoutDelegate, AVGImageServiceDelegate>
+@interface AVGFeedViewController ()
 
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, copy)   NSString *searchText;
 @property (nonatomic, strong) UICollectionView *feedCollectionView;
+@property (nonatomic, strong) AVGFeedDataProvider *feedDataProvider;
 
 @property (nonatomic, strong) NSCache *imageCache; // need service
 @property (nonatomic, assign) NSInteger page;
@@ -43,6 +45,7 @@
         UITabBarItem *tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Лента" image:[UIImage imageNamed:@"icFeed"] tag:0];
         [tabBarItem setTitlePositionAdjustment:UIOffsetMake(18, 0)];
         self.tabBarItem = tabBarItem;
+        self.feedDataProvider = [AVGFeedDataProvider new];
     }
     return self;
 }
@@ -55,11 +58,16 @@
     
     // Services
     self.urlService = [AVGUrlService new];
+    self.feedDataProvider.urlService = self.urlService;
     self.imageServices = [NSMutableArray new];
+    self.feedDataProvider.imageServices = self.imageServices;
     self.imageCache = [NSCache new];
-    self.imageCache.countLimit = 50;
+    self.feedDataProvider.imageCache = self.imageCache;
+    self.imageCache.countLimit = 100;
     self.isLoading = NO;
+    self.feedDataProvider.isLoading = self.isLoading;
     self.isLoadingBySearch = YES;
+    self.feedDataProvider.isLoadingBySearch = self.isLoadingBySearch;
     
     // Options button at top-right corner
     [self configurateOptionsButton];
@@ -67,6 +75,7 @@
     [self configurateSearchBar];
     // Collection view
     [self configurateColectionView];
+    self.feedDataProvider.navigationController = self.navigationController;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,11 +88,12 @@
 - (void)configurateColectionView {
     // CollectionView
     AVGCollectionViewLayout *flowLayout = [AVGCollectionViewLayout new];
-    flowLayout.delegate = self;
+    flowLayout.delegate = self.feedDataProvider;
     self.feedCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
+    self.feedDataProvider.collectionView = self.feedCollectionView;
     self.feedCollectionView.backgroundColor = UIColor.customLightHoarColor;
-    self.feedCollectionView.delegate = self;
-    self.feedCollectionView.dataSource = self;
+    self.feedCollectionView.delegate = self.feedDataProvider;
+    self.feedCollectionView.dataSource = self.feedDataProvider;
     [self.feedCollectionView registerClass:[AVGFeedCollectionViewCell class] forCellWithReuseIdentifier:flickrCellIdentifier];
     [self.view addSubview:self.feedCollectionView];
     
@@ -102,7 +112,8 @@
     // SearchBar
     CGRect bounds = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 40.f);
     self.searchBar = [[UISearchBar alloc] initWithFrame:bounds];
-    self.searchBar.delegate = self;
+    self.feedDataProvider.searchBar = self.searchBar;
+    self.searchBar.delegate = self.feedDataProvider;
     [self.searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"rectangle121"] forState:UIControlStateNormal];
     self.searchBar.placeholder = @"Поиск";
     self.navigationItem.titleView = self.searchBar;
@@ -171,155 +182,6 @@
 - (void)optionsButtonAction:(UIBarButtonItem *)sender {
     AVGSettingsViewController *settingsViewController = [AVGSettingsViewController new];
     [self.navigationController pushViewController:settingsViewController animated:YES];
-}
-
-#pragma mark - UICollectionDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [self.arrayOfImagesInformation count];
-}
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    AVGFeedCollectionViewCell *cell = ([collectionView dequeueReusableCellWithReuseIdentifier:flickrCellIdentifier forIndexPath:indexPath]);
-    return cell;
-}
-
-#pragma mark - UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    AVGImageService *service = _imageServices[indexPath.row];
-    AVGImageProgressState state = [service imageProgressState];
-    if (state == AVGImageProgressStateDownloading && !_isLoadingBySearch) {
-        //[service cancel];
-    }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0) {
-    // Изза кастомного леяута в cellForRowAtIndexPath немного смещаются индексы, поэтому тут
-    AVGFeedCollectionViewCell *feedCell = (AVGFeedCollectionViewCell*)cell;
-    AVGImageService *imageService = _imageServices[indexPath.row];
-    AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
-    UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
-    
-    if (cachedImage) {
-        [feedCell.searchedImageView.activityIndicatorView stopAnimating];
-        feedCell.searchedImageView.progressView.hidden = YES;
-        feedCell.searchedImageView.image = cachedImage;
-    } else {
-        imageService.delegate = self;
-        imageService.imageState = AVGImageStateNormal;
-        [imageService loadImageFromUrlString:imageInfo.url andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
-    }
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
-    UIImage *cachedImage = [_imageCache objectForKey:imageInfo.url];
-    if (cachedImage) {
-        AVGDetailedViewController *detailedViewController = [AVGDetailedViewController new];
-        detailedViewController.image = cachedImage;
-        detailedViewController.imageID = imageInfo.imageID;
-        [self.navigationController pushViewController:detailedViewController animated:YES];
-    }
-}
-
-#pragma mark - AVGCollectionViewLayoutDelegate
-
-- (CGFloat)collectionLayout:(AVGCollectionViewLayout *)layout preferredWidthForItemAtIndexPath:(NSIndexPath *)indexPath {
-    // Big frame
-    if (indexPath.row % 6 == 0 || indexPath.row == 0) {
-        CGFloat width = (((CGRectGetWidth(self.feedCollectionView.bounds)) / 3.f) * 2);
-        return width;
-    }
-    // Small frame
-    else {
-        CGFloat width = (CGRectGetWidth(self.feedCollectionView.bounds)) / 3.f;
-        return width;
-    }
-}
-
-- (UIEdgeInsets)collectionLayout:(AVGCollectionViewLayout *)layout edgeInsetsForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return UIEdgeInsetsMake(0.5f, 0.5f, 0.5f, 0.5f);
-}
-
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-    searchBar.showsCancelButton = YES;
-}
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    [UIView animateWithDuration:1.f animations:^{
-        searchBar.showsCancelButton = NO;
-    }];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-
-    self.page = 1;
-    self.isLoadingBySearch = YES;
-    self.searchText = searchBar.text;
-    
-    [self.urlService loadInformationWithText:_searchText forPage:self.page];
-    [self.urlService parseInformationWithCompletionHandler:^(NSArray *imageUrls) {
-        self.arrayOfImagesInformation = [imageUrls mutableCopy];
-        NSUInteger countOfImages = [imageUrls count];
-        [self.imageServices removeAllObjects];
-        for (NSUInteger i = 0; i < countOfImages; i++) {
-            AVGImageService *imageService = [AVGImageService new];
-            [self.imageServices addObject:imageService];
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.feedCollectionView reloadData];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-            [self.feedCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:NO];
-            [self.searchBar endEditing:YES];
-            self.isLoading = NO;
-        });
-    }];
-}
-
-#pragma mark - AVGImageServiceDelegate
-
-- (void)serviceStartedImageDownload:(AVGImageService *)service forRowAtIndexPath:(NSIndexPath*)indexPath {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
-        cell.searchedImageView.progressView.hidden = NO;
-        cell.searchedImageView.activityIndicatorView.hidden = NO;
-        cell.searchedImageView.progressView.progress = 0.f;
-        [cell.searchedImageView.activityIndicatorView startAnimating];
-    });
-    
-}
-
-- (void)service:(AVGImageService *)service updateImageDownloadProgress:(float)progress forRowAtIndexPath:(NSIndexPath*)indexPath {
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
-        cell.searchedImageView.progressView.progress = progress;
-    });
-    
-}
-
-- (void)service:(AVGImageService *)service downloadedImage:(UIImage *)image forRowAtIndexPath:(NSIndexPath*)indexPath {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if (image) {
-            AVGImageInformation *imageInfo = _arrayOfImagesInformation[indexPath.row];
-            [_imageCache setObject:image forKey:imageInfo.url];
-            AVGFeedCollectionViewCell *cell = (AVGFeedCollectionViewCell *)[self.feedCollectionView cellForItemAtIndexPath:indexPath];
-            cell.searchedImageView.image = image;
-            [cell.searchedImageView.activityIndicatorView stopAnimating];
-            cell.searchedImageView.progressView.hidden = YES;
-            [cell setNeedsLayout];
-        }
-    });
 }
 
 @end

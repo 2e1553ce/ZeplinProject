@@ -6,7 +6,9 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-// API
+#pragma mark - Flickr API
+
+// Api key
 FOUNDATION_EXPORT const char *kApiKey;
 
 // Base api url

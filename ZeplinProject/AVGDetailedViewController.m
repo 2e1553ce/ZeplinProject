@@ -24,6 +24,8 @@
 @property (nonatomic, strong) NSMutableArray<AVGImageService*> *imageServices;
 @property (nonatomic, strong) NSCache *imageCache; // need service
 
+@property (nonatomic, strong) UIBarButtonItem *addToFavoritesButton;
+
 @property (nonatomic, strong) AVGDetailedImageInformation *imageInfo;
 @property (nonatomic, copy) NSArray *likesAndComments;
 @property (nonatomic, copy) NSArray *likes;
@@ -36,6 +38,7 @@
 @property (nonatomic, strong) UIImageView *clickedImageView;
 @property (nonatomic, strong) NSIndexPath *clickedIndexPath;
 @property (nonatomic, assign) BOOL clicked;
+@property (nonatomic, strong) UIImageView *checkMarkImageView;
 
 @end
 
@@ -56,6 +59,7 @@
     [self configureNavigationBarButtons];
     [self configureNavigationTitleView];
     [self configureTableView];
+    [self configureCheckMark];
     
     [self getImageAdditionalInformation];
 }
@@ -64,13 +68,14 @@
 
 - (void)configureNavigationBarButtons {
     // Back button
-    UIBarButtonItem *barBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStyleDone target:self action:@selector(backButtonAction:)];
-    barBtn.tintColor = UIColor.customLightBlueColor;
-    self.navigationItem.leftBarButtonItem = barBtn;
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back_icon"] style:UIBarButtonItemStyleDone target:self action:@selector(backButtonAction:)];
+    backBarButton.tintColor = UIColor.customLightBlueColor;
+    self.navigationItem.leftBarButtonItem = backBarButton;
     
     // Add to favorite button
-    UIBarButtonItem *addToFavoritesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavoriteAction:)];
-    self.navigationItem.rightBarButtonItem = addToFavoritesButton;
+    self.addToFavoritesButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addToFavoriteAction:)];
+    self.navigationItem.rightBarButtonItem = self.addToFavoritesButton;
+    self.addToFavoritesButton.enabled = NO;
 }
 
 - (void)configureNavigationTitleView {
@@ -102,6 +107,19 @@
         make.right.equalTo(superview).with.offset(0);
         make.bottom.equalTo(superview).with.offset(0);
     }];
+}
+
+- (void)configureCheckMark {
+    self.checkMarkImageView = [UIImageView new];
+    [self.view addSubview:self.checkMarkImageView];
+    self.checkMarkImageView.image = [UIImage imageNamed:@"check_mark"];
+    [self.checkMarkImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@60);
+        make.width.equalTo(@60);
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(self.view).with.offset(-100.f);
+    }];
+    self.checkMarkImageView.alpha = 0.f;
 }
 
 #pragma mark - Get full image info
@@ -184,6 +202,7 @@
             self.locationView.locationLabel.text = info.location;
             
             [self.tableView reloadData];
+            self.addToFavoritesButton.enabled = YES;
         });
     }];
 }
@@ -399,6 +418,14 @@
 
 - (void)addToFavoriteAction:(UIBarButtonItem *)sender {
     [self.storageFacade saveImage:self.image withImageInformation:self.imageInfo];
+    
+    [UIView animateWithDuration:0.7f animations:^{
+        self.checkMarkImageView.alpha = 1.f;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.7f animations:^{
+            self.checkMarkImageView.alpha = 0.f;
+        }];
+    }];
 }
 
 - (void)viewForCellClicked:(UITapGestureRecognizer *)recognizer {

@@ -25,6 +25,12 @@ NSString *const detailedCommentsCellIdentifier = @"detailedCommentsCellIdentifie
     return self;
 }
 
+#pragma mark - Reusing
+
+- (void)prepareForReuse {
+    self.avatarImageView = nil;
+}
+
 #pragma mark - Creating subviews
 
 - (void)createSubviews {

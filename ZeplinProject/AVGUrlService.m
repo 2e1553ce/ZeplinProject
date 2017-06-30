@@ -67,9 +67,13 @@ static NSInteger const perPage = 250;
     __weak typeof(self) weakSelf = self;
     self.parseUrlsOperation.completionBlock = ^{
         __strong typeof(self) strongSelf = weakSelf;
-        strongSelf.imagesUrls = strongSelf.operationDataContainer.imagesUrl;
-        if (completion) {
-            completion(strongSelf.imagesUrls);
+        if (strongSelf) {
+            strongSelf.imagesUrls = strongSelf.operationDataContainer.imagesUrl;
+            if (completion) {
+                if ([strongSelf.imagesUrls count] > 0) {
+                    completion(strongSelf.imagesUrls);
+                }
+            }
         }
     };
 }

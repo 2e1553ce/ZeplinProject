@@ -31,25 +31,38 @@ NSString *const flickrCellIdentifier = @"flickrCellIdentifier";
 #pragma mark - Creating subviews
 
 - (void)createSubviews {
-    _searchedImageView = [AVGSearchImageView new];
+    _searchedImageView = [UIImageView new];
+    
+    _activityIndicatorView = [UIActivityIndicatorView new];
+    _activityIndicatorView.color = UIColor.grayColor;
+    
+    _progressView = [UIProgressView new];
+    _progressView.progress = 0.f;
+    
     [self addSubview:_searchedImageView];
+    [self.searchedImageView addSubview:_activityIndicatorView];
+    [self.searchedImageView addSubview:_progressView];
     
     [_searchedImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).with.offset(0);
-        make.bottom.equalTo(self).with.offset(0);
-        make.left.equalTo(self).with.offset(0);
-        make.right.equalTo(self).with.offset(0);
+        make.top.equalTo(self);
+        make.bottom.equalTo(self);
+        make.left.equalTo(self);
+        make.right.equalTo(self);
     }];
-    
-    _label = [UILabel new];
-    [_searchedImageView addSubview:_label];
-    
-    [_label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).with.offset(0);
-        make.left.equalTo(self).with.offset(0);
+
+    [_activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(@20);
         make.height.equalTo(@20);
-        make.width.equalTo(@40);
+        make.center.equalTo(_searchedImageView);
     }];
+
+    [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_searchedImageView).with.offset(5);
+        make.right.equalTo(_searchedImageView).with.offset(-5);
+        make.height.equalTo(@2);
+        make.bottom.equalTo(_searchedImageView).with.offset(-5);
+    }];
+ 
 }
 
 @end

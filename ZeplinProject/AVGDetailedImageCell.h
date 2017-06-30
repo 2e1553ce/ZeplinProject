@@ -12,6 +12,7 @@ extern NSString *const detailedImageCellIdentifier;
 
 @property (nonatomic, strong) UIImageView *detailedImageView;
 @property (nonatomic, strong) UILabel *detailedDescriptionLabel;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 /**
  Method giving height for cell

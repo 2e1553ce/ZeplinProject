@@ -40,9 +40,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configureViewController];
+    [self configureTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.imagesInfo = [self.storageFacade getImagesWithInformation];
+    [self.favoriteTableView reloadData];
+}
+
+#pragma mark - Interface configuration
+
+- (void)configureViewController {
     self.view.backgroundColor = UIColor.whiteColor;
     self.navigationItem.title = @"Избранное";
-    
+}
+
+- (void)configureTableView {
     self.favoriteTableView = [UITableView new];
     [self.favoriteTableView registerClass:[AVGFavoriteCell class] forCellReuseIdentifier:favoriteCellIdentifier];
     self.favoriteTableView.dataSource = self;
@@ -56,12 +71,6 @@
         make.right.equalTo(superview);
         make.bottom.equalTo(superview);
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.imagesInfo = [self.storageFacade getImagesWithInformation];
-    [self.favoriteTableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource

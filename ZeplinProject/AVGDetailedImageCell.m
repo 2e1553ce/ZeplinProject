@@ -35,8 +35,12 @@ NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
     _detailedDescriptionLabel.textColor = UIColor.customLightGrayColor;
     _detailedDescriptionLabel.numberOfLines = 0;
     
+    _activityIndicatorView = [UIActivityIndicatorView new];
+    _activityIndicatorView.color = UIColor.grayColor;
+    
     [self addSubview:_detailedImageView];
     [self addSubview:_detailedDescriptionLabel];
+    [self addSubview:_activityIndicatorView];
     
     // Masonry
     UIView *superview = self;
@@ -54,6 +58,13 @@ NSString *const detailedImageCellIdentifier = @"detailedImageCellIdentifier";
         make.right.equalTo(superview).with.offset(-15);
         make.bottom.equalTo(superview).with.offset(-12);
     }];
+    
+    [_activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(_detailedDescriptionLabel);
+        make.width.equalTo(@40);
+        make.height.equalTo(@40);
+    }];
+    [_activityIndicatorView startAnimating];
 }
 
 #pragma mark - Cell Height
