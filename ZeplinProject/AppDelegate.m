@@ -38,9 +38,3 @@
 }
 
 @end
-
-/*
-razmer kartinki ot kolichestva likov/stars/favorites
-  > 200 likov
-collectionView s castom layout, svoi layouti
-*/

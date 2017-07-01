@@ -37,6 +37,9 @@
 		193B400E1EF0136600EC54F3 /* AVGBinaryImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 193B400D1EF0136600EC54F3 /* AVGBinaryImageOperation.m */; };
 		19414AD81EF017F900826726 /* AVGImageInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19414AD61EF017F900826726 /* AVGImageInformation.m */; };
 		195351C41EF805C00022715C /* AVGCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 195351C31EF805C00022715C /* AVGCollectionViewLayout.m */; };
+		195A4DF11F07BC5000E61B5F /* ZeplinProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 195A4DF01F07BC5000E61B5F /* ZeplinProjectTests.m */; };
+		195A4DF91F07C24900E61B5F /* DetailedImageServiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 195A4DF81F07C24900E61B5F /* DetailedImageServiceTests.m */; };
+		195A4DFB1F07CACD00E61B5F /* DeclensionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 195A4DFA1F07CACD00E61B5F /* DeclensionTests.m */; };
 		19CA7AE41EF91B4C0009A4D0 /* AVGDetailedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AE31EF91B4C0009A4D0 /* AVGDetailedViewController.m */; };
 		19CA7AEC1EF944390009A4D0 /* AVGDetailedImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AEB1EF944390009A4D0 /* AVGDetailedImageCell.m */; };
 		19CA7AEF1EF944640009A4D0 /* AVGDetailedLikesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7AEE1EF944640009A4D0 /* AVGDetailedLikesCell.m */; };
@@ -53,6 +56,16 @@
 		19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B2B1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m */; };
 		54823CAA19C65FA7F0AA75A3 /* libPods-ZeplinProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		195A4DF31F07BC5000E61B5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04EF37C01ED97271003B24C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04EF37C71ED97271003B24C8;
+			remoteInfo = ZeplinProject;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		04EF37C81ED97271003B24C8 /* ZeplinProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZeplinProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +130,11 @@
 		195351C31EF805C00022715C /* AVGCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGCollectionViewLayout.m; sourceTree = "<group>"; };
 		195A4DD81F07A77300E61B5F /* AVGUrlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGUrlProtocol.h; sourceTree = "<group>"; };
 		195A4DD91F07A86600E61B5F /* AVGDetailedInformationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedInformationProtocol.h; sourceTree = "<group>"; };
+		195A4DEE1F07BC5000E61B5F /* ZeplinProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZeplinProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		195A4DF01F07BC5000E61B5F /* ZeplinProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZeplinProjectTests.m; sourceTree = "<group>"; };
+		195A4DF21F07BC5000E61B5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		195A4DF81F07C24900E61B5F /* DetailedImageServiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedImageServiceTests.m; sourceTree = "<group>"; };
+		195A4DFA1F07CACD00E61B5F /* DeclensionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclensionTests.m; sourceTree = "<group>"; };
 		19CA7AE21EF91B4C0009A4D0 /* AVGDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedViewController.h; sourceTree = "<group>"; };
 		19CA7AE31EF91B4C0009A4D0 /* AVGDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedViewController.m; sourceTree = "<group>"; };
 		19CA7AEA1EF944390009A4D0 /* AVGDetailedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedImageCell.h; sourceTree = "<group>"; };
@@ -159,6 +177,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		195A4DEB1F07BC5000E61B5F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -166,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				04EF37CA1ED97271003B24C8 /* ZeplinProject */,
+				195A4DEF1F07BC5000E61B5F /* ZeplinProjectTests */,
 				04EF37C91ED97271003B24C8 /* Products */,
 				110952CC125A76E503E47929 /* Pods */,
 				6657EE7258E3BA5E67525F53 /* Frameworks */,
@@ -176,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				04EF37C81ED97271003B24C8 /* ZeplinProject.app */,
+				195A4DEE1F07BC5000E61B5F /* ZeplinProjectTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -490,6 +517,17 @@
 			name = "Cell layout";
 			sourceTree = "<group>";
 		};
+		195A4DEF1F07BC5000E61B5F /* ZeplinProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				195A4DF01F07BC5000E61B5F /* ZeplinProjectTests.m */,
+				195A4DFA1F07CACD00E61B5F /* DeclensionTests.m */,
+				195A4DF81F07C24900E61B5F /* DetailedImageServiceTests.m */,
+				195A4DF21F07BC5000E61B5F /* Info.plist */,
+			);
+			path = ZeplinProjectTests;
+			sourceTree = "<group>";
+		};
 		19CA7AE11EF91B090009A4D0 /* Detailed */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +738,24 @@
 			productReference = 04EF37C81ED97271003B24C8 /* ZeplinProject.app */;
 			productType = "com.apple.product-type.application";
 		};
+		195A4DED1F07BC5000E61B5F /* ZeplinProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 195A4DF71F07BC5000E61B5F /* Build configuration list for PBXNativeTarget "ZeplinProjectTests" */;
+			buildPhases = (
+				195A4DEA1F07BC5000E61B5F /* Sources */,
+				195A4DEB1F07BC5000E61B5F /* Frameworks */,
+				195A4DEC1F07BC5000E61B5F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				195A4DF41F07BC5000E61B5F /* PBXTargetDependency */,
+			);
+			name = ZeplinProjectTests;
+			productName = ZeplinProjectTests;
+			productReference = 195A4DEE1F07BC5000E61B5F /* ZeplinProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -713,6 +769,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = Z48WYVF59J;
 						ProvisioningStyle = Automatic;
+					};
+					195A4DED1F07BC5000E61B5F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = Z48WYVF59J;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 04EF37C71ED97271003B24C8;
 					};
 				};
 			};
@@ -730,6 +792,7 @@
 			projectRoot = "";
 			targets = (
 				04EF37C71ED97271003B24C8 /* ZeplinProject */,
+				195A4DED1F07BC5000E61B5F /* ZeplinProjectTests */,
 			);
 		};
 /* End PBXProject section */
@@ -741,6 +804,13 @@
 			files = (
 				04EF37DB1ED97271003B24C8 /* LaunchScreen.storyboard in Resources */,
 				04EF37D81ED97271003B24C8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		195A4DEC1F07BC5000E61B5F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,7 +914,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		195A4DEA1F07BC5000E61B5F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				195A4DF11F07BC5000E61B5F /* ZeplinProjectTests.m in Sources */,
+				195A4DF91F07C24900E61B5F /* DetailedImageServiceTests.m in Sources */,
+				195A4DFB1F07CACD00E61B5F /* DeclensionTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		195A4DF41F07BC5000E61B5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04EF37C71ED97271003B24C8 /* ZeplinProject */;
+			targetProxy = 195A4DF31F07BC5000E61B5F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		04EF37D91ED97271003B24C8 /* LaunchScreen.storyboard */ = {
@@ -992,6 +1080,34 @@
 			};
 			name = Release;
 		};
+		195A4DF51F07BC5000E61B5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = Z48WYVF59J;
+				INFOPLIST_FILE = ZeplinProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aivar.vucins.ZeplinProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZeplinProject.app/ZeplinProject";
+			};
+			name = Debug;
+		};
+		195A4DF61F07BC5000E61B5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				DEVELOPMENT_TEAM = Z48WYVF59J;
+				INFOPLIST_FILE = ZeplinProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.aivar.vucins.ZeplinProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZeplinProject.app/ZeplinProject";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1012,6 +1128,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		195A4DF71F07BC5000E61B5F /* Build configuration list for PBXNativeTarget "ZeplinProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				195A4DF51F07BC5000E61B5F /* Debug */,
+				195A4DF61F07BC5000E61B5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
