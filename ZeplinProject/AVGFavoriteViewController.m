@@ -54,6 +54,9 @@
 
 - (void)configureViewController {
     self.view.backgroundColor = UIColor.whiteColor;
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:UIColor.blackColor,
+       NSFontAttributeName:UIFont.settingsTitle}];
     self.navigationItem.title = @"Избранное";
 }
 

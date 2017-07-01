@@ -115,6 +115,8 @@
 		19414AD91EF0181D00826726 /* AVGImageInformation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVGImageInformation.h; sourceTree = "<group>"; };
 		195351C21EF805C00022715C /* AVGCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGCollectionViewLayout.h; sourceTree = "<group>"; };
 		195351C31EF805C00022715C /* AVGCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGCollectionViewLayout.m; sourceTree = "<group>"; };
+		195A4DD81F07A77300E61B5F /* AVGUrlProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGUrlProtocol.h; sourceTree = "<group>"; };
+		195A4DD91F07A86600E61B5F /* AVGDetailedInformationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedInformationProtocol.h; sourceTree = "<group>"; };
 		19CA7AE21EF91B4C0009A4D0 /* AVGDetailedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedViewController.h; sourceTree = "<group>"; };
 		19CA7AE31EF91B4C0009A4D0 /* AVGDetailedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedViewController.m; sourceTree = "<group>"; };
 		19CA7AEA1EF944390009A4D0 /* AVGDetailedImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedImageCell.h; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				04EF37ED1ED97917003B24C8 /* Favorite  */,
 				04EF37E81ED97819003B24C8 /* Wall CollectionView */,
+				19209BCC1F02E53D0081F2C3 /* Settings */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -230,7 +233,6 @@
 				19209C101F04E08A0081F2C3 /* AVGFeedDataProvider.h */,
 				19209C111F04E08A0081F2C3 /* AVGFeedDataProvider.m */,
 				19CA7AE11EF91B090009A4D0 /* Detailed */,
-				19209BCC1F02E53D0081F2C3 /* Settings */,
 			);
 			name = "Wall CollectionView";
 			sourceTree = "<group>";
@@ -375,6 +377,7 @@
 		193B3FED1EF0122400EC54F3 /* URLs load */ = {
 			isa = PBXGroup;
 			children = (
+				195A4DD81F07A77300E61B5F /* AVGUrlProtocol.h */,
 				193B3FFD1EF0131600EC54F3 /* AVGUrlService.h */,
 				193B3FFE1EF0131600EC54F3 /* AVGUrlService.m */,
 				193B3FEF1EF0124800EC54F3 /* Operations */,
@@ -603,6 +606,7 @@
 		19CA7B0B1EFAE1220009A4D0 /* Images detailed info load */ = {
 			isa = PBXGroup;
 			children = (
+				195A4DD91F07A86600E61B5F /* AVGDetailedInformationProtocol.h */,
 				19CA7B0D1EFAE1D20009A4D0 /* AVGDetailedImageService.h */,
 				19CA7B0E1EFAE1D20009A4D0 /* AVGDetailedImageService.m */,
 				19CA7B101EFAE2140009A4D0 /* Operations */,

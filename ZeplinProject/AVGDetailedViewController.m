@@ -245,76 +245,90 @@
     
     // Image & description counters
     if (indexPath.row == 0) {
-        AVGDetailedImageCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedImageCellIdentifier forIndexPath:indexPath];
-        cell.detailedImageView.image = self.image;
-        cell.detailedDescriptionLabel.text = self.imageInfo.imageDescription ? self.imageInfo.imageDescription : self.imageInfo.title;
+        AVGDetailedImageCell *cell = [self getImageWithDesciptionCellForIndexPath:indexPath];
         return  cell;
-        
     }
     // Likes & comments
     else if (indexPath.row == 1) {
-        AVGDetailedLikesCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedLikesCellIdentifier forIndexPath:indexPath];
-        
-        NSString *likeTitleString = [NSString declensionStringFor:AVGDeclensionTypeLike andCount:[self.likes count]];
-        NSString *commentTitleString = [NSString declensionStringFor:AVGDeclensionTypeComment andCount:[self.comments count]];
-        
-        cell.likesLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.likes count], likeTitleString];
-        cell.commentsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.comments count], commentTitleString];
+        AVGDetailedLikesCell *cell = [self getLikesAndCommentsCellForIndexPath:indexPath];
         return cell;
-        
     }
     // Comments
     else {
-        AVGDetailedCommentsCell *cell = [tableView dequeueReusableCellWithIdentifier:detailedCommentsCellIdentifier forIndexPath:indexPath];
-        if ([self.likesAndComments[indexPath.row - 2] isKindOfClass:[AVGCommentator class]]) {
-            AVGCommentator *commentator = self.likesAndComments[indexPath.row - 2];
-            cell.nickNameLabel.text = commentator.nickName;
-            
-            NSString *comment = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
-            NSMutableAttributedString *attributedComment =
-            [[NSMutableAttributedString alloc]
-             initWithString: comment];
-            
-            [attributedComment addAttribute:NSForegroundColorAttributeName
-                                      value:UIColor.customLightBlueColor
-                                      range:NSMakeRange(22, [comment length] - 22)];
-            cell.commentLabel.attributedText = attributedComment;
-            
-            AVGImageService *imageService = self.imageServices[indexPath.row - 2];
-            imageService.delegate = self;
-            imageService.imageState = AVGImageStateNormal;
-            if (commentator.avatarURL) {
-                [imageService loadImageFromUrlString:commentator.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
-            } else {
-                cell.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
-            }
-            
-        } else {
-            AVGLikeInformation *like = self.likesAndComments[indexPath.row - 2];
-            cell.nickNameLabel.text = like.nickName;
-            
-            NSString *comment = [NSString stringWithFormat:@"оценил ваше фото."];
-            NSMutableAttributedString *attributedComment =
-            [[NSMutableAttributedString alloc]
-             initWithString: comment];
-            
-            [attributedComment addAttribute:NSForegroundColorAttributeName
-                                      value:UIColor.customMiddleRedColor
-                                      range:NSMakeRange(0, 6)];
-            cell.commentLabel.attributedText = attributedComment;
-            
-            AVGImageService *imageService = self.imageServices[indexPath.row - 2];
-            imageService.delegate = self;
-            imageService.imageState = AVGImageStateNormal;
-            if (like.avatarURL) {
-                [imageService loadImageFromUrlString:like.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
-            } else {
-                cell.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
-            }
-        }
-        
+        AVGDetailedCommentsCell *cell = [self getCommentsCellForIndexPath:indexPath];
         return cell;
     }
+}
+
+#pragma mark - Getting cells
+
+- (AVGDetailedImageCell *)getImageWithDesciptionCellForIndexPath:(NSIndexPath *)indexPath {
+    AVGDetailedImageCell *cell = [self.tableView dequeueReusableCellWithIdentifier:detailedImageCellIdentifier forIndexPath:indexPath];
+    cell.detailedImageView.image = self.image;
+    cell.detailedDescriptionLabel.text = self.imageInfo.imageDescription ? self.imageInfo.imageDescription : self.imageInfo.title;
+    return  cell;
+}
+
+- (AVGDetailedLikesCell *)getLikesAndCommentsCellForIndexPath:(NSIndexPath *)indexPath {
+    AVGDetailedLikesCell *cell = [self.tableView dequeueReusableCellWithIdentifier:detailedLikesCellIdentifier forIndexPath:indexPath];
+    
+    NSString *likeTitleString = [NSString declensionStringFor:AVGDeclensionTypeLike andCount:[self.likes count]];
+    NSString *commentTitleString = [NSString declensionStringFor:AVGDeclensionTypeComment andCount:[self.comments count]];
+    
+    cell.likesLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.likes count], likeTitleString];
+    cell.commentsLabel.text = [NSString stringWithFormat:@"%lu %@", (unsigned long)[self.comments count], commentTitleString];
+    return cell;
+}
+
+- (AVGDetailedCommentsCell *)getCommentsCellForIndexPath:(NSIndexPath *)indexPath {
+    AVGDetailedCommentsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:detailedCommentsCellIdentifier forIndexPath:indexPath];
+    if ([self.likesAndComments[indexPath.row - 2] isKindOfClass:[AVGCommentator class]]) {
+        AVGCommentator *commentator = self.likesAndComments[indexPath.row - 2];
+        cell.nickNameLabel.text = commentator.nickName;
+        
+        NSString *comment = [NSString stringWithFormat:@"прокомментировал фото:\r%@", commentator.comment];
+        NSMutableAttributedString *attributedComment =
+        [[NSMutableAttributedString alloc]
+         initWithString: comment];
+        
+        [attributedComment addAttribute:NSForegroundColorAttributeName
+                                  value:UIColor.customLightBlueColor
+                                  range:NSMakeRange(22, [comment length] - 22)];
+        cell.commentLabel.attributedText = attributedComment;
+        
+        AVGImageService *imageService = self.imageServices[indexPath.row - 2];
+        imageService.delegate = self;
+        imageService.imageState = AVGImageStateNormal;
+        if (commentator.avatarURL) {
+            [imageService loadImageFromUrlString:commentator.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+        } else {
+            cell.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
+        }
+        
+    } else {
+        AVGLikeInformation *like = self.likesAndComments[indexPath.row - 2];
+        cell.nickNameLabel.text = like.nickName;
+        
+        NSString *comment = [NSString stringWithFormat:@"оценил ваше фото."];
+        NSMutableAttributedString *attributedComment =
+        [[NSMutableAttributedString alloc]
+         initWithString: comment];
+        
+        [attributedComment addAttribute:NSForegroundColorAttributeName
+                                  value:UIColor.customMiddleRedColor
+                                  range:NSMakeRange(0, 6)];
+        cell.commentLabel.attributedText = attributedComment;
+        
+        AVGImageService *imageService = self.imageServices[indexPath.row - 2];
+        imageService.delegate = self;
+        imageService.imageState = AVGImageStateNormal;
+        if (like.avatarURL) {
+            [imageService loadImageFromUrlString:like.avatarURL andCache:self.imageCache forRowAtIndexPath:(NSIndexPath *)indexPath];
+        } else {
+            cell.avatarImageView.image = [UIImage imageNamed:@"default_avatar"];
+        }
+    }
+    return cell;
 }
 
 #pragma mark - UITableViewDelegate
@@ -422,6 +436,7 @@
 }
 
 - (void)addToFavoriteAction:(UIBarButtonItem *)sender {
+    self.addToFavoritesButton.enabled = NO;
     [self.storageFacade saveImage:self.image withImageInformation:self.imageInfo];
     
     [UIView animateWithDuration:0.7f animations:^{

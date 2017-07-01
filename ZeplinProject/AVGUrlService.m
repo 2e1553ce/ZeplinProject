@@ -39,7 +39,7 @@ static NSInteger const perPage = 250;
     return  self;
 }
 
-#pragma mark - Loading urls for images
+#pragma mark - AVGUrlProtocol
 
 - (void)loadInformationWithText:(NSString *)text
                         forPage:(NSInteger)page {
@@ -58,8 +58,6 @@ static NSInteger const perPage = 250;
     [self.queue cancelAllOperations];
     [self.queue addOperation:self.loadUrlsOperation];
 }
-
-#pragma mark - Parsing loaded urls for images
 
 - (void)parseInformationWithCompletionHandler:(void(^)(NSArray *imageUrls))completion {
     [self.queue addOperation:self.parseUrlsOperation];

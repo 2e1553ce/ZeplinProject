@@ -6,27 +6,13 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
+#import "AVGUrlProtocol.h"
+
 @class AVGImageInformation;
 
-@interface AVGUrlService : NSObject
+@interface AVGUrlService : NSObject <AVGUrlProtocol>
 
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, copy) NSArray <AVGImageInformation *> *imagesUrls;
-
-/**
- Метод для загрузки информации о фотографиях, из которых собираются url'ы к ним
-
- @param text Поисковый запрос
- @param page Для постраничной загрузки
- */
-- (void)loadInformationWithText:(NSString *)text
-                        forPage:(NSInteger)page;
-
-/**
- Метод парсит полученную информацию о фотографиях
-
- @param completion Колбек для апдейта UI
- */
-- (void)parseInformationWithCompletionHandler:(void(^)(NSArray *imageUrls))completion;
 
 @end
