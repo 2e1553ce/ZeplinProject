@@ -382,7 +382,6 @@
             } else {
                 return 44.48f + textRect.size.height;
             }
-
         } else {
             NSStringDrawingContext *ctx = [NSStringDrawingContext new];
             NSString *commentString = [NSString stringWithFormat:@"оценил ваше фото."];
