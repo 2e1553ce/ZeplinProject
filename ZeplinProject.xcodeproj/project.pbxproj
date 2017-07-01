@@ -1055,7 +1055,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z48WYVF59J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/aig/Documents/ZeplinProject//ZeplinProject/ZeplinProject-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeplinProject/ZeplinProject-Prefix.pch";
 				INFOPLIST_FILE = ZeplinProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1071,7 +1071,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = Z48WYVF59J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "/Users/aig/Documents/ZeplinProject//ZeplinProject/ZeplinProject-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ZeplinProject/ZeplinProject-Prefix.pch";
 				INFOPLIST_FILE = ZeplinProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1136,6 +1136,7 @@
 				195A4DF61F07BC5000E61B5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
