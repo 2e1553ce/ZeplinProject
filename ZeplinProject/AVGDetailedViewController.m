@@ -397,7 +397,6 @@
             } else {
                 return 44.48f + textRect.size.height;
             }
-
         }
     }
 }
