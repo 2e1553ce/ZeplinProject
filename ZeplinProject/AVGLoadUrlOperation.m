@@ -55,7 +55,6 @@
 #pragma mark - URL
 
 - (NSURL *)createURL {
-    [self createQueryString];
     NSString *query = [self createQueryString];
     NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
                                        [NSCharacterSet URLFragmentAllowedCharacterSet]]];

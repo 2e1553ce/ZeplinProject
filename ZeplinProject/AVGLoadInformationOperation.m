@@ -76,6 +76,15 @@
 #pragma mark - URL
 
 - (NSURL *)createURL {
+    NSString *query = [self createQuery];
+    NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
+                                       [NSCharacterSet URLFragmentAllowedCharacterSet]]];
+    return url;
+}
+
+#pragma mark - Query
+
+- (NSString *)createQuery {
     NSString *urlMethod;
     switch (self.method) {
         case AVGURLMethodTypeInfo:
@@ -104,10 +113,7 @@
     NSString *urlParametersString = [NSString
                                      stringWithFormat:@"&api_key=%s&photo_id=%@", kApiKey, self.container.imageID];
     
-    NSString *query = [NSString stringWithFormat:@"%@%@", urlBaseString, urlParametersString];
-    NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
-                                       [NSCharacterSet URLFragmentAllowedCharacterSet]]];
-    return url;
+    return [NSString stringWithFormat:@"%@%@", urlBaseString, urlParametersString];
 }
 
 @end
