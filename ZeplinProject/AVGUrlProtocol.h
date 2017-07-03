@@ -20,7 +20,7 @@
 /**
  Метод парсит полученную информацию о фотографиях
  
- @param completion Колбек для апдейта UI
+ @param completion Возвращает url'ы
  */
 - (void)parseInformationWithCompletionHandler:(void(^)(NSArray *imageUrls))completion;
 
