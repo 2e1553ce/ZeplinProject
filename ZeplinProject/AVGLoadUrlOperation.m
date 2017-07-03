@@ -55,6 +55,16 @@
 #pragma mark - URL
 
 - (NSURL *)createURL {
+    [self createQueryString];
+    NSString *query = [self createQueryString];
+    NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
+                                       [NSCharacterSet URLFragmentAllowedCharacterSet]]];
+    return url;
+}
+
+#pragma mark - Query
+
+- (NSString *)createQueryString {
     NSURLComponents *components = [NSURLComponents componentsWithString:kApiBaseUrlString];
     NSDictionary *queryDictionary = @{ @"method":           kApiMethodPhotosSearch,
                                        @"license":          kApiLicense,
@@ -73,10 +83,7 @@
     NSString *urlParametersString = [NSString
                                      stringWithFormat:@"&api_key=%s&text=%@&page=%ld&per_page=%ld", kApiKey, self.searchText, (long)self.page, (long)self.perPage];
     
-    NSString *query = [NSString stringWithFormat:@"%@%@", urlBaseString, urlParametersString];
-    NSURL *url = [NSURL URLWithString:[query stringByAddingPercentEncodingWithAllowedCharacters:
-                                       [NSCharacterSet URLFragmentAllowedCharacterSet]]];
-    return url;
+    return [NSString stringWithFormat:@"%@%@", urlBaseString, urlParametersString];
 }
 
 @end
