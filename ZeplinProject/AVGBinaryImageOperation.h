@@ -6,10 +6,10 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@class AVGLoadParseContainer;
+@class AVGLoadBinarizeContainer;
 
 @interface AVGBinaryImageOperation : NSBlockOperation
 
-@property (nonatomic, strong) AVGLoadParseContainer *operationDataContainer;
+@property (nonatomic, strong) AVGLoadBinarizeContainer *operationDataContainer;
 
 @end

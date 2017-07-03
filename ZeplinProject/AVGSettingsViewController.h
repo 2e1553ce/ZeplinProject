@@ -6,6 +6,9 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
+/**
+ Вья контроллер настроек
+ */
 @interface AVGSettingsViewController : UIViewController
 
 @end

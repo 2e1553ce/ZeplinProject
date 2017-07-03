@@ -7,7 +7,7 @@
 //
 
 #import "AVGLoadImageOperation.h"
-#import "AVGLoadParseContainer.h"
+#import "AVGLoadBinarizeContainer.h"
 
 @interface AVGLoadImageOperation () <NSURLSessionDelegate>
 
@@ -59,7 +59,7 @@
     }
 }
 
-#pragma mark Resume, pause, cancel load operation
+#pragma mark - Resume, pause, cancel load operation
 
 - (void)resumeDownload {
     // not using

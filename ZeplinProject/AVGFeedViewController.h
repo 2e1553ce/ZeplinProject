@@ -6,6 +6,9 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
+/**
+ Главный коллекшн вью конроллер с фотографиями
+ */
 @interface AVGFeedViewController : UIViewController
 
 @end

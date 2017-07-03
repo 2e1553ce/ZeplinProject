@@ -6,7 +6,7 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
-@class AVGLoadParseContainer;
+@class AVGLoadBinarizeContainer;
 
 typedef NS_ENUM(NSInteger, AVGImageProgressState) {
     AVGImageProgressStateNew = 0,
@@ -23,7 +23,7 @@ typedef void (^downloadProgressBlock)(float progress);
 @property (nonatomic, copy) NSString *urlString;
 @property (nonatomic, copy) downloadProgressBlock downloadProgressBlock;
 @property (nonatomic, assign) AVGImageProgressState imageProgressState;
-@property (nonatomic, strong) AVGLoadParseContainer *operationDataContainer;
+@property (nonatomic, strong) AVGLoadBinarizeContainer *operationDataContainer;
 
 /**
  Метод возобновляющий загрузку

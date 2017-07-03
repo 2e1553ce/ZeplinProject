@@ -6,6 +6,9 @@
 //  Copyright © 2017 iOS-School-1. All rights reserved.
 //
 
+/**
+ Вью контроллер с сохраненными фотографиями
+ */
 @interface AVGFavoriteViewController : UIViewController
 
 @end

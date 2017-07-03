@@ -52,7 +52,7 @@
 		19CA7B161EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B151EFAE2DD0009A4D0 /* AVGLoadInformationOperation.m */; };
 		19CA7B201EFAF6710009A4D0 /* AVGLikeInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B1F1EFAF6710009A4D0 /* AVGLikeInformation.m */; };
 		19CA7B241EFB019A0009A4D0 /* AVGParseInformationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B231EFB019A0009A4D0 /* AVGParseInformationOperation.m */; };
-		19CA7B281EFB043B0009A4D0 /* AVGLoadParseContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B271EFB043B0009A4D0 /* AVGLoadParseContainer.m */; };
+		19CA7B281EFB043B0009A4D0 /* AVGLoadBinarizeContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B271EFB043B0009A4D0 /* AVGLoadBinarizeContainer.m */; };
 		19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 19CA7B2B1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m */; };
 		54823CAA19C65FA7F0AA75A3 /* libPods-ZeplinProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95AEDB05BC50445403DB7731 /* libPods-ZeplinProject.a */; };
 /* End PBXBuildFile section */
@@ -159,8 +159,8 @@
 		19CA7B1F1EFAF6710009A4D0 /* AVGLikeInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLikeInformation.m; sourceTree = "<group>"; };
 		19CA7B221EFB019A0009A4D0 /* AVGParseInformationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGParseInformationOperation.h; sourceTree = "<group>"; };
 		19CA7B231EFB019A0009A4D0 /* AVGParseInformationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGParseInformationOperation.m; sourceTree = "<group>"; };
-		19CA7B261EFB043B0009A4D0 /* AVGLoadParseContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadParseContainer.h; sourceTree = "<group>"; };
-		19CA7B271EFB043B0009A4D0 /* AVGLoadParseContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadParseContainer.m; sourceTree = "<group>"; };
+		19CA7B261EFB043B0009A4D0 /* AVGLoadBinarizeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGLoadBinarizeContainer.h; sourceTree = "<group>"; };
+		19CA7B271EFB043B0009A4D0 /* AVGLoadBinarizeContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGLoadBinarizeContainer.m; sourceTree = "<group>"; };
 		19CA7B2A1EFB06A40009A4D0 /* AVGDetailedInformationContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVGDetailedInformationContainer.h; sourceTree = "<group>"; };
 		19CA7B2B1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVGDetailedInformationContainer.m; sourceTree = "<group>"; };
 		2B12E6CB648A2621EF130D63 /* Pods-ZeplinProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZeplinProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZeplinProject/Pods-ZeplinProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -463,7 +463,7 @@
 		193B3FF31EF0129B00EC54F3 /* Operations */ = {
 			isa = PBXGroup;
 			children = (
-				19CA7B251EFB039C0009A4D0 /* Load & parse operations container */,
+				19CA7B251EFB039C0009A4D0 /* Load & binarize operations container */,
 				193B3FF51EF012A600EC54F3 /* Load image */,
 				193B3FF41EF012A400EC54F3 /* Filter image */,
 			);
@@ -689,13 +689,13 @@
 			name = "Parse detailed information";
 			sourceTree = "<group>";
 		};
-		19CA7B251EFB039C0009A4D0 /* Load & parse operations container */ = {
+		19CA7B251EFB039C0009A4D0 /* Load & binarize operations container */ = {
 			isa = PBXGroup;
 			children = (
-				19CA7B261EFB043B0009A4D0 /* AVGLoadParseContainer.h */,
-				19CA7B271EFB043B0009A4D0 /* AVGLoadParseContainer.m */,
+				19CA7B261EFB043B0009A4D0 /* AVGLoadBinarizeContainer.h */,
+				19CA7B271EFB043B0009A4D0 /* AVGLoadBinarizeContainer.m */,
 			);
-			name = "Load & parse operations container";
+			name = "Load & binarize operations container";
 			sourceTree = "<group>";
 		};
 		19CA7B291EFB06690009A4D0 /* Detailed operations container */ = {
@@ -896,7 +896,7 @@
 				19209BD61F0306ED0081F2C3 /* FavoriteModel.xcdatamodeld in Sources */,
 				19209BDD1F0313510081F2C3 /* AVGCoreDataService.m in Sources */,
 				19CA7B2C1EFB06A40009A4D0 /* AVGDetailedInformationContainer.m in Sources */,
-				19CA7B281EFB043B0009A4D0 /* AVGLoadParseContainer.m in Sources */,
+				19CA7B281EFB043B0009A4D0 /* AVGLoadBinarizeContainer.m in Sources */,
 				04EF37F31ED979ED003B24C8 /* AVGFeedViewController.m in Sources */,
 				19209C0E1F03ED6C0081F2C3 /* AVGStorageFacade.m in Sources */,
 				19209BD31F02FB9D0081F2C3 /* AVGSettingsCell.m in Sources */,
