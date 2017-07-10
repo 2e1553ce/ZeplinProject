@@ -19,7 +19,6 @@
 
 @property (nonatomic, strong) AVGLoadUrlOperation *loadUrlsOperation;
 @property (nonatomic, strong) AVGParseUrlOperation *parseUrlsOperation;
-
 @property (nonatomic, strong) AVGUrlContainer *operationDataContainer;
 
 @end
